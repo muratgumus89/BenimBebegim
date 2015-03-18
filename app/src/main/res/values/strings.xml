@@ -133,4 +133,7 @@
     <string name="title_section1">Features</string>
     <string name="title_section2">Favorites</string>
     <string name="title_section3">More Events</string>
+    <string name="edit">Edit</string>
+    <string name="delete_repeating">Delete repeating</string>
+    <string name="delete_all">Delete all</string>
 </resources>
