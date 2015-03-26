@@ -24,6 +24,12 @@ public class TabsFragmentPagerAdapter extends FragmentPagerAdapter {
  return new ActivityFavorites();
  if(index == 2)
  return new ActivityMoreEvents();
+ if(index == 5)
+ return new ActivityFeatures();
+ if(index == 4)
+ return new ActivityFavorites();
+ if(index == 3)
+ return new ActivityMoreEvents();
  
  
  return null;
@@ -31,8 +37,7 @@ public class TabsFragmentPagerAdapter extends FragmentPagerAdapter {
  
  @Override
  public int getCount() {
- // TODO Auto-generated method stub
- return 3;
- }
- 
+        // TODO Auto-generated method stub
+        return 3;
+    }
 }

@@ -72,6 +72,39 @@
     <string name="have_A_Baby">is Already Belongs This User!!!</string>
     <string name="update_account">Updated</string>
     <string name="delete_account">Account Deleted</string>
+    /**
+    ****  FOR REMİND ME
+    ***/
+    <string name="message">Message</string>
+    <string name="play_ringtone">Play Ringtone</string>
+    <string name="once">Once</string>
+    <string name="repeat">Repeat</string>
+    <string name="from_date">From Date:    </string>
+    <string name="to_date">To Date:    </string>
+    <string name="at_time">At Time:    </string>
+    <string name="rule">Rule</string>
+    <string name="interval">Interval</string>
+    <string name="of">of</string>
+    <string name="mins">min(s)    </string>
+    <string name="hours">hour(s)    </string>
+    <string name="days">day(s)    </string>
+    <string name="mounths">mounth(s)    </string>
+    <string name="years">year(s)    </string>
+    <string name="no_data">No Data</string>
+    <string name="display_time">Display Time</string>
+    <string name="display_settings">Display Settings</string>
+    <string name="date_range">Date Range</string>
+    <string name="date_format">Date Format</string>
+    <string name="time_format">Time Format</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="vibrate_on">Vibrate On Notification</string>
+    <string name="set_ringtone">Set Ringtone</string>
+    <string name="notification_Setting">Notification Settings</string>
+    <string name="use_hour">Use 24-hour format</string>
+    <string name="daily">Daily</string>
+    <string name="actual">Actual</string>
+    <string name="cancel_capture">User Cancelled Image Capture</string>
+    <string name="cancel_select">"User Cancelled Image Selecting"</string>
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>
@@ -113,10 +146,28 @@
         <item >History</item>
         <item >Stats</item>
         <item >Diary</item>
-        <item >Features</item>
-        <item >Favorites</item>
+        <item >Growth</item>
     </string-array>
+    <string name="mood">Mood</string>
+    <string name="solid">Solid</string>
+    <string name="bottle">Bottle</string>
+    <string name="breast">Breast</string>
+    <string name="sleep">Sleep</string>
+    <string name="diaper">Diaper</string>
+    <string name="pumping">Pumping</string>
+    <string name="medicine">Medicine</string>
+    <string name="health">Health</string>
+    <string name="vaccination">Vaccination</string>
+    <string name="hygiene">Hygiene</string>
+    <string name="teeth">Teeth</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="title_activity_item_one">ItemOne</string>
+    <string name="title_section1">Features</string>
+    <string name="title_section2">Favorites</string>
+    <string name="title_section3">More Events</string>
+    <string name="edit">Edit</string>
+    <string name="delete_repeating">Delete repeating</string>
+    <string name="delete_all">Delete all</string>
 
-    <string name="drawer_open">Drawer Açıldı</string>
-    <string name="drawer_close">Drawer Kapandı</string>
 </resources>
