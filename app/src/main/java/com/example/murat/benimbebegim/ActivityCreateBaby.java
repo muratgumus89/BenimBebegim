@@ -1,76 +1,65 @@
 package com.example.murat.benimbebegim;
 
-        import java.io.BufferedReader;
-        import java.io.ByteArrayOutputStream;
-        import java.io.File;
-        import java.io.FileInputStream;
-        import java.io.FileNotFoundException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.text.SimpleDateFormat;
-        import java.util.ArrayList;
-        import java.util.Calendar;
-        import java.util.Date;
-        import java.util.Locale;
-        import java.util.TimeZone;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
-        import android.annotation.SuppressLint;
-        import android.app.Activity;
-        import android.app.AlertDialog;
-        import android.app.DatePickerDialog;
-        import android.app.Dialog;
-        import android.app.TimePickerDialog;
-        import android.content.Context;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.content.SharedPreferences;
-        import android.content.pm.PackageManager;
-        import android.database.Cursor;
-        import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
-        import android.graphics.Color;
-        import android.graphics.drawable.Drawable;
-        import android.graphics.drawable.GradientDrawable;
-        import android.net.Uri;
-        import android.os.Build;
-        import android.os.Bundle;
-        import android.os.Environment;
-        import android.os.StrictMode;
-        import android.preference.PreferenceManager;
-        import android.provider.DocumentsContract;
-        import android.provider.MediaStore;
-        import android.util.Log;
-        import android.view.ContextMenu;
-        import android.view.ContextMenu.ContextMenuInfo;
-        import android.view.LayoutInflater;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.View.OnClickListener;
-        import android.view.ViewGroup;
-        import android.widget.AdapterView;
-        import android.widget.AdapterView.OnItemSelectedListener;
-        import android.widget.ArrayAdapter;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.ImageView;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
-        import android.widget.ScrollView;
-        import android.widget.Spinner;
-        import android.widget.TimePicker;
-        import android.widget.Toast;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
-        import org.apache.http.HttpEntity;
-        import org.apache.http.HttpResponse;
-        import org.apache.http.NameValuePair;
-        import org.apache.http.client.HttpClient;
-        import org.apache.http.client.entity.UrlEncodedFormEntity;
-        import org.apache.http.client.methods.HttpPost;
-        import org.apache.http.impl.client.DefaultHttpClient;
-        import org.apache.http.message.BasicNameValuePair;
-        import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class ActivityCreateBaby extends Activity implements OnClickListener {
@@ -94,7 +83,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
     /*
         Variables For GettingValues
     */
-    String selectedDate, selectedTime, strTime, strDate, getBabyName,getUserId,
+    String selectedDate, selectedTime, strTime, strDate, getBabyName, getUserId,
             selectedGendersForCreateBaby, strSelectedImage = "null";
 
     /*
@@ -124,7 +113,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
     private String selectedImagePath;
     public static Uri selectedImageUri = null;
     String getUserIDBabyCreate;
-    public static String realPath="null";
+    public static String realPath = "null";
 
 
     // Activity request codes
@@ -382,19 +371,19 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
         String strUser_id = preferences.getString("user_id", "");
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
-        if(!realPath.equals("null")) {
+        if (!realPath.equals("null")) {
             // bimatp factory
             BitmapFactory.Options options = new BitmapFactory.Options();
 
             // downsizing image as it throws OutOfMemory Exception for larger
             // images
             options.inSampleSize = 8;
-            Bitmap bitmap = BitmapFactory.decodeFile(realPath,options);
+            Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
             byte[] byte_arr = stream.toByteArray();
             image_str = Base64.encodeBytes(byte_arr);
-        }else{
+        } else {
             image_str = "null";
         }
 
@@ -404,7 +393,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
         Log.e("date", selectedDate);
         nameValuePairs.add(new BasicNameValuePair("time", selectedTime));
         Log.e("time", selectedTime);
-        nameValuePairs.add(new BasicNameValuePair("image",image_str));
+        nameValuePairs.add(new BasicNameValuePair("image", image_str));
         Log.e("image", realPath);
         nameValuePairs.add(new BasicNameValuePair("UID", strUser_id));
         Log.e("uid", strUser_id);
@@ -531,9 +520,10 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
 
         return true;
     }
+
     /**
      * Checking device has camera hardware or not
-     * */
+     */
     private boolean isDeviceSupportCamera() {
         if (getApplicationContext().getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_CAMERA)) {
@@ -544,8 +534,9 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
             return false;
         }
     }
+
     /*
-	 * Capturing Camera Image will lauch camera app requrest image capture
+     * Capturing Camera Image will lauch camera app requrest image capture
 	 */
     private void captureImage() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -557,17 +548,21 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
         // start the image capture Intent
         startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
     }
-    public static String getImageName(){
+
+    public static String getImageName() {
         return imageName.toString();
     }
-    public static void setImageName(String s){
-        imageName=s;
+
+    public static void setImageName(String s) {
+        imageName = s;
     }
-    public static String getImagePath(){
+
+    public static String getImagePath() {
         return realPath.toString();
     }
-    public static void setImagePath(String s){
-        imageName=s;
+
+    public static void setImagePath(String s) {
+        imageName = s;
     }
 
     /*
@@ -590,12 +585,14 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
         // get the file url
         fileUri = savedInstanceState.getParcelable("file_uri");
     }
+
     /*
 	 * Creating file uri to store image/video
 	 */
     public Uri getOutputMediaFileUri(int type) {
         return Uri.fromFile(getOutputMediaFile(type));
     }
+
     /*
  * Display image from a path to ImageView
  */
@@ -612,8 +609,8 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
 
             final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
                     options);
-            realPath=fileUri.getPath();
-            MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, getImageName() , "Kontrol");
+            realPath = fileUri.getPath();
+            MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, getImageName(), "Kontrol");
             imgSelectBabyPicture.setImageBitmap(bitmap);
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -666,7 +663,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
             if (resCode == RESULT_OK) {
                 // successfully captured the image
                 // display it in image view
-                Log.i("Camerayı Okeyledim","Hahaha");
+                Log.i("Camerayı Okeyledim", "Hahaha");
                 previewCapturedImage();
                 return;
             } else if (resCode == RESULT_CANCELED) {
@@ -676,7 +673,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                         .show();
                 return;
             }
-        }else {
+        } else {
             if (resCode == Activity.RESULT_OK && data != null) {
                 // SDK < API11
                 if (Build.VERSION.SDK_INT < 11)
@@ -689,74 +686,67 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                     // SDK > 19 (Android 4.4)
                 else if (Build.VERSION.SDK_INT > 19)
                     realPath = RealPathUtil.getRealPathFromURI_API19(this, data.getData());
-                }
-            else if (resCode == Activity.RESULT_CANCELED) {
+            } else if (resCode == Activity.RESULT_CANCELED) {
                 // user cancelled Image capture
                 Toast.makeText(getApplicationContext(),
                         R.string.cancel_select, Toast.LENGTH_SHORT)
                         .show();
-                        return;
+                return;
 
-                }
             }
-            setPath(Build.VERSION.SDK_INT, data.getData().getPath(), realPath);
         }
+        setPath(Build.VERSION.SDK_INT, data.getData().getPath(), realPath);
+    }
 
-   private void setPath(int sdk, String uriPath,String realPath){
+    private void setPath(int sdk, String uriPath, String realPath) {
 
-       Uri uriFromPath = Uri.fromFile(new File(realPath));
+        Uri uriFromPath = Uri.fromFile(new File(realPath));
 
-       // you have two ways to display selected image
+        // you have two ways to display selected image
 
-       // ( 1 ) imageView.setImageURI(uriFromPath);
+        // ( 1 ) imageView.setImageURI(uriFromPath);
 
-       // ( 2 ) imageView.setImageBitmap(bitmap);
-       Bitmap bitmap = null;
-       try {
-           bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFromPath));
-       } catch (FileNotFoundException e) {
-           e.printStackTrace();
-       }
-       imgSelectBabyPicture.setImageBitmap(bitmap);
-       Log.d("Bitmap",bitmap.toString());
-       Log.d("HMKCODE", "Build.VERSION.SDK_INT:"+sdk);
-       Log.d("HMKCODE", "URI Path:"+uriPath);
-       Log.d("HMKCODE", "Real Path: "+realPath);
-   }
+        // ( 2 ) imageView.setImageBitmap(bitmap);
+        Bitmap bitmap = null;
+        try {
+            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriFromPath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        imgSelectBabyPicture.setImageBitmap(bitmap);
+        Log.d("Bitmap", bitmap.toString());
+        Log.d("HMKCODE", "Build.VERSION.SDK_INT:" + sdk);
+        Log.d("HMKCODE", "URI Path:" + uriPath);
+        Log.d("HMKCODE", "Real Path: " + realPath);
+    }
    /*@SuppressLint("NewApi")
     public static String getRealPathFromURI_API19(Context context, Uri uri){
     Log.d("FilePath:","PATH içinceyim");
     String filePath = "";
     String wholeID = DocumentsContract.getDocumentId(uri);
-
     // Split at colon, use second item in the array
     String id = wholeID.split(":")[1];
-
     String[] column = { MediaStore.Images.Media.DATA };
-
     // where id is equal to
     String sel = MediaStore.Images.Media._ID + "=?";
-
     Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
     column, sel, new String[]{ id }, null);
-
     int columnIndex = cursor.getColumnIndex(column[0]);
-
     if (cursor.moveToFirst()) {
     filePath = cursor.getString(columnIndex);
     }
-
     cursor.close();
     Log.d("FilePath:",filePath);
     return filePath;
     }*/
+
     /**
      * Displays Toast with RGB values of given color.
      *
      * @param color the color
      */
     private void showToast(int color) {
-        String rgbString = "R: " + Color.red(color) + " B: " + Color.blue(color) + " G: " + Color.green(color) +"Yazdı";
+        String rgbString = "R: " + Color.red(color) + " B: " + Color.blue(color) + " G: " + Color.green(color) + "Yazdı";
         Toast.makeText(this, rgbString, Toast.LENGTH_SHORT).show();
         ActivityCreateBaby.this.findViewById(android.R.id.content)
                 .setBackgroundColor(color);
