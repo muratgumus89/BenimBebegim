@@ -2,6 +2,7 @@ package com.example.murat.benimbebegim;;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
@@ -112,7 +113,7 @@ public class ActivityHomeScreen extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_activity_opening, menu);
+        getMenuInflater().inflate(R.menu.settings, menu);
         return true;
     }
     @Override
@@ -130,6 +131,8 @@ public class ActivityHomeScreen extends FragmentActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            finish();
+            System.exit(0);
             return true;
         }
 
