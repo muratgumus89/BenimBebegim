@@ -103,7 +103,8 @@
     <string name="use_hour">Use 24-hour format</string>
     <string name="daily">Daily</string>
     <string name="actual">Actual</string>
-
+    <string name="cancel_capture">User Cancelled Image Capture</string>
+    <string name="cancel_select">"User Cancelled Image Selecting"</string>
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>
