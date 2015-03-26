@@ -534,9 +534,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
        Uri uriFromPath = Uri.fromFile(new File(realPath));
 
        // you have two ways to display selected image
-
        // ( 1 ) imageView.setImageURI(uriFromPath);
-
        // ( 2 ) imageView.setImageBitmap(bitmap);
        Bitmap bitmap = null;
        try {
