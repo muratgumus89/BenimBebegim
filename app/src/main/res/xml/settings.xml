@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     
-    <PreferenceCategory android:title="Display Settings">
+    <PreferenceCategory android:title="@string/display_settings">
         
 		<ListPreference android:key="time_option"
-		    android:title="Display Time"
-		    android:summary="Actual"
+		    android:title="@string/display_time"
+		    android:summary="@string/actual"
 		    android:entries="@array/time_option_arr"
 			android:entryValues="@array/val_arr"
 			android:defaultValue="0" />
 		
 		<ListPreference android:key="date_range"
-		    android:title="Date Range"
-			android:summary="Daily" 
+		    android:title="@string/date_range"
+			android:summary="@string/daily"
 			android:entries="@array/date_range_arr"
 			android:entryValues="@array/val_arr"
 			android:defaultValue="0" />
 		
 		<ListPreference android:key="date_format"
-		    android:title="Date Format"
+		    android:title="@string/date_format"
 			android:summary="yyyy-M-d" 
 			android:entries="@array/date_format_arr"
 			android:entryValues="@array/date_format_arr"
 			android:defaultValue="yyyy-M-d" />		
 		
 		<CheckBoxPreference android:key="time_format"
-			android:title="Time Format"
-			android:summary="Use 24-hour format"
+			android:title="@string/time_format"
+			android:summary="@string/use_hour"
 			android:defaultValue="true" />				
 						
 	</PreferenceCategory>    
     
-	<PreferenceCategory android:title="Notification Settings">
+	<PreferenceCategory android:title="@string/notification_Setting">
                         
 		<CheckBoxPreference android:key="vibrate_pref"
-			android:title="Vibrate" 
-			android:summary="Vibrate on notification"
+			android:title="@string/vibrate"
+			android:summary="@string/vibrate_on"
 			android:defaultValue="true" />
 		
         <RingtonePreference android:key="ringtone_pref"
-            android:title="Set Ringtone"
+            android:title="@string/set_ringtone"
             android:summary="Default"
             android:ringtoneType="all"
             android:showDefault="true"

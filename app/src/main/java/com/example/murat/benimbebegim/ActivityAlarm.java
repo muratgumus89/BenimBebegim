@@ -1,8 +1,8 @@
 package com.example.murat.benimbebegim;
+
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -59,8 +59,8 @@ public class ActivityAlarm extends ListActivity {
         setContentView(R.layout.main);
         findViews();
         db = RemindMe.db;
-       /* font = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-Semibold.ttf");
-        headingText.setTypeface(font);*/
+        //font = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-Semibold.ttf");
+        //headingText.setTypeface(font);
         monthArr = getResources().getStringArray(R.array.spinner3_arr);
 
         int r =RemindMe.getDateRange();
@@ -169,8 +169,8 @@ public class ActivityAlarm extends ListActivity {
 
                         RelativeLayout parent = (RelativeLayout)tv.getParent();
                         TextView tv2 = (TextView) parent.findViewById(R.id.msg_tv);
-                        if (time < now) tv2.setTextColor(Color.parseColor("#555555"));
-                        else tv2.setTextColor(Color.parseColor("#587498"));
+                        if (time < now) tv2.setTextColor(Color.parseColor("#FFFFFF"));
+                        else tv2.setTextColor(Color.parseColor("#000000"));
                         break;
                 }
                 return true;

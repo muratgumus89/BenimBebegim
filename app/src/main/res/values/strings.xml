@@ -72,6 +72,38 @@
     <string name="have_A_Baby">is Already Belongs This User!!!</string>
     <string name="update_account">Updated</string>
     <string name="delete_account">Account Deleted</string>
+    /**
+    ****  FOR REMİND ME
+    ***/
+    <string name="message">Message</string>
+    <string name="play_ringtone">Play Ringtone</string>
+    <string name="once">Once</string>
+    <string name="repeat">Repeat</string>
+    <string name="from_date">From Date:    </string>
+    <string name="to_date">To Date:    </string>
+    <string name="at_time">At Time:    </string>
+    <string name="rule">Rule</string>
+    <string name="interval">Interval</string>
+    <string name="of">of</string>
+    <string name="mins">min(s)    </string>
+    <string name="hours">hour(s)    </string>
+    <string name="days">day(s)    </string>
+    <string name="mounths">mounth(s)    </string>
+    <string name="years">year(s)    </string>
+    <string name="no_data">No Data</string>
+    <string name="display_time">Display Time</string>
+    <string name="display_settings">Display Settings</string>
+    <string name="date_range">Date Range</string>
+    <string name="date_format">Date Format</string>
+    <string name="time_format">Time Format</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="vibrate_on">Vibrate On Notification</string>
+    <string name="set_ringtone">Set Ringtone</string>
+    <string name="notification_Setting">Notification Settings</string>
+    <string name="use_hour">Use 24-hour format</string>
+    <string name="daily">Daily</string>
+    <string name="actual">Actual</string>
+
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>
@@ -136,4 +168,5 @@
     <string name="edit">Edit</string>
     <string name="delete_repeating">Delete repeating</string>
     <string name="delete_all">Delete all</string>
+
 </resources>

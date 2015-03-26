@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <string-array name="time_option_arr">
         <item>Actual</item>
         <item>Remaining</item>
     </string-array>
-    
+
     <string-array name="date_range_arr">
         <item>Daily</item>
         <item>Weekly</item>
         <item>Monthly</item>
-        <!--item>Yearly</item-->                
-    </string-array>    
-    
+        <!--item>Yearly</item-->
+    </string-array>
+
     <string-array name="val_arr">
         <item>0</item>
         <item>1</item>
-        <item>2</item>        
+        <item>2</item>
         <item>3</item>
-    </string-array>    
-    
+    </string-array>
+
     <string-array name="spinner1_arr">
         <item>Every</item>
         <item>1st</item>
@@ -55,7 +55,7 @@
         <item>31st</item>
         <!--item>Last</item-->
     </string-array>
-    
+
     <string-array name="spinner2_arr">
         <item>Day</item>
         <item>Sun</item>
@@ -64,9 +64,9 @@
         <item>Wed</item>
         <item>Thu</item>
         <item>Fri</item>
-        <item>Sat</item>                        
+        <item>Sat</item>
     </string-array>
-    
+
     <string-array name="spinner3_arr">
         <item>Month</item>
         <item>Jan</item>
@@ -75,24 +75,24 @@
         <item>Apr</item>
         <item>May</item>
         <item>Jun</item>
-        <item>Jul</item> 
+        <item>Jul</item>
         <item>Aug</item>
         <item>Sep</item>
         <item>Oct</item>
         <item>Nov</item>
-        <item>Dec</item>                               
+        <item>Dec</item>
     </string-array>
-    
-    <string-array name="date_format_arr">                
+
+    <string-array name="date_format_arr">
         <item>yyyy-MM-dd</item>
-        <item>yyyy-M-d</item>        
+        <item>yyyy-M-d</item>
         <item>MMMM dd yyyy</item>
         <item>MM/dd/yyyy</item>
-		<item>dd MMMM yyyy</item>                
-        <item>dd MMM yyyy</item>        
+        <item>dd MMMM yyyy</item>
+        <item>dd MMM yyyy</item>
         <item>d MMM yyyy</item>
         <item>dd-MM-yyyy</item>
-        <item>dd/MM/yy</item>                
-    </string-array>    
-        
+        <item>dd/MM/yy</item>
+    </string-array>
+
 </resources>

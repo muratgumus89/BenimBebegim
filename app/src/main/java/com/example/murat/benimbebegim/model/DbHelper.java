@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
 public class DbHelper extends SQLiteOpenHelper {
 	
 //	private static final String TAG = "DbHelper";
@@ -64,7 +63,7 @@ public class DbHelper extends SQLiteOpenHelper {
 		Cursor c = db.rawQuery(populateSQL, selectionArgs);
 		
 		if (c.moveToFirst()) {			
-			Calendar cal = Calendar.getInstance(); 			
+			Calendar cal = Calendar.getInstance();
 			AlarmMsg alarmMsg = new AlarmMsg();
 			long now = System.currentTimeMillis();
 			db.beginTransaction();

@@ -3,13 +3,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg_repeat" >
+    android:background="@drawable/bg_gradient" >
 
     <RelativeLayout
         android:id="@+id/menu_bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#5c755e" >
+        android:background="@drawable/bg_gradient" >
 
         <TextView
             android:id="@+id/heading_tv"
@@ -24,7 +24,7 @@
 	        android:shadowColor="#333333"	        
 	        android:textColor="#d3e397"
 	        android:textSize="18sp"            
-            android:text="Remind Me" />
+            android:text="Reminders" />
 
         <ImageButton
             android:id="@+id/imageButton1"
@@ -60,7 +60,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center_horizontal"
-	    android:background="@drawable/range"
+	    android:background="@drawable/bg_gradient"
 	    android:gravity="center_vertical" >
 
 		<ImageButton
@@ -80,7 +80,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textSize="12sp"
-	        android:textColor="#ffffff" />
+	        android:textColor="@color/white" />
 		
 		<ImageButton
 		    android:id="@+id/imageButton4"
@@ -110,27 +110,16 @@
 		          android:divider="@drawable/line"
 		          android:dividerHeight="3dip"
 		          android:listSelector="@android:color/transparent"
-		          android:cacheColorHint="#00000000"
+		          android:cacheColorHint="@color/white"
 		          android:drawSelectorOnTop="false" />
 		
 		<TextView android:id="@android:id/empty"
 		          android:layout_width="fill_parent"
 		          android:layout_height="fill_parent"
 		          android:gravity="center"
-		          android:textColor="#777777"
-		          android:text="No data" />
+		          android:textColor="@color/white"
+		          android:text="@string/no_data" />
 	            
-	</LinearLayout>    
-    
-	<TextView 
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:paddingRight="3dip"
-		android:background="#5c755e"
-		android:gravity="right"
-		android:textColor="#3d4935"
-		android:textSize="10sp"
-		android:textStyle="italic"
-		android:text="(c) appsrox.com" />    
+	</LinearLayout>
 
 </LinearLayout>

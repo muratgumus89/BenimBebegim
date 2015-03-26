@@ -8,7 +8,6 @@ import com.example.murat.benimbebegim.Util;
 
 import java.util.List;
 
-
 public class Alarm extends AbstractModel {
 	
 	public static final String TABLE_NAME = "alarm";
@@ -24,7 +23,7 @@ public class Alarm extends AbstractModel {
 	
 	public static final String HIGH = "H";
 	public static final String MED = "M";
-	public static final String LOW = "L"; 
+	public static final String LOW = "L";
 	
 	static String getSql() {
 		return Util.concat("CREATE TABLE ", TABLE_NAME, " (",
@@ -72,7 +71,7 @@ public class Alarm extends AbstractModel {
 		if (sound != null)
 			cv.put(COL_SOUND, sound ? 1 : 0);		
 		
-		return db.update(TABLE_NAME, cv, COL_ID+" = ?", new String[]{String.valueOf(id)}) 
+		return db.update(TABLE_NAME, cv, COL_ID+" = ?", new String[]{String.valueOf(id)})
 				== 1 ? true : false;
 	}
 	

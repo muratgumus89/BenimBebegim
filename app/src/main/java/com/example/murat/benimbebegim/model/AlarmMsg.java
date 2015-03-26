@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.murat.benimbebegim.Util;
 
-
 public class AlarmMsg extends AbstractModel {
 	
 	public static final String TABLE_NAME = "alarmmsg";
@@ -49,7 +48,7 @@ public class AlarmMsg extends AbstractModel {
 		if (status != null)
 			cv.put(COL_STATUS, status);		
 		
-		return db.update(TABLE_NAME, cv, COL_ID+" = ?", new String[]{String.valueOf(id)}) 
+		return db.update(TABLE_NAME, cv, COL_ID+" = ?", new String[]{String.valueOf(id)})
 				== 1 ? true : false;
 	}
 	
