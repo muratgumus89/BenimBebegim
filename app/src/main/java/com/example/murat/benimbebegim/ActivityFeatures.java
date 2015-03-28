@@ -39,6 +39,7 @@ public class ActivityFeatures extends Fragment implements View.OnClickListener {
         txtReminders.setOnClickListener(this);
         txtHelp.setOnClickListener(this);
 
+
         return view;
     }
 
@@ -57,6 +58,7 @@ public class ActivityFeatures extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "Photos pressed" , Toast.LENGTH_SHORT).show();
                 break;
             case R.id.txtReminder_Home_Screen:
+
                 intentHomeScreen = new Intent(getActivity().getApplicationContext(),
                         ActivityAlarm.class);
                 startActivity(intentHomeScreen);
