@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 
 public class ActivityHomeScreen extends FragmentActivity {
@@ -58,6 +59,12 @@ public class ActivityHomeScreen extends FragmentActivity {
             navigateTo(0);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Toast.makeText(this, "Back button Pressed" , Toast.LENGTH_SHORT).show();
     }
 
     private void setupDrawer() {

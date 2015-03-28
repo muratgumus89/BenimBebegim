@@ -2,9 +2,11 @@ package com.example.murat.benimbebegim;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -36,6 +38,13 @@ public class ActivityFavorites extends Fragment {
         adapter = new ListViewAdapter(getActivity(), favName, upLogo);
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("tag", this.toString());
+            }
+        });
+
         // Capture clicks on ListView items
         return rootView;
     }
