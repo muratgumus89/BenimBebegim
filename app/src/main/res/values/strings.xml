@@ -169,5 +169,19 @@
     <string name="edit">Edit</string>
     <string name="delete_repeating">Delete repeating</string>
     <string name="delete_all">Delete all</string>
+    <string name="title_activity_activity_mood">ActivityMood</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_activity_solid">ActivitySolid</string>
+    <string name="title_activity_activity_bottle">ActivityBottle</string>
+    <string name="title_activity_activity_breast">ActivityBreast</string>
+    <string name="title_activity_activity_sleep">ActivitySleep</string>
+    <string name="title_activity_activity_diaper">ActivityDiaper</string>
+    <string name="title_activity_activity_pumping">ActivityPumping</string>
+    <string name="title_activity_activity_health">ActivityHealth</string>
+    <string name="title_activity_activity_medicine">ActivityMedicine</string>
+    <string name="title_activity_activity_vaccination">ActivityVaccination</string>
+    <string name="title_activity_activity_hygiene">ActivityHygiene</string>
+    <string name="title_activity_activity_teeth">ActivityTeeth</string>
 
 </resources>

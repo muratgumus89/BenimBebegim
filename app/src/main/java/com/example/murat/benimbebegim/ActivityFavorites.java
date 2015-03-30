@@ -1,5 +1,6 @@
 package com.example.murat.benimbebegim;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,11 +21,18 @@ public class ActivityFavorites extends Fragment {
     ListView list;
     ListViewAdapter adapter;
 
+    String classes[] = {"ActivityMood",
+            "ActivitySolid",
+            "ActivityBottle",
+            "ActivityBreast",
+            "ActivitySleep",
+            "ActivityDiaper",
+            "ActivityPumping"};
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_favorites, container,
-                false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.activity_favorites, container, false);
         // Generate sample data
         favName = getResources().getStringArray(R.array.Favorites);
 
@@ -41,9 +49,20 @@ public class ActivityFavorites extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("tag", this.toString());
+
+                try {
+                    Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
+                    Intent intent = new Intent(getActivity(), ourClass);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+
 
         // Capture clicks on ListView items
         return rootView;

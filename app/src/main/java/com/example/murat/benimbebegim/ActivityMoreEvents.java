@@ -1,11 +1,14 @@
 package com.example.murat.benimbebegim;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.murat.benimbebegim.adapters.ListViewAdapter;
 
@@ -14,6 +17,12 @@ public class ActivityMoreEvents extends Fragment {
     int[] upLogo;
     ListView list;
     ListViewAdapter adapter;
+
+    String classes[] = {"ActivityHealth",
+            "ActivityMedicine",
+            "ActivityVaccination",
+            "ActivityHygiene",
+            "ActivityTeeth"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +44,20 @@ public class ActivityMoreEvents extends Fragment {
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
         // Capture clicks on ListView items
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
+                    Intent intent = new Intent(getActivity(), ourClass);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         return rootView;
     }
  
