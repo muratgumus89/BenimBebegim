@@ -95,4 +95,21 @@
         <item>dd/MM/yy</item>
     </string-array>
 
+    <string-array name="activity_mood_moods">
+        <item>Quite</item>
+        <item>Clinge</item>
+        <item>Chatty</item>
+        <item>Mischievour</item>
+        <item>Sleepy</item>
+        <item>Sweet</item>
+        <item>Happy</item>
+        <item>Fussy</item>
+        <item>Angry</item>
+        <item>Grumpy</item>
+        <item>Sad</item>
+        <item>Crying</item>
+        <item>Playfull</item>
+        <item>Bashfull</item>
+    </string-array>
+
 </resources>
