@@ -33,7 +33,7 @@ public class ActivityFeatures extends Fragment implements View.OnClickListener {
             case R.id.txtTheme_Home_Screen:
                 Log.e("Deneme:","Aytunç is a sik");
                 Intent intentHomeScreen = new Intent(getActivity().getApplicationContext(),
-                        ActivityAlarm.class);
+                        ActivityOpening.class);
                 startActivity(intentHomeScreen);
                 break;
             default:

@@ -1,16 +1,21 @@
 package com.example.murat.benimbebegim;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +33,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import android.os.Handler;
+
 
 /**
  * Created by aytunc on 16.2.2015.
@@ -58,6 +65,8 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     public static final String PREFS_NAME = "MyPrefsFile";
     private static final String PREF_USERNAME = "username";
     private static final String PREF_PASSWORD = "password";
+    private Dialog dialog;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +75,6 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_activity_opening);
         initUI();
     }
-
     private void initUI() {
          /*
          Initialize Xml Components
@@ -96,6 +104,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     }
 
     public void onClick(View v) {
+        dialog = MyDialog.displayProgress(this);
         switch (v.getId()) {
             case R.id.txtSign_Opening:
                 /*****************************
@@ -117,6 +126,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                     return;
                 }else
                 {
+                    new BackgroundTask().execute((Void) null);
                     loginControl();
                 }
                 break;
@@ -126,7 +136,6 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                 break;
         }
     }
-
     private void loginControl() {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
@@ -267,7 +276,6 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                 intentCreateBaby.putExtras(b);
                 startActivity(intentCreateBaby);
             } else {
-
                 Intent intentHomeScreen = new Intent(getApplicationContext(),
                         ActivityHomeScreen.class);
                 startActivity(intentHomeScreen);
@@ -350,5 +358,36 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             Log.e("Fail 2", e.toString());
         }
         return result;
+    }
+
+    public class BackgroundTask extends AsyncTask<Void, Integer, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = MyDialog.displayProgress(ActivityOpening.this);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+                try {
+
+                }
+                catch (Exception e) {
+                }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            dialog.dismiss();
+        }
+
+        @Override
+        protected void onCancelled(Void result) {
+            super.onCancelled(result);
+            dialog.dismiss();
+        }
     }
 }

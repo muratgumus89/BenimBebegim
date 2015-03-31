@@ -1,76 +1,68 @@
 package com.example.murat.benimbebegim;
 
-        import java.io.BufferedReader;
-        import java.io.ByteArrayOutputStream;
-        import java.io.File;
-        import java.io.FileInputStream;
-        import java.io.FileNotFoundException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.text.SimpleDateFormat;
-        import java.util.ArrayList;
-        import java.util.Calendar;
-        import java.util.Date;
-        import java.util.Locale;
-        import java.util.TimeZone;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.StrictMode;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
-        import android.annotation.SuppressLint;
-        import android.app.Activity;
-        import android.app.AlertDialog;
-        import android.app.DatePickerDialog;
-        import android.app.Dialog;
-        import android.app.TimePickerDialog;
-        import android.content.Context;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.content.SharedPreferences;
-        import android.content.pm.PackageManager;
-        import android.database.Cursor;
-        import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
-        import android.graphics.Color;
-        import android.graphics.drawable.Drawable;
-        import android.graphics.drawable.GradientDrawable;
-        import android.net.Uri;
-        import android.os.Build;
-        import android.os.Bundle;
-        import android.os.Environment;
-        import android.os.StrictMode;
-        import android.preference.PreferenceManager;
-        import android.provider.DocumentsContract;
-        import android.provider.MediaStore;
-        import android.util.Log;
-        import android.view.ContextMenu;
-        import android.view.ContextMenu.ContextMenuInfo;
-        import android.view.LayoutInflater;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.View.OnClickListener;
-        import android.view.ViewGroup;
-        import android.widget.AdapterView;
-        import android.widget.AdapterView.OnItemSelectedListener;
-        import android.widget.ArrayAdapter;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.ImageView;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
-        import android.widget.ScrollView;
-        import android.widget.Spinner;
-        import android.widget.TimePicker;
-        import android.widget.Toast;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
-        import org.apache.http.HttpEntity;
-        import org.apache.http.HttpResponse;
-        import org.apache.http.NameValuePair;
-        import org.apache.http.client.HttpClient;
-        import org.apache.http.client.entity.UrlEncodedFormEntity;
-        import org.apache.http.client.methods.HttpPost;
-        import org.apache.http.impl.client.DefaultHttpClient;
-        import org.apache.http.message.BasicNameValuePair;
-        import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class ActivityCreateBaby extends Activity implements OnClickListener {
@@ -132,6 +124,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
     private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
+    Dialog dialogCircle;
 
     // directory name to store captured images and videos
     private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
@@ -375,7 +368,6 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 break;
         }
     }
-
     private void insert() {
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
         editor = preferences.edit(); //aynı şekil editor nesnesi oluşturuluyor
@@ -388,7 +380,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
 
             // downsizing image as it throws OutOfMemory Exception for larger
             // images
-            options.inSampleSize = 8;
+            options.inSampleSize = 4;
             Bitmap bitmap = BitmapFactory.decodeFile(realPath,options);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
@@ -466,6 +458,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 Intent intentHomeScreen = new Intent(getApplicationContext(),
                         ActivityHomeScreen.class);
                 startActivity(intentHomeScreen);
+                dialogCircle.hide();
             }
             /******************"
              *  Chech userName is exist or not
