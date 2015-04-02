@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.murat.benimbebegim.ActivitySleep">
+    tools:context="com.example.murat.benimbebegim.ActivityOther">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btnSolidActivity_Cancel"
+            android:id="@+id/btnOtherActivity_Cancel"
             android:layout_width="fill_parent"
             android:layout_height="180dp"
             android:layout_alignParentBottom="true"
@@ -37,13 +37,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                android:text="@string/sleep_activity_total_button"/>
+                android:text="@string/Other_activity_total_button"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                android:text="@string/sleep_activity_paused_button"/>
+                android:text="@string/Other_activity_paused_button"/>
         </LinearLayout>
 
         <LinearLayout
@@ -58,39 +58,46 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnSleepActivity_date"
+                    android:id="@+id/btnOtherActivity_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
-                    android:text="@string/sleep_activity_date_button" />
+                    android:text="@string/Other_activity_date_button" />
 
                 <Button
-                    android:id="@+id/btnSleepActivity_time"
+                    android:id="@+id/btnOtherActivity_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
-                    android:text="@string/sleep_activity_time_button" />
+                    android:text="@string/Other_activity_time_button" />
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnSleepActivity_writesomething"
+                android:id="@+id/btnOtherActivity_play"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/sleep_activity_writesomething_button" />
+                android:text="@string/Other_activity_play_button" />
+
+            <Button
+                android:id="@+id/btnOtherActivity_writesomething"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Other_activity_writesomething_button" />
 
         </LinearLayout>
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnSleeActivity_Finish"
+        android:id="@+id/btnOtherActivity_Finish"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_button_rounded"
-        android:text="@string/sleep_activity_finish_button"
+        android:text="@string/Other_activity_finish_button"
         android:textColor="@color/white" />
 
 </RelativeLayout>
+

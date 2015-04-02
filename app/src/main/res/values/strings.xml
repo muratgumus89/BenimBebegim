@@ -183,5 +183,35 @@
     <string name="title_activity_activity_vaccination">ActivityVaccination</string>
     <string name="title_activity_activity_hygiene">ActivityHygiene</string>
     <string name="title_activity_activity_teeth">ActivityTeeth</string>
+    <string name="title_activity_activity_other">ActivityOther</string>
 
+    <!--ActivitySleep Values goes in here-->
+    <string name="sleep_activity_finish_button">Finish</string>
+    <string name="sleep_activity_total_button">total</string>
+    <string name="sleep_activity_paused_button">paused</string>
+    <string name="sleep_activity_date_button">Date</string>
+    <string name="sleep_activity_time_button">Time</string>
+    <string name="sleep_activity_writesomething_button">Write something</string>
+
+
+    <!--ActivityDiaper Values goes in here-->
+    <string name="Diaper_activity_date_button">Date</string>
+    <string name="Diaper_activity_time_button">Time</string>
+    <string name="Diaper_activity_cancel_button">Cancel</string>
+    <string name="Diaper_activity_save_button">save</string>
+
+    <!--ActivityMoods Values goes in here-->
+    <string name="Moods_activity_date_button">Date</string>
+    <string name="Moods_activity_time_button">Time</string>
+    <string name="Moods_activity_cancel_button">Cancel</string>
+    <string name="Moods_activity_save_button">save</string>
+
+    <!--ActivitySleep Values goes in here-->
+    <string name="Other_activity_finish_button">Finish</string>
+    <string name="Other_activity_total_button">total</string>
+    <string name="Other_activity_paused_button">paused</string>
+    <string name="Other_activity_date_button">Date</string>
+    <string name="Other_activity_time_button">Time</string>
+    <string name="Other_activity_writesomething_button">Write something</string>
+    <string name="Other_activity_play_button">Play</string>
 </resources>

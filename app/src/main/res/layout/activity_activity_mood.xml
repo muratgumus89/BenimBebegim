@@ -30,7 +30,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
-            android:text="New Button"
+            android:text="@string/Moods_activity_cancel_button"
             android:textColor="@color/white" />
 
         <Button
@@ -44,7 +44,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
-            android:text="New Button"
+            android:text="@string/Moods_activity_save_button"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -99,7 +99,7 @@
             android:drawableLeft="@drawable/icon_date"
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
-            android:text="New Button"
+            android:text="@string/Moods_activity_date_button"
             android:textColor="@color/white" />
 
         <Button
@@ -113,7 +113,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
-            android:text="New Button"
+            android:text="@string/Moods_activity_time_button"
             android:textColor="@color/white" />
     </LinearLayout>
 

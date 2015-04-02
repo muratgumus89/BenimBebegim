@@ -139,6 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_form_rounded"
+            android:singleLine="true"
             android:hint="0,00 gram"
             android:layout_marginRight="10dp"
             android:layout_weight="50"/>

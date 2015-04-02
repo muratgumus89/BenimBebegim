@@ -131,6 +131,10 @@
             android:name=".ActivityTeeth"
             android:label="@string/title_activity_activity_teeth" >
         </activity>
+        <activity
+            android:name=".ActivityOther"
+            android:label="@string/title_activity_activity_other" >
+        </activity>
     </application>
 
 </manifest>
