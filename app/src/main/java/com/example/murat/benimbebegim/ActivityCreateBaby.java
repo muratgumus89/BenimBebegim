@@ -105,7 +105,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
     private ArrayAdapter<String> dataAdapterForGender;
 
     /*
-   Variables For BabyPicture Capture
+    Variables For BabyPicture Capture
     */
     Intent i;
     final static int cameraData = 0;
