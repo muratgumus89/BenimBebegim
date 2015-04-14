@@ -31,7 +31,7 @@
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
             android:drawableLeft="@drawable/icon_date"
-            android:text="New Button"
+            android:text="@string/Solid_activity_date_button"
             android:textColor="@color/white" />
 
         <Button
@@ -45,7 +45,7 @@
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
             android:drawableLeft="@drawable/icon_time"
-            android:text="New Button"
+            android:text="@string/Solid_activity_time_button"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -69,25 +69,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/icon_mood_20"
-                android:text="ValueStringekle" />
+                android:text="@string/Solid_activity_checkbox_bread" />
 
             <CheckBox
+                android:layout_width="wrap_content"
+                android:text="@string/Solid_activity_checkbox_cereal"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:text="@string/Solid_activity_checkbox_dairy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:text="@string/Solid_activity_checkbox_eggs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <CheckBox
+                android:text="@string/Solid_activity_checkbox_fish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -102,23 +105,27 @@
                 android:orientation="vertical">
 
                 <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ValueStringekle" />
-
-                <CheckBox
+                    android:text="@string/Solid_activity_checkbox_fruit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <CheckBox
+                    android:text="@string/Solid_activity_checkbox_meat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <CheckBox
+                    android:text="@string/Solid_activity_checkbox_pasta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <CheckBox
+                    android:text="@string/Solid_activity_checkbox_vegetable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:text="@string/Solid_activity_checkbox_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -126,44 +133,46 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="100"
-        android:layout_below="@+id/linearLayout4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout5">
+        android:layout_below="@+id/linearLayout4"
+        android:orientation="horizontal"
+        android:weightSum="100">
 
         <EditText
+            android:id="@+id/etSolidActivity_gram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_form_rounded"
-            android:singleLine="true"
-            android:hint="0,00 gram"
             android:layout_marginRight="10dp"
-            android:layout_weight="50"/>
+            android:layout_weight="50"
+            android:background="@drawable/bg_form_rounded"
+            android:hint="0,00 gram"
+            android:singleLine="true" />
 
         <Button
+            android:id="@+id/btnSolidActivity_Measurement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button_rounded"
-            android:textColor="@color/white"
             android:layout_marginLeft="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
             android:text="New Button"
-            android:layout_weight="50"/>
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <EditText
-        android:id="@+id/etMoodActivity_Notes"
+        android:id="@+id/etSolidActivity_Notes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_form_rounded"
-        android:hint="Notes : "
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/linearLayout5"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout5"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/bg_form_rounded"
+        android:hint="Notes : " />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -185,7 +194,7 @@
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
             android:drawableLeft="@drawable/icon_cancel"
-            android:text="New Button"
+            android:text="@string/Solid_activity_cancel_button"
             android:textColor="@color/white" />
 
         <Button
@@ -199,7 +208,7 @@
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
             android:drawableLeft="@drawable/icon_ok"
-            android:text="New Button"
+            android:text="@string/Solid_activity_save_button"
             android:textColor="@color/white" />
     </LinearLayout>
 

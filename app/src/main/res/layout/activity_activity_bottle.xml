@@ -7,14 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.murat.benimbebegim.ActivityBottle">
+    tools:context="com.example.murat.benimbebegim.ActivityMood">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +20,70 @@
         android:weightSum="100">
 
         <Button
-            android:id="@+id/btnSolidActivity_Cancel"
+            android:id="@+id/btnBottleActivity_Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:drawableLeft="@drawable/icon_cancel"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
+            android:text="@string/Bottle_activity_cancel_button"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnBottleActivity_Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_ok"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
+            android:text="@string/Bottle_activity_save_button"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout7">
+
+        <Button
+            android:id="@+id/btnBottleActivity_formula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_button_rounded"
+            android:text="@string/Bottle_activity_formula_button"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:id="@+id/linearLayout4"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/linearLayout7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/btnBottleActivity_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -35,23 +92,86 @@
             android:layout_marginRight="10dp"
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
-            android:drawableLeft="@drawable/icon_cancel"
-            android:text="New Button"
+            android:text="@string/Bottle_activity_amaount_button"
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/btnSolidActivity_Save"
+            android:id="@+id/btnBottleActivity_meas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_time"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="10dp"
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
-            android:drawableLeft="@drawable/icon_ok"
-            android:text="New Button"
+            android:text="@string/Bottle_activity_meas_button"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout8"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/linearLayout4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/btnBottleActivity_Writesth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_button_rounded"
+            android:text="@string/Bottle_activity_writesth_button"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:orientation="horizontal"
+    android:layout_marginBottom="15dp"
+    android:weightSum="100"
+    android:id="@+id/linearLayout3">
+
+    <Button
+        android:id="@+id/btnBottleActivity_Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:drawableLeft="@drawable/icon_date"
+        android:layout_weight="50"
+        android:background="@drawable/bg_button_rounded"
+        android:text="@string/Bottle_activity_date_button"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnBottleActivity_Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_time"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="50"
+        android:background="@drawable/bg_button_rounded"
+        android:text="@string/Bottle_activity_time_button"
+        android:textColor="@color/white" />
+</LinearLayout>
+
 
 </RelativeLayout>

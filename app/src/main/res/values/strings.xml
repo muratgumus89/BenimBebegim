@@ -127,7 +127,7 @@
     <string-array name="Favorites">
     <item>Mood</item>
     <item>Solid</item>
-    <item>Bottle</item>
+    <item>"Bottle</item>
     <item>Breast</item>
     <item>Sleep</item>
     <item>Diaper</item>
@@ -206,7 +206,7 @@
     <string name="Moods_activity_cancel_button">Cancel</string>
     <string name="Moods_activity_save_button">save</string>
 
-    <!--ActivitySleep Values goes in here-->
+    <!--ActivityOther Values goes in here-->
     <string name="Other_activity_finish_button">Finish</string>
     <string name="Other_activity_total_button">total</string>
     <string name="Other_activity_paused_button">paused</string>
@@ -214,4 +214,39 @@
     <string name="Other_activity_time_button">Time</string>
     <string name="Other_activity_writesomething_button">Write something</string>
     <string name="Other_activity_play_button">Play</string>
+
+    <!--ActivitySolid Values goes in here-->
+    <string name="Solid_activity_date_button">Date</string>
+    <string name="Solid_activity_time_button">Time</string>
+    <string name="Solid_activity_cancel_button">Cancel</string>
+    <string name="Solid_activity_save_button">save</string>
+    <string name="Solid_activity_checkbox_cereal">Cereal</string>
+    <string name="Solid_activity_checkbox_meat">Meat</string>
+    <string name="Solid_activity_checkbox_pasta">Pasta</string>
+    <string name="Solid_activity_checkbox_fish">Fish</string>
+    <string name="Solid_activity_checkbox_bread">Bread</string>
+    <string name="Solid_activity_checkbox_fruit">Fruit</string>
+    <string name="Solid_activity_checkbox_vegetable">Vegetable</string>
+    <string name="Solid_activity_checkbox_dairy">Dairy</string>
+    <string name="Solid_activity_checkbox_eggs">Eggs</string>
+    <string name="Solid_activity_checkbox_other">Other</string>
+
+    <!--ActivityBottle Values goes in here-->
+    <string name="Bottle_activity_date_button">Date</string>
+    <string name="Bottle_activity_time_button">Time</string>
+    <string name="Bottle_activity_formula_button">Formula</string>
+    <string name="Bottle_activity_amaount_button">0,00 g</string>
+    <string name="Bottle_activity_meas_button">Meas</string>
+    <string name="Bottle_activity_writesth_button">Write something</string>
+    <string name="Bottle_activity_cancel_button">Cancel</string>
+    <string name="Bottle_activity_save_button">Save</string>
+
+    <!--ActivityBreast Values goes in here-->
+    <string name="Breast_activity_date_button">Date</string>
+    <string name="Breast_activity_time_button">Time</string>
+    <string name="Breast_activity_writesth_button">Write something</string>
+    <string name="Breast_activity_cancel_button">Cancel</string>
+    <string name="Breast_activity_save_button">Save</string>
+
+
 </resources>
