@@ -248,5 +248,11 @@
     <string name="Breast_activity_cancel_button">Cancel</string>
     <string name="Breast_activity_save_button">Save</string>
 
+    <!--ActivitySleep Values goes in here-->
+    <string name="Sleep_activity_date_button">Date</string>
+    <string name="Sleep_activity_time_button">Time</string>
+    <string name="Sleep_activity_writesth_button">Write something</string>
+    <string name="Sleep_activity_cancel_button">Cancel</string>
+    <string name="Sleep_activity_save_button">Save</string>
 
 </resources>

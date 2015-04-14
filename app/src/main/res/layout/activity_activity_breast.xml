@@ -69,7 +69,7 @@
             android:layout_alignParentStart="true"
             android:background="@drawable/bg_button_rounded"
             android:drawableLeft="@drawable/icon_time"
-            android:text="@string/Breast_activity_time_button"
+            android:text="@string/Breast_activity_writesth_button"
             android:textColor="@color/white" />
 
     </LinearLayout>

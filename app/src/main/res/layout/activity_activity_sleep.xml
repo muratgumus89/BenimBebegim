@@ -52,45 +52,109 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="100"
-                android:orientation="horizontal">
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btnSleepActivity_date"
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:text="@string/sleep_activity_date_button" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <Button
+                        android:id="@+id/btnSleepActivity_Date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="50"
+                        android:background="@drawable/bg_button_rounded"
+                        android:drawableLeft="@drawable/icon_date"
+                        android:text="@string/Sleep_activity_date_button"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btnSleepActivity_Time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="50"
+                        android:background="@drawable/bg_button_rounded"
+                        android:drawableLeft="@drawable/icon_time"
+                        android:text="@string/Sleep_activity_time_button"
+                        android:textColor="@color/white" />
+                </LinearLayout>
 
                 <Button
-                    android:id="@+id/btnSleepActivity_time"
+                    android:id="@+id/btnSleepActivity_Writesth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:text="@string/sleep_activity_time_button" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/bg_button_rounded"
+                    android:drawableLeft="@drawable/icon_time"
+                    android:text="@string/Sleep_activity_writesth_button"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btnSleepActivity_writesomething"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sleep_activity_writesomething_button" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSleeActivity_Finish"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_button_rounded"
-        android:text="@string/sleep_activity_finish_button"
-        android:textColor="@color/white" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/btnSleepActivity_Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
+            android:drawableLeft="@drawable/icon_cancel"
+            android:text="@string/Sleep_activity_cancel_button"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnSleepActivity_Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
+            android:drawableLeft="@drawable/icon_ok"
+            android:text="@string/Sleep_activity_save_button"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
 </RelativeLayout>
