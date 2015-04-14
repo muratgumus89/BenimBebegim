@@ -207,7 +207,8 @@
     <string name="Moods_activity_save_button">save</string>
 
     <!--ActivityOther Values goes in here-->
-    <string name="Other_activity_finish_button">Finish</string>
+    <string name="Other_activity_cancel_button">Cancel</string>
+    <string name="Other_activity_save_button">Save</string>
     <string name="Other_activity_total_button">total</string>
     <string name="Other_activity_paused_button">paused</string>
     <string name="Other_activity_date_button">Date</string>
