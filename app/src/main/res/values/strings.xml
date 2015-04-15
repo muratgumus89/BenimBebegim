@@ -69,7 +69,7 @@
     <string name="exist_User_Name">is Existed UserName!!!</string>
     <string name="exist_Email">Existed Email Adress!!!</string>
     <string name="sorry">Sorry, Try Again!!!</string>
-    <string name="have_A_Baby">is Already Belongs This User!!!</string>
+    <string name="have_a_baby">is Already Belongs This User!!!</string>
     <string name="update_account">Updated</string>
     <string name="delete_account">Account Deleted</string>
     /**
@@ -104,7 +104,9 @@
     <string name="daily">Daily</string>
     <string name="actual">Actual</string>
     <string name="cancel_capture">User Cancelled Image Capture</string>
-    <string name="cancel_select">"User Cancelled Image Selecting"</string>
+    <string name="cancel_select">User Cancelled Image Selecting</string>
+    <string name="add_baby">Add Another Baby</string>
+    <string name="edit_baby">Edit Baby Info</string>
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>

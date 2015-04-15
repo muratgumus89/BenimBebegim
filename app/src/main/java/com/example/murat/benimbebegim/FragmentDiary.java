@@ -30,7 +30,7 @@ public class FragmentDiary extends Fragment {
         // TODO Auto-generated method stub
         View view = inflater.inflate(R.layout.layout_diaryfragment, container,false);
         ActionBar ab = getActivity().getActionBar();
-        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);;
+        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);;
         return view;
     }
 }

@@ -35,7 +35,7 @@ public class FragmentStats extends Fragment {
 		// TODO Auto-generated method stub
         Log.d("Spinner","Çok yaşa Spin4");
 		View view = inflater.inflate(R.layout.layout_statsfragment, container,false);
-        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		return view;
 	}
 }

@@ -6,6 +6,13 @@
     </style>-->
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:icon">@drawable/baby_boy_icon</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="My_Custom_Theme_Blue" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:icon">@drawable/baby_boy_icon</item>
+        <item name="android:windowBackground">@drawable/bg_gradient_blue</item>
+        <item name="android:colorBackgroundCacheHint">#00000000</item>
         <!-- Customize your theme here. -->
     </style>
 

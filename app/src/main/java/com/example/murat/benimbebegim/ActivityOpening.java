@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -27,6 +28,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -56,15 +58,13 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     String strUserIDOpening;
     String line = null;
     int code;
-     /*
-     Variables For SharedPreferences
-     */
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
     //For RememberMe
     public static final String PREFS_NAME = "MyPrefsFile";
     private static final String PREF_USERNAME = "username";
     private static final String PREF_PASSWORD = "password";
+    private static final String PREF_USERID = "user_id";
+
+
     private Dialog dialog;
 
 
@@ -190,24 +190,17 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             } else {
                 Toast.makeText(getBaseContext(), R.string.login_succesfully,
                         Toast.LENGTH_LONG).show();
-                preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
-                editor = preferences.edit(); //aynı şekil editor nesnesi oluşturuluyor
                 strUserIDOpening = getUserId(userNameforLogin);
-                // Buraya bak murat
-                editor.putString("user_id", strUserIDOpening);//email değeri
-                Log.d("OpeningEditörUserId", preferences.getString("user_id", ""));
-                editor.putString("baby_id", getBabyID(strUserIDOpening));
-                Log.d("OpeningEditörBabyId", preferences.getString("baby_id", ""));
-                //editor.putString("sifre", sifre_string);//şifre değeri
-                //editor.putBoolean("login", true);//uygulamaya tekrar girdiğinde kontrol için kullanılcak
-                //editor.putInt("sayısalDeger", 1000);// uygulamamızda kullanılmıyor ama göstermek amacıyla
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString(PREF_USERID, strUserIDOpening)
+                        .commit();
 
-                editor.commit();
                 if (cbRememberMe.isChecked()) {
                     getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                             .edit()
-                            .putString(PREF_USERNAME, etUserName.getText().toString())
-                            .putString(PREF_PASSWORD, etPassword.getText().toString())
+                            .putString(PREF_USERNAME, userNameforLogin)
+                            .putString(PREF_PASSWORD, passwordforLogin)
                             .putBoolean("remembers", true)
                             .commit();
                     Log.i("info", "pref kaydedildi");
@@ -284,7 +277,77 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             Log.e("Fail 3", e.toString());
         }
     }
+    private void getBabyName() {
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String strBaby_id = preferences.getString("baby_id",null);
+        Log.d("strBaby_id",strBaby_id);
+        String strUser_id = preferences.getString("user_id",null);
+        Log.d("strUser_id",strUser_id);
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
+        nameValuePairs.add(new BasicNameValuePair("bid",strBaby_id));
+        nameValuePairs.add(new BasicNameValuePair("uid",strUser_id ));
+
+
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/return_baby_name.php");
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity entity = response.getEntity();
+            is = entity.getContent();
+            Log.e("log_tag", "connection success ");
+        } catch (Exception e) {
+            Log.e("Fail 1", e.toString());
+            Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader
+                    (new InputStreamReader(is, "utf-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            is.close();
+            result = sb.toString();
+            Log.d("log_tag", "convert response to string completed!");
+        } catch (Exception e) {
+            Log.d("log_tag", "Error converting result " + e.toString());
+        }
+        //parse json data
+        try {
+            JSONArray jArray = new JSONArray(result);
+            for(int i=0;i<jArray.length();i++){
+                JSONObject json_data = jArray.getJSONObject(i);
+                Log.d("log_tag","BID: "+json_data.getInt("BID")+
+                                ", Name: "+json_data.getString("Name")+
+                                ", Date: "+json_data.getString("Date")
+                                +", Time: "+json_data.getString("Time")
+                                +", Image: "+json_data.getString("Image")
+                                +", UID: "+json_data.getInt("UID")
+                                +", Gender: "+json_data.getString("Gender")
+                                +", Theme: "+json_data.getString("Theme")
+
+
+                );
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString("baby_id", json_data.getString("BID"))
+                        .putString("baby_name", json_data.getString("Name"))
+                        .commit();
+
+            }
+            Log.d("log_tag", "parse json data completed!");
+        } catch (Exception e) {
+            Log.d("log_tag", "Error in http connection " + e.toString());
+        } finally {
+            Log.d("log_tag", "ALL completed!");
+        }
+
+    }
     private String getBabyID(String strUserIDOpening)  {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("uid", strUserIDOpening));

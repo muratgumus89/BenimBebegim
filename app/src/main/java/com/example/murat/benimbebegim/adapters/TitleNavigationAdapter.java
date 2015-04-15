@@ -20,12 +20,19 @@ public class TitleNavigationAdapter extends BaseAdapter {
 	private TextView txtTitle;
 	private ArrayList<SpinnerNavItem> spinnerNavItem;
 	private Context context;
+    public static final String PREFS_NAME = "MyPrefsFile";
+    String baby_id,user_id,baby_name,userName;
 
+    public TitleNavigationAdapter(String baby_name) {
+        this.baby_name=baby_name;
+    }
 	public TitleNavigationAdapter(Context context,
                                   ArrayList<SpinnerNavItem> spinnerNavItem) {
 		this.spinnerNavItem = spinnerNavItem;
 		this.context = context;
+
 	}
+
 
 	@Override
 	public int getCount() {
@@ -49,12 +56,12 @@ public class TitleNavigationAdapter extends BaseAdapter {
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.list_item_title_navigation, null);
         }
-        
+
         imgIcon = (ImageView) convertView.findViewById(R.id.imgIcon);
         txtTitle = (TextView) convertView.findViewById(R.id.txtTitle);
         
-        imgIcon.setImageResource(spinnerNavItem.get(position).getIcon());
-        imgIcon.setVisibility(View.GONE);
+        imgIcon.setImageDrawable(spinnerNavItem.get(position).getIcon());
+        //imgIcon.setVisibility(View.GONE);
         txtTitle.setText(spinnerNavItem.get(position).getTitle());
         return convertView;
 	}
@@ -70,8 +77,8 @@ public class TitleNavigationAdapter extends BaseAdapter {
         
         imgIcon = (ImageView) convertView.findViewById(R.id.imgIcon);
         txtTitle = (TextView) convertView.findViewById(R.id.txtTitle);
-        
-        imgIcon.setImageResource(spinnerNavItem.get(position).getIcon());        
+
+        imgIcon.setImageDrawable(spinnerNavItem.get(position).getIcon());
         txtTitle.setText(spinnerNavItem.get(position).getTitle());
         return convertView;
 	}
