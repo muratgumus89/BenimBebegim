@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -31,6 +32,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -91,6 +93,7 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
     String result=null;
     String line=null;
     String realPath="null";
+    String oldPath="null";
     int code;
     /*
      Variables For Shared Preferences
@@ -118,6 +121,21 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
     private static final int SELECT_PICTURE = 1;
     private String selectedImagePath;
     private Uri selectedImageUri;
+
+    public static final String PREFS_NAME = "MyPrefsFile";
+    // Activity request codes
+    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
+    private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    public static final int MEDIA_TYPE_VIDEO = 2;
+    Dialog dialogCircle;
+
+    // directory name to store captured images and videos
+    private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
+    public static String imageName;
+
+    private Uri fileUri; // file url to store image/video
+    Boolean isChanging;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,12 +210,11 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
     }
 
     private void getValuesFromDatabases() {
-        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
-        editor = preferences.edit(); //aynı şekil editor nesnesi oluşturuluyor
-        String strBaby_id = preferences.getString("baby_id", "");
-        Log.e("shared_preferences", strBaby_id);
-        String strUser_id = preferences.getString("user_id", "");
-        Log.e("shared_preferences", strUser_id);
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String strBaby_id = preferences.getString("baby_id",null);
+        Log.d("strBaby_id",strBaby_id);
+        String strUser_id = preferences.getString("user_id",null);
+        Log.d("strUser_id",strUser_id);
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
         nameValuePairs.add(new BasicNameValuePair("bid",strBaby_id));
@@ -250,6 +267,7 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
                 );
                 // json_data.getString("Image")
                 realPath=json_data.getString("Image");
+                oldPath=json_data.getString("Image");
                 Bitmap image=StringToBitMap(realPath);
 
                 if(!json_data.getString("Image").equals("null")) {
@@ -327,7 +345,10 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
                         myCalendar.get(Calendar.MINUTE), true).show();
                 break;
             case R.id.btnCancel_BabyEdit:
-                getValuesFromDatabases();
+                //getValuesFromDatabases();
+                Intent intentHomeScreen = new Intent(getApplicationContext(),
+                        ActivityHomeScreen.class);
+                startActivity(intentHomeScreen);
 
                 break;
             case R.id.btnDelete_BabyEdit:
@@ -368,12 +389,9 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
     }
 
     private void deleteValuesFromDatabase() {
-        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
-        editor = preferences.edit(); //aynı şekil editor nesnesi oluşturuluyor
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String strBaby_id = preferences.getString("baby_id", "");
-        Log.e("shared_preferences", strBaby_id);
         String strUser_id = preferences.getString("user_id", "");
-        Log.e("shared_preferences", strUser_id);
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
         nameValuePairs.add(new BasicNameValuePair("bid",strBaby_id));
@@ -433,13 +451,12 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
     }
 
     private void checkedBabyIsExistOrNot() {
-        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
-        editor = preferences.edit(); //aynı şekil editor nesnesi oluşturuluyor
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String strUser_id = preferences.getString("user_id", "");
         Log.e("shared_preferences", strUser_id);
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
-        nameValuePairs.add(new BasicNameValuePair("uid",strUser_id ));
+        nameValuePairs.add(new BasicNameValuePair("user_id",strUser_id ));
 
 
 
@@ -480,7 +497,7 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
              */
             if (code == 1) {
                 Intent goEditBaby = new Intent(getApplicationContext(),
-                        ActivityEditBaby.class);
+                        ActivityHomeScreen.class);
                 startActivity(goEditBaby);
             }
             else {
@@ -498,47 +515,136 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
     }
 
     private void updateValuesToDatabase() {
-        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
-        editor = preferences.edit(); //aynı şekil editor nesnesi oluşturuluyor
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String strBaby_id = preferences.getString("baby_id", "");
-        Log.e("shared_preferences", strBaby_id);
         String strUser_id = preferences.getString("user_id", "");
-        Log.e("shared_preferences", strUser_id);
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         /******************
          * Check Date and Time Picker Values null or not
          */
+        Boolean control = changeControl();
         nameValuePairs.add(new BasicNameValuePair("bid",strBaby_id));
-        if(edtGetBabyName_BabyEdit.getText().toString().equals("")){
-            Toast.makeText(getApplicationContext(),
-                    R.string.valid_Name, Toast.LENGTH_LONG)
-                    .show();
-            return;
-        }
-        else {
-            nameValuePairs.add(new BasicNameValuePair("name", edtGetBabyName_BabyEdit.getText().toString()));
-        }
-        if(!realPath.equals("null")) {
-            Bitmap bitmap = BitmapFactory.decodeFile(realPath);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
-            byte[] byte_arr = stream.toByteArray();
-            image_str = Base64.encodeBytes(byte_arr);
+        if (control==true) {
+            if (edtGetBabyName_BabyEdit.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(),
+                        R.string.valid_Name, Toast.LENGTH_LONG)
+                        .show();
+                return;
+            } else {
+                nameValuePairs.add(new BasicNameValuePair("name", edtGetBabyName_BabyEdit.getText().toString()));
+            }
+            if (!realPath.equals("null") && !realPath.equals(oldPath)) {
+                // bimatp factory
+                BitmapFactory.Options options = new BitmapFactory.Options();
+
+                // downsizing image as it throws OutOfMemory Exception for larger
+                // images
+                options.inSampleSize = 4;
+                Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
+                byte[] byte_arr = stream.toByteArray();
+                image_str = Base64.encodeBytes(byte_arr);
+            } else if (realPath.equals(oldPath)) {
+                image_str = oldPath.toString();
+            } else {
+                image_str = "null";
+            }
+            nameValuePairs.add(new BasicNameValuePair("date", btnDatePicker_BabyEdit.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("time", btnTimePicker_BabyEdit.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("image", image_str));
+            nameValuePairs.add(new BasicNameValuePair("uid", strUser_id));
+            nameValuePairs.add(new BasicNameValuePair("gender", selectedGendersForEditBaby));
+            nameValuePairs.add(new BasicNameValuePair("theme", "Theme"));
+
+
+            try {
+
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/update_create_baby.php");
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                is = entity.getContent();
+                Log.e("log_tag", "connection success ");
+            } catch (Exception e) {
+                Log.e("Fail 1", e.toString());
+                Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            try {
+                BufferedReader reader = new BufferedReader
+                        (new InputStreamReader(is, "utf-8"), 8);
+                StringBuilder sb = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                is.close();
+                result = sb.toString();
+                Log.d("log_tag", "convert response to string completed!");
+            } catch (Exception e) {
+                Log.d("log_tag", "Error converting result " + e.toString());
+            }
+            //parse json data
+            try {
+                JSONObject json_data = new JSONObject(result);
+                code = json_data.getInt("code");
+                /******************
+                 *  Checked record is inserted or not
+                 */
+                if (code == 2){
+                    String mName=edtGetBabyName_BabyEdit.getText().toString();
+                    String msg=mName + " " + getResources().getString(R.string.have_a_baby);
+                    Toast.makeText(getBaseContext(), msg,
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if (code == 1) {
+                    Toast.makeText(getBaseContext(), R.string.update_account,
+                            Toast.LENGTH_SHORT).show();
+                    getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                            .edit()
+                            .putString("baby_name", edtGetBabyName_BabyEdit.getText().toString())
+                            .commit();
+                    Intent intentHomeScreen1 = new Intent(getApplicationContext(),
+                            ActivityHomeScreen.class);
+                    startActivity(intentHomeScreen1);
+                } else {
+                    Toast.makeText(getBaseContext(), R.string.sorry,
+                            Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+                Log.e("CreateBabyFail3", e.toString());
+            } finally {
+                Log.e("CreateBabyFinally", (String.valueOf(code)));
+            }
         }else{
-            image_str = "null";
+            Toast.makeText(getBaseContext(),"No Changing",Toast.LENGTH_SHORT).show();
         }
-        nameValuePairs.add(new BasicNameValuePair("date",btnDatePicker_BabyEdit.getText().toString()));
-        nameValuePairs.add(new BasicNameValuePair("time",btnTimePicker_BabyEdit.getText().toString()));
-        nameValuePairs.add(new BasicNameValuePair("image",image_str));
+
+    }
+
+    private Boolean changeControl() {
+        String name,date,time,gender,theme,path;
+        name=edtGetBabyName_BabyEdit.getText().toString();
+        date=btnDatePicker_BabyEdit.getText().toString();
+        time=btnTimePicker_BabyEdit.getText().toString();
+        path=oldPath;
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String strBaby_id = preferences.getString("baby_id",null);
+        Log.d("strBaby_id",strBaby_id);
+        String strUser_id = preferences.getString("user_id",null);
+        Log.d("strUser_id",strUser_id);
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+        nameValuePairs.add(new BasicNameValuePair("bid",strBaby_id));
         nameValuePairs.add(new BasicNameValuePair("uid",strUser_id ));
-        nameValuePairs.add(new BasicNameValuePair("gender",selectedGendersForEditBaby));
-        nameValuePairs.add(new BasicNameValuePair("theme","Theme"));
 
 
         try {
 
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/update_create_baby.php");
+            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/select_for_edit.php");
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
@@ -565,26 +671,38 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
         }
         //parse json data
         try {
-            JSONObject json_data = new JSONObject(result);
-            code = json_data.getInt("code");
-            /******************
-             *  Checked record is inserted or not
-             */
-            if (code == 1) {
-                Toast.makeText(getBaseContext(), R.string.update_account,
-                        Toast.LENGTH_SHORT).show();
+            JSONArray jArray = new JSONArray(result);
+            for(int i=0;i<jArray.length();i++){
+                JSONObject json_data = jArray.getJSONObject(i);
+                Log.d("log_tag","BID: "+json_data.getInt("BID")+
+                                ", Name: "+json_data.getString("Name")+
+                                ", Date: "+json_data.getString("Date")
+                                +", Time: "+json_data.getString("Time")
+                                +", Image: "+json_data.getString("Image")
+                                +", UID: "+json_data.getInt("UID")
+                                +", Gender: "+json_data.getString("Gender")
+                                +", Theme: "+json_data.getString("Theme")
+
+
+                );
+                if(name.equals(json_data.getString("Name"))&&
+                   date.equals(json_data.getString("Date"))&&
+                   time.equals(json_data.getString("Time"))&&
+                   path.equals(realPath)){
+                    isChanging=false;
+                }
+                else{
+                    isChanging=true;
+                }
+
             }
-            else {
-                Toast.makeText(getBaseContext(), R.string.sorry,
-                        Toast.LENGTH_LONG).show();
-            }
+            Log.d("log_tag", "parse json data completed!");
         } catch (Exception e) {
-            Log.e("CreateBabyFail3", e.toString());
+            Log.d("log_tag", "Error in http connection " + e.toString());
         } finally {
-            Log.e("CreateBabyFinally", (String.valueOf(code)));
+            Log.d("log_tag", "ALL completed!");
         }
-
-
+        return isChanging;
     }
 
     @Override
@@ -606,8 +724,7 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
         super.onContextItemSelected(item);
         switch (item.getItemId()) {
             case R.id.itemTakePicture:
-                i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(i, cameraData);
+                captureImage();
                 break;
 
             case R.id.itemChooseFromGallery:
@@ -628,22 +745,132 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
 
         return true;
     }
+    /*
+ * Capturing Camera Image will lauch camera app requrest image capture
+ */
+    private void captureImage() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+        // start the image capture Intent
+        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
+    }
+    /*
+ * Creating file uri to store image/video
+ */
+    public Uri getOutputMediaFileUri(int type) {
+        return Uri.fromFile(getOutputMediaFile(type));
+    }
+    /*
+ * returning image / video
+ */
+    private static File getOutputMediaFile(int type) {
+
+        // External sdcard location
+        File mediaStorageDir = new File(
+                Environment
+                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                IMAGE_DIRECTORY_NAME);
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.d(IMAGE_DIRECTORY_NAME, "Oops! Failed create "
+                        + IMAGE_DIRECTORY_NAME + " directory");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
+                Locale.getDefault()).format(new Date());
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator
+                    + "IMG_" + timeStamp + ".jpg");
+            setImageName(timeStamp);
+        } else if (type == MEDIA_TYPE_VIDEO) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator
+                    + "VID_" + timeStamp + ".mp4");
+        } else {
+            return null;
+        }
+
+        return mediaFile;
+    }
+    public static void setImageName(String s){
+        imageName=s;
+    }
     @Override
     protected void onActivityResult(int reqCode, int resCode, Intent data) {
-        if (resCode == Activity.RESULT_OK && data != null) {
-            // SDK < API11
-            if (Build.VERSION.SDK_INT < 11)
-                realPath = RealPathUtil.getRealPathFromURI_BelowAPI11(this, data.getData());
+        if (reqCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
+            if (resCode == RESULT_OK) {
+                // successfully captured the image
+                // display it in image view
+                Log.i("Camerayı Okeyledim","Hahaha");
+                previewCapturedImage();
+                return;
+            } else if (resCode == RESULT_CANCELED) {
+                // user cancelled Image capture
+                Toast.makeText(getApplicationContext(),
+                        R.string.cancel_capture, Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+        }else {
+            if (resCode == Activity.RESULT_OK && data != null) {
+                // SDK < API11
+                if (Build.VERSION.SDK_INT < 11)
+                    realPath = RealPathUtil.getRealPathFromURI_BelowAPI11(this, data.getData());
 
-                // SDK >= 11 && SDK < 19
-            else if (Build.VERSION.SDK_INT < 19)
-                realPath = RealPathUtil.getRealPathFromURI_API11to18(this, data.getData());
+                    // SDK >= 11 && SDK < 19
+                else if (Build.VERSION.SDK_INT < 19)
+                    realPath = RealPathUtil.getRealPathFromURI_API11to18(this, data.getData());
 
-                // SDK > 19 (Android 4.4)
-            else
-                realPath = RealPathUtil.getRealPathFromURI_API19(this, data.getData());
+                    // SDK > 19 (Android 4.4)
+                else if (Build.VERSION.SDK_INT >= 19)
+                    realPath = RealPathUtil.getRealPathFromURI_API19(this, data.getData());
+            }
+            else if (resCode == Activity.RESULT_CANCELED) {
+                // user cancelled Image capture
+                Toast.makeText(getApplicationContext(),
+                        R.string.cancel_select, Toast.LENGTH_SHORT)
+                        .show();
+                return;
+
+            }
         }
-        setPath(Build.VERSION.SDK_INT, data.getData().getPath(),realPath);
+        setPath(Build.VERSION.SDK_INT, data.getData().getPath(), realPath);
+    }
+    /*
+* Display image from a path to ImageView
+*/
+    private void previewCapturedImage() {
+        try {
+            imgSelectedPicture_BabyEdit.setVisibility(View.VISIBLE);
+
+            // bimatp factory
+            BitmapFactory.Options options = new BitmapFactory.Options();
+
+            // downsizing image as it throws OutOfMemory Exception for larger
+            // images
+            //options.inSampleSize = 8;
+
+            final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
+                    options);
+            realPath=fileUri.getPath();
+            MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, getImageName() , "Kontrol");
+            imgSelectedPicture_BabyEdit.setImageBitmap(bitmap);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public static String getImageName(){
+        return imageName.toString();
     }
     private void setPath(int sdk, String uriPath,String realPath){
 

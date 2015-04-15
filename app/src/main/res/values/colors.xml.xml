@@ -18,4 +18,9 @@
     <color name="activ">#5c755e</color>
     <color name="inactiv">#999999</color>
     <color name="bkg2">#3d4935</color>
+
+    <color name="sa_green">#14a804</color>
+    <color name="stacked_green">#118504</color>
+    <color name="accent_green">#97e08f</color>
+    <color name="pressed">#CC97e08f</color>
 </resources>

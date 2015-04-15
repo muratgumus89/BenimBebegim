@@ -19,3 +19,4 @@
         android:title="@string/ImageCancel"
         app:showAsAction="never"/>
 </menu>
+
