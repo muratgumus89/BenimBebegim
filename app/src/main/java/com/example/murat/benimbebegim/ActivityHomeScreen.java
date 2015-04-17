@@ -87,7 +87,9 @@ public class ActivityHomeScreen extends FragmentActivity implements
     int code;
     public static final String PREFS_NAME = "MyPrefsFile";
     String baby_id,user_id,baby_name,userName;
-
+    String[] nameArray;
+    private String[] imageArray;
+    private Boolean isSpinner;
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
@@ -100,6 +102,12 @@ public class ActivityHomeScreen extends FragmentActivity implements
         baby_name = pref.getString("baby_name", null);
         user_id = pref.getString("user_id", null);
         baby_id = pref.getString("baby_id", null);
+        isSpinner=pref.getBoolean("isSpinner",false);
+        if(isSpinner==false){
+            Log.i("isSpinner","isSpinner");
+            getBabiesNames();
+            isSpinner=true;
+        }
         if(pref.getInt("spin_position",0) != 0){
 
             spinnerPosition=pref.getInt("spin_position",0);
@@ -117,7 +125,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
 
         // actionbar home butonunu aktif ediyoruz
         getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setDisplayShowTitleEnabled(true);
+        getActionBar().setDisplayShowTitleEnabled(false);
 
         // navigationu tıklanabilir hale getiriyoruz
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -216,11 +224,24 @@ public class ActivityHomeScreen extends FragmentActivity implements
         if (view instanceof Spinner)
         {
             navSpinner = new ArrayList<SpinnerNavItem>();
-            //navSpinner.add(new SpinnerNavItem("                                                              ",null));
             navSpinner.add(new SpinnerNavItem(getResources().getString(R.string.add_baby)+"                         ", getResources().getDrawable(R.drawable.icon_add_baby_32)));
             navSpinner.add(new SpinnerNavItem(getResources().getString(R.string.edit_baby),getResources().getDrawable(R.drawable.edit_baby_info_32)));
-            getBabiesNames();
+            for(int i=0;i<nameArray.length;i++){
+                Bitmap image=StringToBitMap(imageArray[i]);
+                if(imageArray[i]!=(null)) {
+                    Bitmap ic_image=image;
+                    Drawable d = new BitmapDrawable(getResources(),ic_image);
+                    navSpinner.add(new SpinnerNavItem(nameArray[i],d));
+                }
+                else{
+                    navSpinner.add(new SpinnerNavItem(nameArray[i],getResources().getDrawable(R.drawable.baby_boy_icon)));
+                }
 
+            }
+            getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("isSpinner",isSpinner)
+                    .commit();
             // title drop down adapter
             new TitleNavigationAdapter(baby_name);
             adapter = new TitleNavigationAdapter(getApplicationContext(),
@@ -348,8 +369,8 @@ public class ActivityHomeScreen extends FragmentActivity implements
         }
     }
     private void getBabiesNames() {
-        String[] nameArray = new String[0];
-        String[] imageArray = new String[0];
+        nameArray = new String[0];
+        imageArray = new String[0];
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
         nameValuePairs.add(new BasicNameValuePair("uid",user_id ));
@@ -397,26 +418,12 @@ public class ActivityHomeScreen extends FragmentActivity implements
                 nameArray[i]=json_data.getString("Name");
                 imageArray[i]=json_data.getString("Image");
                 realPath=json_data.getString("Image");
-                Bitmap image=StringToBitMap(realPath);
-
-                if(!json_data.getString("Image").equals("null")) {
-                    Bitmap ic_image=image;
-                    Drawable d = new BitmapDrawable(getResources(),ic_image);
-                    navSpinner.add(new SpinnerNavItem(nameArray[i],d));
-                }
-                else{
-                    navSpinner.add(new SpinnerNavItem(nameArray[i],getResources().getDrawable(R.drawable.baby_boy_icon)));
-                }
             }
             Log.d("log_tag", "parse json data completed!");
         } catch (Exception e) {
             Log.d("log_tag", "Error in http connection " + e.toString());
         } finally {
             Log.d("log_tag", "ALL completed!");
-            for(int i=0;i<nameArray.length;i++){
-                Log.d("Name:",nameArray[i]);
-                Log.d("Image:",imageArray[i]);
-            }
         }
     }
     public Bitmap StringToBitMap(String encodedString) {

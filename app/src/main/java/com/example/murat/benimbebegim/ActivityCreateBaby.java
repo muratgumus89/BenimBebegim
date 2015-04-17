@@ -273,6 +273,10 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 /******************
                  * Refress all areas
                  */
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isSpinner",false)
+                        .commit();
                 Intent intentHomeScreen = new Intent(getApplicationContext(),
                         ActivityHomeScreen.class);
                 startActivity(intentHomeScreen);
@@ -449,6 +453,10 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 .putString("baby_name", getBabyName)
                 .putString("baby_id",getBabyId())
                 .commit();
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isSpinner",false)
+                        .commit();
                 Toast.makeText(getBaseContext(), R.string.create_succesfully,
                         Toast.LENGTH_SHORT).show();
                 Intent intentHomeScreen = new Intent(getApplicationContext(),

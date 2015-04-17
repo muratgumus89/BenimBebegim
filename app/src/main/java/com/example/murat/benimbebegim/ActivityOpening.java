@@ -50,9 +50,9 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     Button btnLogin;
     String userNameforLogin, passwordforLogin;
     CheckBox cbRememberMe;
-     /*
-     Variables For MySql Connections
-     */
+    /*
+    Variables For MySql Connections
+    */
     InputStream is = null;
     String result = null;
     String strUserIDOpening;
@@ -191,6 +191,10 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                 Toast.makeText(getBaseContext(), R.string.login_succesfully,
                         Toast.LENGTH_LONG).show();
                 strUserIDOpening = getUserId(userNameforLogin);
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isSpinner",false)
+                        .commit();
                 getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                         .edit()
                         .putString(PREF_USERID, strUserIDOpening)
@@ -432,11 +436,11 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
 
         @Override
         protected Void doInBackground(Void... params) {
-                try {
+            try {
 
-                }
-                catch (Exception e) {
-                }
+            }
+            catch (Exception e) {
+            }
             return null;
         }
 

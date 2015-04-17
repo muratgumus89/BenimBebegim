@@ -346,16 +346,28 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
                 break;
             case R.id.btnCancel_BabyEdit:
                 //getValuesFromDatabases();
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isSpinner",false)
+                        .commit();
                 Intent intentHomeScreen = new Intent(getApplicationContext(),
                         ActivityHomeScreen.class);
                 startActivity(intentHomeScreen);
 
                 break;
             case R.id.btnDelete_BabyEdit:
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isSpinner",false)
+                        .commit();
                 deleteValuesFromDatabase();
 
                 break;
             case R.id.btnOk_BabyEdit:
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isSpinner",false)
+                        .commit();
                 /******************
                  * Checked Empty Areas For All Records
                  */
