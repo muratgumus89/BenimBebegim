@@ -1,5 +1,6 @@
 package com.example.murat.benimbebegim;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import com.example.murat.benimbebegim.adapters.MyDialogFragment;
 
 public class ActivityFeatures extends Fragment implements View.OnClickListener {
-    TextView txtTheme,txtCalendar;
+    TextView txtTheme,txtCalendar, txtReminder;
 
 
     @Override
@@ -25,6 +26,8 @@ public class ActivityFeatures extends Fragment implements View.OnClickListener {
         txtTheme.setOnClickListener(this);
         txtCalendar = (TextView) view.findViewById(R.id.txtCalendar_Home_Screen);
         txtCalendar.setOnClickListener(this);
+        txtReminder = (TextView) view.findViewById(R.id.txtReminder_Home_Screen);
+        txtReminder.setOnClickListener(this);
         return view;
     }
 
@@ -36,9 +39,11 @@ public class ActivityFeatures extends Fragment implements View.OnClickListener {
                 newFragment.show(getFragmentManager(), "dialog");
                 break;
             case R.id.txtCalendar_Home_Screen:
-                Intent intentEditBaby = new Intent(getActivity().getApplicationContext(),
-                        ActivityEditBaby.class);
-                startActivity(intentEditBaby);
+                break;
+            case R.id.txtReminder_Home_Screen:
+                Intent intentRemindME = new Intent(getActivity().getApplicationContext(),
+                       ActivityAlarm.class);
+                startActivity(intentRemindME);
                 break;
             default:
                 break;
