@@ -258,7 +258,25 @@
     <string name="Sleep_activity_cancel_button">Cancel</string>
     <string name="Sleep_activity_save_button">Save</string>
 
-        <string name="title_sction1">Section 1</string>
+    <!--ActivityHealth Values goes in here-->
+    <string-array name="spinneritem_healthActivity">
+        <item>Diarrhea</item>
+        <item>Vomit</item>
+        <item>Pink eye</item>
+        <item>Fever</item>
+        <item>Wheeze</item>
+        <item>Stuffy nose</item>
+        <item>Other</item>
+    </string-array>
+    <string name="Health_activity_date_button">Date</string>
+    <string name="Health_activity_time_button">Time</string>
+    <string name="Health_activity_writesth_button">Write something</string>
+    <string name="Health_activity_cancel_button">Cancel</string>
+    <string name="Health_activity_save_button">Save</string>
+
+
+
+    <string name="title_sction1">Section 1</string>
         <string name="title_sction2">Section 2</string>
         <string name="title_sction3">Section 3</string>
     <string-array name="spinner_items">
