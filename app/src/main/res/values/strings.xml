@@ -274,6 +274,72 @@
     <string name="Health_activity_cancel_button">Cancel</string>
     <string name="Health_activity_save_button">Save</string>
 
+    <!--ActivityMedicine Values goes in here-->
+    <string-array name="spinneritem_MedicineActivity">
+        <item>DHA</item>
+        <item>Gas relief</item>
+        <item>Gripe water</item>
+        <item>Iron</item>
+        <item>Ibubprofen</item>
+        <item>Reflux</item>
+        <item>Paracetemol</item>
+        <item>Teething tablets</item>
+        <item>Vitamin D</item>
+        <item>Vitamin B</item>
+        <item>Vitamin B12</item>
+        <item>Allergy</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="spinnerUnit_MedicineActivity">
+        <item>ml</item>
+        <item>piece</item>
+        <item>dose</item>
+        <item>oz</item>
+        <item>tsp</item>
+        <item>tbsp</item>
+        <item>drop</item>
+        <item>mg</item>
+        <item>iu</item>
+    </string-array>
+    <string name="Medicine_activity_date_button">Date</string>
+    <string name="Medicine_activity_time_button">Time</string>
+    <string name="Medicine_activity_writesth_button">Write something</string>
+    <string name="Medicine_activity_cancel_button">Cancel</string>
+    <string name="Medicine_activity_save_button">Save</string>
+
+    <!--ActivityVaccination Values goes in here-->
+    <string-array name="spinnerItem_VaccinationActivity">
+        <item>BCG</item>
+        <item>Dtab</item>
+        <item>Flu Vaccine</item>
+        <item>HepA</item>
+        <item>HepB</item>
+        <item>Hib</item>
+        <item>HPV(girls only)</item>
+        <item>PCV(Pneumo)</item>
+        <item>Polio(IPV)</item>
+        <item>RV(Rotavirus)</item>
+        <item>Varicella</item>
+        <item>Other</item>
+    </string-array>
+    <string name="Vaccination_activity_date_button">Date</string>
+    <string name="Vaccination_activity_time_button">Time</string>
+    <string name="Vaccination_activity_writesth_button">Write something</string>
+    <string name="Vaccination_activity_cancel_button">Cancel</string>
+    <string name="Vaccination_activity_save_button">Save</string>
+
+    <!--ActivityHygiene Values goes in here-->
+    <string-array name="spinnerItem_HygieneActivity">
+        <item>Bath</item>
+        <item>Trim hair</item>
+        <item>Clip nails</item>
+    </string-array>
+    <string name="Hygiene_activity_date_button">Date</string>
+    <string name="Hygiene_activity_time_button">Time</string>
+    <string name="Hygiene_activity_writesth_button">Write something</string>
+    <string name="Hygiene_activity_cancel_button">Cancel</string>
+    <string name="Hygiene_activity_save_button">Save</string>
+
 
 
     <string name="title_sction1">Section 1</string>
