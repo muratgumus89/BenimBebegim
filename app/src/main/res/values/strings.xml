@@ -340,6 +340,16 @@
     <string name="Hygiene_activity_cancel_button">Cancel</string>
     <string name="Hygiene_activity_save_button">Save</string>
 
+    <!--ActivityPumping Values goes in here-->
+    <string name="Pumping_activity_date_button">Date</string>
+    <string name="Pumping_activity_time_button">Time</string>
+    <string name="Pumping_activity_ounce_button">Ounce</string>
+    <string name="Pumping_activity_writesth_button">Write something</string>
+    <string name="Pumping_activity_cancel_button">Cancel</string>
+    <string name="Pumping_activity_save_button">Save</string>
+    <string name="Pumping_activity_total_edittext">Total : </string>
+    <string name="Pumping_activity_paused_edittext">Paused : </string>
+
 
 
     <string name="title_sction1">Section 1</string>

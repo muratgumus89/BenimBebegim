@@ -57,6 +57,7 @@ public class ActivityMood extends FragmentActivity implements AdapterView.OnItem
         btnTimePicker.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+        etNote = (EditText)findViewById(R.id.etMoodActivity_Notes);
 
         dateForDB = new DatePickerDialog.OnDateSetListener() {
 
