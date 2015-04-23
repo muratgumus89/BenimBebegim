@@ -10,13 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.murat.benimbebegim.adapters.ListViewAdapter;
+import com.example.murat.benimbebegim.adapters.ListViewAdapterForMoreEvents;
 
 public class ActivityMoreEvents extends Fragment {
     String[] favName;
     int[] upLogo;
     ListView list;
-    ListViewAdapter adapter;
+    ListViewAdapterForMoreEvents adapter;
 
     String classes[] = {"ActivityHealth",
             "ActivityMedicine",
@@ -40,7 +40,7 @@ public class ActivityMoreEvents extends Fragment {
         list = (ListView) rootView.findViewById(R.id.listMoreEvents);
 
         // Pass results to ListViewAdapter Class
-        adapter = new ListViewAdapter(getActivity(), favName, upLogo);
+        adapter = new ListViewAdapterForMoreEvents(getActivity(), favName, upLogo,null,null);
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
         // Capture clicks on ListView items

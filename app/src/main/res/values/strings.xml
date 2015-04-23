@@ -278,5 +278,11 @@
     </string-array>
     <string name="search">Search</string>
     <string name="actionmode_cancel">Cancel ActionMode</string>
-
+    <string name="add_record">Record Added Successfully</string>
+    <string name="about">about </string>
+    <string name="year_ago"> years ago</string>
+    <string name="mounth_ago"> mounth ago</string>
+    <string name="day_ago"> day ago</string>
+    <string name="hour_ago"> hour ago</string>
+    <string name="minute_ago"> minute ago</string>
 </resources>
