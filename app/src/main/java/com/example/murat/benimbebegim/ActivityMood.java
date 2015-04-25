@@ -2,7 +2,6 @@ package com.example.murat.benimbebegim;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -16,12 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.murat.benimbebegim.Databases.MoodDatabase;
+import com.example.murat.benimbebegim.Databases.ActivityTable;
+import com.example.murat.benimbebegim.Databases.Mood;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,13 +40,14 @@ public class ActivityMood extends FragmentActivity implements AdapterView.OnItem
 
     Spinner spinner;
     String mood= "Quite";
-    int mood_id[];
+    String activity_type="Mood";
+    int mood_id[],act_id[];
 
     public static final String PREFS_NAME = "MyPrefsFile";
 
     Calendar myCalendar = Calendar.getInstance();
 
-    String saveDate, saveTime,selected_time,selected_date,baby_id;
+    String saveDate, saveTime,selected_time,selected_date,baby_id,user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class ActivityMood extends FragmentActivity implements AdapterView.OnItem
 
         SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         baby_id = pref.getString("baby_id", null);
+        user_id = pref.getString("user_id",null);
 
         spinner = (Spinner) findViewById(R.id.spnr_MoodActivity_Moods);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -209,8 +210,13 @@ public class ActivityMood extends FragmentActivity implements AdapterView.OnItem
         SimpleDateFormat time = new SimpleDateFormat("HH:mm",
                 Locale.getDefault());
         saveTime = time.format(c_time.getTime());
-        MoodDatabase db = new MoodDatabase(getApplicationContext());
-        db.addMood(baby_id, mood, note, selected_time, selected_date, saveTime, saveDate);//kitap ekledik
+
+        ActivityTable a_db = new ActivityTable(getApplicationContext());
+        a_db.insertRecord(activity_type,baby_id,user_id,selected_date,selected_time,saveDate,saveTime,note);
+        a_db.close();
+        getActiviyId();
+        Mood db = new Mood(getApplicationContext());
+        db.insertMood(act_id[act_id.length-1],mood);
         db.close();
         //Son eklenen mood u sp ye at
         getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
@@ -218,9 +224,18 @@ public class ActivityMood extends FragmentActivity implements AdapterView.OnItem
                 .putString("mood",mood)
                 .commit();
         Toast.makeText(getApplicationContext(), getResources().getString(R.string.add_record), Toast.LENGTH_LONG).show();
-
-
-
         onBackPressed();
+    }
+
+    private void getActiviyId() {
+        ActivityTable db = new ActivityTable(getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+        ArrayList<HashMap<String, String>> activity_id = db.showRecordForActivityType(activity_type, baby_id);//mood listesini alıyoruz
+        if (activity_id.size() != 0) {//mood listesi boşsa
+            act_id = new int[activity_id.size()]; // mood id lerini tutucamız string arrayi olusturduk.
+            for (int i = 0; i < activity_id.size(); i++) {
+                act_id[i] = Integer.parseInt(activity_id.get(i).get("a_id"));
+                Log.i("Mood Id  :", String.valueOf(act_id[i]));
+            }
+        }
     }
 }

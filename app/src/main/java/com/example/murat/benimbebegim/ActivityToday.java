@@ -4,19 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.murat.benimbebegim.Databases.MoodDatabase;
 import com.example.murat.benimbebegim.adapters.ListViewAdapterForTodayFragment;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 
 public class ActivityToday extends Fragment{
@@ -39,10 +35,10 @@ public class ActivityToday extends Fragment{
         SharedPreferences pref;
         pref = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         baby_id = pref.getString("baby_id", null);
-        getMoods(baby_id);
+        //getMoods(baby_id);
         return view;
     }
-    private void getMoods(String baby_id) {
+    /*private void getMoods(String baby_id) {
         ArrayList<HashMap<String, String>> moods;
         String mood_name[] = new String[0], mood_time[] = new String[0], mood_info[]= new String[0];
         //Get values from databases for listview
@@ -73,7 +69,7 @@ public class ActivityToday extends Fragment{
 
 
         Log.d("Count",String.valueOf(count));
-    }
+    }*/
 
     private String getCurrentDate() {
         Calendar c_date = Calendar.getInstance();

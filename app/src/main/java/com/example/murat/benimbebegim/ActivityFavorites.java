@@ -13,12 +13,16 @@ import android.widget.ListView;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.murat.benimbebegim.Databases.MoodDatabase;
+import com.example.murat.benimbebegim.Databases.ActivityTable;
+import com.example.murat.benimbebegim.Databases.Mood;
 import com.example.murat.benimbebegim.adapters.ListViewAdapterForFavorites;
+
+import net.sourceforge.jtds.jdbc.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -29,6 +33,7 @@ public class ActivityFavorites extends Fragment {
     ListView list;
     ListViewAdapterForFavorites adapter;
     ArrayList<HashMap<String, String>> moods;
+    ArrayList<HashMap<String, String>> records;
     String mood_name[], mood_time[], mood_date[];
     public static final String PREFS_NAME = "MyPrefsFile";
     String baby_id;
@@ -79,7 +84,7 @@ public class ActivityFavorites extends Fragment {
             adapter = new ListViewAdapterForFavorites(getActivity(), favName, upLogo, mood_time[mood_time.length - 1], mood_name[mood_name.length - 1],click_add);
         }
         else{
-            adapter = new ListViewAdapterForFavorites(getActivity(), favName, upLogo, " ", " "," ListViewAdapterForMoreEvents");
+            adapter = new ListViewAdapterForFavorites(getActivity(), favName, upLogo, " ", " "," ");
         }
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
@@ -130,58 +135,91 @@ public class ActivityFavorites extends Fragment {
         c_hour = saveTime.substring(0,2);
         c_minute = saveTime.substring(3,5);
 
-        if(year == c_year){
-            result ="";
-        }else if(Integer.parseInt(year) < Integer.parseInt(c_year))
-        {
-            int yearr = Integer.parseInt(c_year) - Integer.parseInt(year);
-            result = getResources().getString(R.string.about) + " " + String.valueOf(yearr) + " " +getResources().getString(R.string.year_ago);
-        }else if(mounth == c_mounth){
-            result="";
-        }else if(Integer.parseInt(mounth) < Integer.parseInt(c_mounth)){
-            result = getResources().getString(R.string.about) +  " "
-                     + String.valueOf((Integer.parseInt(c_mounth) - Integer.parseInt(mounth)))
-                     + " " +getResources().getString(R.string.mounth_ago);
-        }else if(day == c_day){
-            result = "";
-        }else if(Integer.parseInt(day) < Integer.parseInt(c_day)){
-            result = getResources().getString(R.string.about) + " "
-                     + String.valueOf((Integer.parseInt(c_day) - Integer.parseInt(day))) + " "
-                     + getResources().getString(R.string.day_ago);
-        }else if(hour == c_hour){
-            result = "";
-        }else if(Integer.parseInt(hour) < Integer.parseInt(c_hour)){
-            result = getResources().getString(R.string.about) + " "
-                     + String.valueOf((Integer.parseInt(c_hour) - Integer.parseInt(hour))) + " "
-                     + getResources().getString(R.string.hour_ago);
-        }else if(minute == c_minute){
-            result ="";
-        }else if(Integer.parseInt(minute) < Integer.parseInt(c_minute)){
-            result = getResources().getString(R.string.about) + " "
-                     + String.valueOf((Integer.parseInt(c_minute) - Integer.parseInt(minute))) + " "
-                     + getResources().getString(R.string.minute_ago);
+        String dateStart = r_date + " " + r_time +":00";
+        Log.d("Date: ",dateStart);
+        String dateStop =  saveDate + " " + saveTime +":00";
+        Log.d("Date2: ",dateStop);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+        Date d1 = null;
+        Date d2 = null;
+
+        try {
+            d1 = format.parse(dateStart);
+            d2 = format.parse(dateStop);
+
+            //in milliseconds
+            long diff = d2.getTime() - d1.getTime();
+
+            //long diffSeconds = diff / 1000 % 60;
+            long diffMinutes = diff / (60 * 1000) % 60;
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+            long diffDays = diff / (24 * 60 * 60 * 1000);
+            long diffYear=0;
+            long diffMounth=0;
+
+            Log.d("Day: ",diffDays + " days, ");
+
+            if(diffDays > 365){
+                diffYear = diffDays / 365 ;
+                diffDays = diffDays - (diffYear * 365 );
+            }
+            if(diffDays > 30){
+                diffMounth = diffDays / 30 ;
+                diffDays   = diffDays - (diffMounth * 30);
+            }
+            Log.d("Year: ",diffYear +" years,");
+            Log.d("Mounth: ",diffMounth +" mounth,");
+            Log.d("Day: ",diffDays + " days, ");
+            Log.d("Hour: ",diffHours + " hours, ");
+            Log.d("Minutes: ",diffMinutes + " minutes, ");
+            //Log.d("Seconds: ",diffSeconds + " seconds.");
+
+            if( diffYear > 0) {
+                result = getResources().getString(R.string.about) + " " + (diffYear + 1)+ " " + getResources().getString(R.string.year_ago);
+            }else if (diffMounth == 12) {
+                result = getResources().getString(R.string.about) + " 1 "  + getResources().getString(R.string.year_ago);
+            }else if (diffMounth > 0){
+                result = getResources().getString(R.string.about) + " " + (diffMounth)+" " + getResources().getString(R.string.mounth_ago);
+            }else if (diffDays > 0){
+                result = getResources().getString(R.string.about) + " " + (diffDays) + " " + getResources().getString(R.string.day_ago);
+            }else if (diffHours > 0){
+                result = getResources().getString(R.string.about) + " " + (diffHours)+ " " + getResources().getString(R.string.hour_ago);
+            }else if (diffMinutes > 0){
+                result = getResources().getString(R.string.about) + " " + (diffMinutes)+" " + getResources().getString(R.string.minute_ago);
+            }else {
+                result = getResources().getString(R.string.a_minute_ago);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        Log.d("Result: ", result);
         return result;
     }
 
     private void getMoodListFromDatabase(String baby_id) {
         //Get values from databases for listview
-        MoodDatabase db = new MoodDatabase(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
-        moods = db.moods(baby_id);//mood listesini alıyoruz
-        if (moods.size() != 0) {//mood listesi boşsa
-            mood_name = new String[moods.size()]; // mood adlarını tutucamız string arrayi olusturduk.
-            mood_id = new int[moods.size()]; // mood id lerini tutucamız string arrayi olusturduk.
-            mood_time = new String[moods.size()];
-            mood_date = new String[moods.size()];
-            for (int i = 0; i < moods.size(); i++) {
-                mood_name[i] = moods.get(i).get("mood");
-                mood_id[i] = Integer.parseInt(moods.get(i).get("m_id"));
-                mood_time[i] = moods.get(i).get("time");
-                mood_date[i] = moods.get(i).get("date");
-                Log.i("Mood Name:", mood_name[i]);
-                Log.i("Mood Id  :", String.valueOf(mood_id[i]));
+        ActivityTable a_db = new ActivityTable(getActivity().getApplicationContext());
+        records = a_db.showRecordForActivityType("Mood",baby_id);
+        if (records.size() != 0) {
+            mood_time = new String[records.size()];
+            mood_date = new String[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                mood_time[i] = records.get(i).get("select_time");
+                mood_date[i] = records.get(i).get("select_date");
                 Log.i("Mood Time:", mood_time[i]);
                 Log.i("Mood Date:", mood_date[i]);
+            }
+        }
+
+        Mood db = new Mood(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+        moods = db.getAllRecords();
+        if (moods.size() != 0) {//mood listesi boşsa
+            mood_name = new String[moods.size()]; // mood adlarını tutucamız string arrayi olusturduk.
+            for (int i = 0; i < moods.size(); i++) {
+                mood_name[i] = moods.get(i).get("m_type");
+                Log.i("Mood Name:", mood_name[i]);
             }
         }
     }
@@ -189,6 +227,7 @@ public class ActivityFavorites extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        Toast.makeText(getActivity().getApplicationContext(),"Kontrol",Toast.LENGTH_SHORT).show();
         init();
     }
 
