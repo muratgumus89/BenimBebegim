@@ -244,6 +244,21 @@
     <string name="Bottle_activity_cancel_button">Cancel</string>
     <string name="Bottle_activity_save_button">Save</string>
 
+    <string name="Bottle_Dialog_checkbox_formula">Formula</string>
+    <string name="Bottle_Dialog_checkbox_milk">Milk</string>
+    <string name="Bottle_Dialog_checkbox_water">Water</string>
+    <string name="Bottle_Dialog_checkbox_juice">Juice</string>
+    <string name="Bottle_Dialog_checkbox_breastmilk">BreastMilk</string>
+    <string name="Bottle_Dialog_checkbox_other">Other</string>
+
+    <string name="Bottle_Dialog_amount_cancel">Cancel</string>
+    <string name="Bottle_Dialog_amount_ok">Okay</string>
+
+    <string name="Bottle_Dialog_tv_total">Total     : </string>
+    <string name="Bottle_Dialog_tv_paused">Paused   : </string>
+    <string name="Bottle_Dialog_tv_actual">Actual   :</string>
+
+
     <!--ActivityBreast Values goes in here-->
     <string name="Breast_activity_date_button">Date</string>
     <string name="Breast_activity_time_button">Time</string>

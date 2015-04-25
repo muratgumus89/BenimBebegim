@@ -58,6 +58,16 @@
         android:id="@+id/linearLayout7">
 
         <Button
+            android:id="@+id/btnBottleActivity_time"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_button_rounded"
+            android:text="00 : 00 : 00"
+            android:textSize="36dp"
+            android:textColor="@color/white" />
+
+        <Button
             android:id="@+id/btnBottleActivity_formula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,17 +130,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <Button
-            android:id="@+id/btnBottleActivity_Writesth"
+        <EditText
+            android:id="@+id/etMoodActivity_Notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_button_rounded"
-            android:text="@string/Bottle_activity_writesth_button"
-            android:textColor="@color/white" />
+            android:background="@drawable/bg_form_rounded"
+            android:hint="Notes : " />
     </LinearLayout>
 
     <LinearLayout
