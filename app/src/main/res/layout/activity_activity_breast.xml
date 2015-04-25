@@ -60,17 +60,72 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnBreastActivity_Writesth"
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBreastActivity_LeftBreast"
+                android:layout_width="fill_parent"
+                android:layout_height="180dp"
+                android:layout_weight="50"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/bg_button_rounded"
+                android:text="00.00.00"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp"
+                android:textSize="27dp" />
+
+            <Button
+                android:id="@+id/btnBreastActivity_RightBreast"
+                android:layout_width="fill_parent"
+                android:layout_height="180dp"
+                android:layout_weight="50"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/bg_button_rounded"
+                android:text="00.00.00"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp"
+                android:textSize="27dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button_rounded"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/Bottle_Dialog_tv_total"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/Bottle_Dialog_tv_paused"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/Bottle_Dialog_tv_actual"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etMoodActivity_Notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@drawable/bg_button_rounded"
-            android:drawableLeft="@drawable/icon_time"
-            android:text="@string/Breast_activity_writesth_button"
-            android:textColor="@color/white" />
+            android:maxLines="3"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_form_rounded"
+            android:hint="Notes : " />
 
     </LinearLayout>
 

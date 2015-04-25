@@ -60,10 +60,7 @@
             android:id="@+id/spnr_MoodActivity_Moods"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@+id/linearLayout2" />
+            android:layout_marginBottom="10dp" />
 
             <!--burdaki değerlerin string listesinde düzenlenmesi gerekiyor-->
         <EditText
@@ -71,10 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_form_rounded"
-            android:hint="Notes : "
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/spnr_MoodActivity_Moods" />
+            android:hint="Notes : " />
     </LinearLayout>
 
     <LinearLayout
@@ -92,9 +86,6 @@
             android:id="@+id/btnMoodActivity_Date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:drawableLeft="@drawable/icon_date"
             android:layout_weight="50"
@@ -107,9 +98,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/icon_time"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_marginLeft="10dp"
             android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"

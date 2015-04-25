@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="8dp"
         android:layout_below="@+id/linearLayout2"
         android:orientation="horizontal"
         android:weightSum="100">
@@ -66,9 +67,9 @@
             android:orientation="vertical">
 
             <CheckBox
+                android:id="@+id/cbSolidActivty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableRight="@drawable/icon_mood_20"
                 android:text="@string/Solid_activity_checkbox_bread" />
 
             <CheckBox
@@ -139,28 +140,17 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout4"
-        android:orientation="horizontal"
-        android:weightSum="100">
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/etSolidActivity_gram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="50"
             android:background="@drawable/bg_form_rounded"
             android:hint="0,00 gram"
+            android:numeric="decimal"
             android:singleLine="true" />
 
-        <Button
-            android:id="@+id/btnSolidActivity_Measurement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="50"
-            android:background="@drawable/bg_button_rounded"
-            android:text="New Button"
-            android:textColor="@color/white" />
     </LinearLayout>
 
     <EditText
@@ -170,7 +160,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout5"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_form_rounded"
         android:hint="Notes : " />
 
