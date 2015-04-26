@@ -101,17 +101,14 @@
                         android:textColor="@color/white" />
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btnSleepActivity_Writesth"
+                <EditText
+                    android:id="@+id/etSleepActivity_Notes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:background="@drawable/bg_button_rounded"
-                    android:drawableLeft="@drawable/icon_time"
-                    android:text="@string/Sleep_activity_writesth_button"
-                    android:textColor="@color/white" />
+                    android:maxLines="3"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_form_rounded"
+                    android:hint="Notes : " />
 
             </LinearLayout>
 
