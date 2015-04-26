@@ -36,11 +36,43 @@ public class ActivityTable extends SQLiteOpenHelper{
     public static final String BABY_ID = "b_id";
     public static final String USER_ID = "u_id";
     /*
-    Areas of Activity Table
+    Areas of Mood Table
         */
     public static final String TABLE_MOOD = "mood";
     public static final String MOOD_ID = "m_id";
     public static final String MOOD_TYPE = "m_type";
+    /*
+    Areas of Solid Table
+     */
+    public static final String TABLE_SOLID = "solid";
+    public static final String SOLID_ID = "solid_id";
+    public static final String SOLID_BREAD = "bread";
+    public static final String SOLID_FRUIT = "fruit";
+    public static final String SOLID_CEREAL= "cereal";
+    public static final String SOLID_MEAT = "meat";
+    public static final String SOLID_DAIRY = "dairy";
+    public static final String SOLID_PASTA = "pasta";
+    public static final String SOLID_EGGS = "eggs";
+    public static final String SOLID_VEGETABLE = "vegetable";
+    public static final String SOLID_FISH = "fish";
+    public static final String SOLID_OTHER = "other";
+    public static final String SOLID_GRAM = "gram";
+
+    String CREATE_SOLID = "CREATE TABLE" + TABLE_SOLID +"("
+            + SOLID_ID    + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID + "INTEGER,"
+            + SOLID_GRAM  + "INTEGER,"
+            + SOLID_BREAD + "TEXT,"
+            + SOLID_FRUIT + "TEXT,"
+            + SOLID_CEREAL+ "TEXT,"
+            + SOLID_MEAT  + "TEXT,"
+            + SOLID_DAIRY + "TEXT,"
+            + SOLID_PASTA + "TEXT,"
+            + SOLID_EGGS  + "TEXT,"
+            + SOLID_VEGETABLE + "TEXT,"
+            + SOLID_FISH  + "TEXT,"
+            + SOLID_OTHER + "TEXT" + ")";
+
 
     String CREATE_ACTIVITY = "CREATE TABLE " + ACTIVITY_TABLE + "("
             + ACTIVITY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -67,6 +99,7 @@ public class ActivityTable extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {  // Databesi oluşturuyoruz.Bu methodu biz çağırmıyoruz. Databese de obje oluşturduğumuzda otamatik çağırılıyor.
         db.execSQL(CREATE_ACTIVITY);
         db.execSQL(CREATE_MOOD);
+        db.execSQL(CREATE_SOLID);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -75,6 +108,7 @@ public class ActivityTable extends SQLiteOpenHelper{
         // clear all data
         db.execSQL("DROP TABLE IF EXISTS " + ACTIVITY_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOOD);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOLID);
 
         // recreate the tables
         onCreate(db);

@@ -2,9 +2,11 @@ package com.example.murat.benimbebegim;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,27 +14,43 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.murat.benimbebegim.Databases.ActivityTable;
+import com.example.murat.benimbebegim.Databases.Mood;
+import com.example.murat.benimbebegim.Databases.Solid;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class ActivitySolid extends FragmentActivity implements View.OnClickListener {
 
     Button btnSave, btnCancel, btnDatePicker, btnTimePicker;
-    EditText etNote;
+    EditText etNote,etGram;
 
     DatePickerDialog.OnDateSetListener dateForDB;
     TimePickerDialog.OnTimeSetListener timeForDB;
 
     Calendar myCalendar = Calendar.getInstance();
 
-    String selectedDate, selectedTime, strTime, strDate, getBabyName, getUserId,
-            selectedGendersForCreateBaby, strSelectedImage = "null";
+    public static final String PREFS_NAME = "MyPrefsFile";
+
+    String saveDate, saveTime,selected_time,selected_date,baby_id,user_id;
+    String activity_type="Solid";
+    int act_id[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_solid);
+        SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        baby_id = pref.getString("baby_id", null);
+        user_id = pref.getString("user_id",null);
         init();
     }
 
@@ -41,11 +59,32 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
         btnTimePicker = (Button)findViewById(R.id.btnSolidActivity_Time);
         btnCancel = (Button)findViewById(R.id.btnSolidActivity_Cancel);
         btnSave = (Button)findViewById(R.id.btnSolidActivity_Save);
+        etNote  = (EditText)findViewById(R.id.etSolidActivity_Notes);
+        etGram  = (EditText)findViewById(R.id.etSolidActivity_gram);
 
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
         btnSave.setOnClickListener(this);
+
+        /******************
+         * Naming The Date Button
+         */
+        Calendar c_date = Calendar.getInstance();
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        saveDate = date.format(c_date.getTime());
+        btnDatePicker.setText(saveDate);
+        selected_date = saveDate;
+
+        /******************
+         * Naming The Time Button
+         */
+        Calendar c_time = Calendar.getInstance(TimeZone.getDefault());
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm",
+                Locale.getDefault());
+        saveTime = time.format(c_time.getTime());
+        btnTimePicker.setText(saveTime);
+        selected_time = saveTime;
 
         dateForDB = new DatePickerDialog.OnDateSetListener() {
 
@@ -56,9 +95,16 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/"
-                        + year;
-                btnDatePicker.setText(selectedDate);
+                if(monthOfYear<10) {
+                    String month = "0" + (monthOfYear + 1 );
+                    selected_date = dayOfMonth + "/" + (month) + "/"
+                            + year;
+                }
+                else{
+                    selected_date = dayOfMonth + "/" + (monthOfYear + 1) + "/"
+                            + year;
+                }
+                btnDatePicker.setText(selected_date);
 
             }
         };
@@ -67,9 +113,9 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 myCalendar.set(Calendar.MINUTE, minute);
-                selectedTime = myCalendar.getTime().toString()
+                selected_time = myCalendar.getTime().toString()
                         .substring(11, 16);
-                btnTimePicker.setText(selectedTime);
+                btnTimePicker.setText(selected_time);
             }
         };
     }
@@ -118,9 +164,51 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
                 onBackPressed();
                 break;
             case R.id.btnSolidActivity_Save:
+                addSolid();
                 break;
             default:
                 break;
+        }
+    }
+
+    private void addSolid() {
+        String note=etNote.getText().toString();
+        int    gram=Integer.valueOf(etGram.getText().toString());
+
+        Calendar c_date = Calendar.getInstance();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        saveDate = date.format(c_date.getTime());
+
+        Calendar c_time = Calendar.getInstance(TimeZone.getDefault());
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm",
+                Locale.getDefault());
+        saveTime = time.format(c_time.getTime());
+
+        ActivityTable a_db = new ActivityTable(getApplicationContext());
+        a_db.insertRecord(activity_type,baby_id,user_id,selected_date,selected_time,saveDate,saveTime,note);
+        a_db.close();
+        getActiviyId();
+
+        Solid s_db = new Solid(getApplicationContext());
+        /*
+         Buraya veriler Eklenecek!!!!!!!!!!!!!!!!!!!1
+        s_db.insertSolid(act_id[act_id.length-1],gram);
+         */
+        s_db.close();
+
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.add_record), Toast.LENGTH_LONG).show();
+        onBackPressed();
+    }
+
+    private void getActiviyId() {
+        ActivityTable db = new ActivityTable(getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+        ArrayList<HashMap<String, String>> activity_id = db.showRecordForActivityType(activity_type, baby_id);//mood listesini alıyoruz
+        if (activity_id.size() != 0) {//mood listesi boşsa
+            act_id = new int[activity_id.size()]; // mood id lerini tutucamız string arrayi olusturduk.
+            for (int i = 0; i < activity_id.size(); i++) {
+                act_id[i] = Integer.parseInt(activity_id.get(i).get("a_id"));
+                Log.i("Mood Id  :", String.valueOf(act_id[i]));
+            }
         }
     }
 }

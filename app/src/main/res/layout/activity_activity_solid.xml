@@ -67,27 +67,31 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/cbSolidActivty"
+                android:id="@+id/cbBread"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Solid_activity_checkbox_bread" />
 
             <CheckBox
+                android:id="@+id/cbCereal"
                 android:layout_width="wrap_content"
                 android:text="@string/Solid_activity_checkbox_cereal"
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:id="@+id/cbDairy"
                 android:text="@string/Solid_activity_checkbox_dairy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:id="@+id/cbEggs"
                 android:text="@string/Solid_activity_checkbox_eggs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <CheckBox
+                android:id="@+id/cbFish"
                 android:text="@string/Solid_activity_checkbox_fish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -106,26 +110,31 @@
                 android:orientation="vertical">
 
                 <CheckBox
+                    android:id="@+id/cbFruit"
                     android:text="@string/Solid_activity_checkbox_fruit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <CheckBox
+                    android:id="@+id/cbMeat"
                     android:text="@string/Solid_activity_checkbox_meat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <CheckBox
+                    android:id="@+id/cbPasta"
                     android:text="@string/Solid_activity_checkbox_pasta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <CheckBox
+                    android:id="@+id/cbVegetables"
                     android:text="@string/Solid_activity_checkbox_vegetable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <CheckBox
+                    android:id="@+id/cbOther"
                     android:text="@string/Solid_activity_checkbox_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

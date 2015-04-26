@@ -35,6 +35,9 @@ public class ActivityFavorites extends Fragment {
     ArrayList<HashMap<String, String>> moods;
     ArrayList<HashMap<String, String>> records;
     String mood_name[], mood_time[], mood_date[];
+    String solid_name[], solid_time[], solid_date[];
+    String activity_name[],activity_time[],activity_date[];
+    int activity_id[];
     public static final String PREFS_NAME = "MyPrefsFile";
     String baby_id;
     int mood_id[];
@@ -213,8 +216,20 @@ public class ActivityFavorites extends Fragment {
             }
         }
 
+        records = a_db.showRecordForActivityType("Solid",baby_id);
+        if (records.size() != 0) {
+            mood_time = new String[records.size()];
+            mood_date = new String[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                mood_time[i] = records.get(i).get("select_time");
+                mood_date[i] = records.get(i).get("select_date");
+                Log.i("Mood Time:", mood_time[i]);
+                Log.i("Mood Date:", mood_date[i]);
+            }
+        }
+
         Mood db = new Mood(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
-        moods = db.getAllRecords();
+        moods = db.getAllMoods();
         if (moods.size() != 0) {//mood listesi boşsa
             mood_name = new String[moods.size()]; // mood adlarını tutucamız string arrayi olusturduk.
             for (int i = 0; i < moods.size(); i++) {

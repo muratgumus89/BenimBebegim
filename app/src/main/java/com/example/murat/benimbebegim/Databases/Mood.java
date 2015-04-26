@@ -54,7 +54,7 @@ public class Mood {
         mDatabase.close();
 }
 
-    public void deleteEmployee(int a_id) {
+    public void deleteSolid(int a_id) {
         mDatabase.delete(ActivityTable.TABLE_MOOD, ActivityTable.ACTIVITY_ID + " = " + a_id, null);
     }
 
@@ -66,7 +66,7 @@ public class Mood {
         //mesala map.put("x","300"); mesala burda anahtar x değeri 300.
 
         HashMap<String,String> mood = new HashMap<String,String>();
-        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_MOOD+ " WHERE id="+a_id;
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_MOOD+ " WHERE a_id="+a_id;
 
         Cursor cursor = mDatabase.rawQuery(selectQuery, null);
         // Move to first row
@@ -79,7 +79,7 @@ public class Mood {
         return mood;
     }
 
-    public ArrayList<HashMap<String, String>> getAllRecords(){
+    public ArrayList<HashMap<String, String>> getAllMoods(){
 
         //Bu methodda ise tablodaki tüm değerleri alıyoruz
         //ArrayList adı üstünde Array lerin listelendiği bir Array.Burda hashmapleri listeleyeceğiz
@@ -104,16 +104,30 @@ public class Mood {
         mDatabase.close();
         return moodlist;
     }
+    public HashMap<String, String> getMoodID(int a_id){
 
-    public void editMood(String a_id, String m_type,int id) {
+        HashMap<String,String> mood = new HashMap<String,String>();
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_MOOD+ " WHERE a_id="+a_id;
+
+        Cursor cursor = mDatabase.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+        if(cursor.getCount() > 0){
+            mood.put(ActivityTable.MOOD_ID, String.valueOf(cursor.getInt(0)));
+        }
+        cursor.close();
+        mDatabase.close();
+        return mood;
+    }
+
+    public void editMood(String mood_id, String m_type) {
         //Bu methodda ise var olan veriyi güncelliyoruz(update)
         ContentValues values = new ContentValues();
-        values.put(ActivityTable.ACTIVITY_ID, a_id);
         values.put(ActivityTable.MOOD_TYPE,m_type);
 
         // updating row
         mDatabase.update(ActivityTable.TABLE_MOOD, values, ActivityTable.MOOD_ID + " = ?",
-                new String[] { String.valueOf(id) });
+                new String[] { String.valueOf(mood_id) });
         mDatabase.close();
     }
     public void resetTables(){

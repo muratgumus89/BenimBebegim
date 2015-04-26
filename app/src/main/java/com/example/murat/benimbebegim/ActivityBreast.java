@@ -239,7 +239,7 @@ public class ActivityBreast extends FragmentActivity implements View.OnClickList
             case R.id.btnBreastActivity_Save:
                 Log.i("IS IT WORKING", "yes");
                 break;
-            case R.id.btnBreastActivity_LeftBreast:
+/*            case R.id.btnBreastActivity_LeftBreast:
                 if (state == true) {
                     startClicks();
                     state = false;
@@ -258,7 +258,7 @@ public class ActivityBreast extends FragmentActivity implements View.OnClickList
                 }
                 break;
             default:
-                break;
+                break;*/
         }
     }
 }

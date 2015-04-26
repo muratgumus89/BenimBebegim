@@ -84,6 +84,15 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
             if(!clickAdd.equals(" "))
             txtClick.setText(clickAdd);
         }
+        if(position==1) {
+            if(time.equals(" "))
+                txtTime.setText(time);
+            else
+                txtTime.setText(time + ", ");
+                txtMood.setText(mood);
+            if(!clickAdd.equals(" "))
+                txtClick.setText(clickAdd);
+        }
 		return itemView;
 	}
 }
