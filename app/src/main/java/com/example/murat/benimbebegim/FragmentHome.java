@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -20,7 +21,6 @@ public class FragmentHome extends Fragment implements ActionBar.TabListener {
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    Integer count;
     ViewPager mViewPager;
     private ActionBar actionBar;
     private TabsFragmentPagerAdapter tabsAdapter;

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/rgTypesOfBottle"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setTypeOfBottle"
+            android:text="@string/Bottle_Dialog_checkbox_formula"
+            android:id="@+id/rbBottleDialog_Formula" />
+
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Bottle_Dialog_checkbox_milk"
+            android:id="@+id/rbBottleDialog_Milk" />
+
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Bottle_Dialog_checkbox_water"
+            android:id="@+id/rbBottleDialog_Water" />
+
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Bottle_Dialog_checkbox_juice"
+            android:id="@+id/rbBottleDialog_Juice" />
+
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Bottle_Dialog_checkbox_breastmilk"
+            android:id="@+id/rbBottleDialog_BreastMilk" />
+        <RadioButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Bottle_Dialog_checkbox_other"
+            android:id="@+id/rbBottleDialog_Other" />
+
+
+    </RadioGroup>
+
+</LinearLayout>

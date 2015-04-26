@@ -1,0 +1,188 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.murat.benimbebegim.ActivityPumping">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPumpingActivity_LeftBreast"
+                android:layout_width="fill_parent"
+                android:layout_height="180dp"
+                android:layout_weight="50"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/bg_button_rounded"
+                android:text="00.00.00"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp"
+                android:textSize="27dp" />
+
+            <Button
+                android:id="@+id/btnPumpingActivity_RightBreast"
+                android:layout_width="fill_parent"
+                android:layout_height="180dp"
+                android:layout_weight="50"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/bg_button_rounded"
+                android:text="00.00.00"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp"
+                android:textSize="27dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="@string/Pumping_activity_total_edittext"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="@string/Pumping_activity_paused_edittext"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <Button
+                        android:id="@+id/btnPumpingActivity_Date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="50"
+                        android:background="@drawable/bg_button_rounded"
+                        android:drawableLeft="@drawable/icon_date"
+                        android:text="@string/Pumping_activity_date_button"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/btnPumpingActivity_Time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="50"
+                        android:background="@drawable/bg_button_rounded"
+                        android:drawableLeft="@drawable/icon_time"
+                        android:text="@string/Pumping_activity_time_button"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnPumpingActivity_Ounce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_button_rounded"
+                    android:layout_marginBottom="8dp"
+                    android:drawableLeft="@drawable/icon_time"
+                    android:text="@string/Pumping_activity_ounce_button"
+                    android:textColor="@color/white" />
+
+                <EditText
+                    android:id="@+id/etPumpingActivity_Notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_form_rounded"
+                    android:hint="Notes : " />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/btnPumpingActivity_Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
+            android:drawableLeft="@drawable/icon_cancel"
+            android:text="@string/Pumping_activity_cancel_button"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnPumpingActivity_Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
+            android:drawableLeft="@drawable/icon_ok"
+            android:text="@string/Pumping_activity_save_button"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

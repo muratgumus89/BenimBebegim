@@ -3,6 +3,7 @@ package com.example.murat.benimbebegim;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -105,7 +106,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
     private ArrayAdapter<String> dataAdapterForGender;
 
     /*
-   Variables For BabyPicture Capture
+    Variables For BabyPicture Capture
     */
     Intent i;
     final static int cameraData = 0;
@@ -121,12 +122,18 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
     private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
+    Dialog dialogCircle;
 
     // directory name to store captured images and videos
     private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
     public static String imageName;
 
     private Uri fileUri; // file url to store image/video
+
+    public static final String PREFS_NAME = "MyPrefsFile";
+    private static final String PREF_USERNAME = "username";
+    private static final String PREF_PASSWORD = "password";
+    private static final String PREF_USERID = "user_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -266,7 +273,14 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 /******************
                  * Refress all areas
                  */
-                edtNameCreateBaby.setText(null);
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isSpinner",false)
+                        .commit();
+                Intent intentHomeScreen = new Intent(getApplicationContext(),
+                        ActivityHomeScreen.class);
+                startActivity(intentHomeScreen);
+              /*  edtNameCreateBaby.setText(null);
                 Calendar c_date = Calendar.getInstance();
                 SimpleDateFormat date = new SimpleDateFormat("dd/MM/yy");
                 strDate = date.format(c_date.getTime());
@@ -276,7 +290,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                         Locale.getDefault());
                 strTime = time.format(c_time.getTime());
                 btnTimePicker.setText(strTime);
-                imgSelectBabyPicture.setImageResource(R.drawable.select_picture_icon_128);
+                imgSelectBabyPicture.setImageResource(R.drawable.select_picture_icon_128);*/
                 break;
 
             case R.id.btnOk_createBaby:
@@ -342,7 +356,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 Button orange = (Button) dialog.findViewById(R.id.orange);
                 Button pink = (Button) dialog.findViewById(R.id.pink);
                 Button purple = (Button) dialog.findViewById(R.id.purple);
-                Button cancel = (Button) dialog.findViewById(R.id.cancel);
+                Button cancel = (Button) dialog.findViewById(R.id.cancel_dialog);
 
                 blue.setOnClickListener(new OnClickListener() {
                     @Override
@@ -364,10 +378,8 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 break;
         }
     }
-
     private void insert() {
-        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
-        editor = preferences.edit(); //aynı şekil editor nesnesi oluşturuluyor
+        preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
         String strUser_id = preferences.getString("user_id", "");
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
@@ -377,8 +389,9 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
 
             // downsizing image as it throws OutOfMemory Exception for larger
             // images
-            options.inSampleSize = 8;
-            Bitmap bitmap = BitmapFactory.decodeFile(realPath, options);
+
+            options.inSampleSize = 4;
+            Bitmap bitmap = BitmapFactory.decodeFile(realPath,options);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
             byte[] byte_arr = stream.toByteArray();
@@ -436,31 +449,28 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
              *  Checked record is inserted or not
              */
             if (code == 1) {
-                preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());//preferences nesnesi oluşturuluyor ve prefernces referansına bağlanıyor
-                editor = preferences.edit(); //aynı şekil editor nesnesi oluşturuluyor
-
-                // Buraya bak murat
-                editor.putString("baby_name", getBabyName); //isim değeri
-                Log.d("EditörBabyName", preferences.getString("baby_name", ""));
-                editor.putString("user_id", getUserIDBabyCreate);//email değeri
-                Log.d("EditörUserId", preferences.getString("user_id", ""));
-                //editor.putString("sifre", sifre_string);//şifre değeri
-                //editor.putBoolean("login", true);//uygulamaya tekrar girdiğinde kontrol için kullanılcak
-                //editor.putInt("sayısalDeger", 1000);// uygulamamızda kullanılmıyor ama göstermek amacıyla
-
-                editor.commit();//yapılan değişiklikler kaydedilmesi için editor nesnesinin commit() metodu çağırılır.
-                //Değerlerimizi sharedPreferences a kaydettik.Artık bu bilgiler ile giriş yapabiliriz.
+                 getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit()
+                .putString("baby_name", getBabyName)
+                .putString("baby_id",getBabyId())
+                .commit();
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putBoolean("isSpinner",false)
+                        .commit();
                 Toast.makeText(getBaseContext(), R.string.create_succesfully,
                         Toast.LENGTH_SHORT).show();
                 Intent intentHomeScreen = new Intent(getApplicationContext(),
                         ActivityHomeScreen.class);
                 startActivity(intentHomeScreen);
+                dialogCircle.hide();
             }
             /******************"
              *  Chech userName is exist or not
              */
             else if (code == 2) {
-                Toast.makeText(getBaseContext(), getBabyName + R.string.have_A_Baby,
+                String mName=edtNameCreateBaby.getText().toString();
+                String msg=mName + " " + getResources().getString(R.string.have_a_baby);
+                Toast.makeText(getBaseContext(), msg,
                         Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getBaseContext(), R.string.sorry,
@@ -684,7 +694,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                     realPath = RealPathUtil.getRealPathFromURI_API11to18(this, data.getData());
 
                     // SDK > 19 (Android 4.4)
-                else if (Build.VERSION.SDK_INT > 19)
+                else if (Build.VERSION.SDK_INT >= 19)
                     realPath = RealPathUtil.getRealPathFromURI_API19(this, data.getData());
             } else if (resCode == Activity.RESULT_CANCELED) {
                 // user cancelled Image capture
@@ -751,5 +761,50 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
         ActivityCreateBaby.this.findViewById(android.R.id.content)
                 .setBackgroundColor(color);
 
+    }
+    private String getBabyId(){
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        Log.i("info", "pref cekildi");
+        String user_id = pref.getString(PREF_USERID, null);
+        String baby_name = pref.getString("baby_name", null);
+
+        nameValuePairs.add(new BasicNameValuePair("uid",user_id));
+        nameValuePairs.add(new BasicNameValuePair("baby_name",baby_name));
+        try
+        {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/get_baby_id.php");
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity entity = response.getEntity();
+            is = entity.getContent();
+            Log.e("UserIdCon", "connection success ");
+        }
+        catch(Exception e)
+        {
+            Log.e("UserIdFail", e.toString());
+            Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        try
+        {
+            BufferedReader reader = new BufferedReader
+                    (new InputStreamReader(is,"utf-8"),8);
+            StringBuilder sb = new StringBuilder();
+            while ((line = reader.readLine()) != null)
+            {
+                sb.append(line + "\n");
+            }
+            is.close();
+            result = sb.toString();
+            Log.e("result", result);
+        }
+        catch(Exception e)
+        {
+            Log.e("Fail 2", e.toString());
+        }
+        return result;
     }
 }
