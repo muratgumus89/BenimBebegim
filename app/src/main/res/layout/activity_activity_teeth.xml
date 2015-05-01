@@ -59,7 +59,7 @@
         <ImageView
             android:id="@+id/ivTeethActivity_TeethChart"
             android:layout_width="match_parent"
-            android:src="@drawable/teeth_chart"
+            android:src="@drawable/teeth_activity_chart"
             android:layout_height="wrap_content" />
 
         <Spinner
