@@ -19,20 +19,20 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
 
 	// Declare Variables
 	Context context;
-	String mood;
-    String time;
-    String clickAdd;
+	String[] note;
+    String[] time;
+    String[] ago;
     String[] favName;
 	int[] upLogo;
 	LayoutInflater inflater;
 
-	public ListViewAdapterForFavorites(Context context, String[] favName, int[] upLogo, String time, String mood,String clickAdd) {
+	public ListViewAdapterForFavorites(Context context, String[] favName, int[] upLogo, String[] time, String[] note,String[] ago) {
 		this.context = context;
 		this.favName = favName;
 		this.upLogo  = upLogo;
         this.time    = time;
-        this.mood    = mood;
-        this.clickAdd= clickAdd;
+        this.note    = note;
+        this.ago     = ago;
 	}
 
 	public int getCount() {
@@ -76,22 +76,14 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
 		// Capture position and set to the ImageView
 		imgLogo.setImageResource(upLogo[position]);
         if(position==0) {
-            if(time.equals(" "))
-            txtTime.setText(time);
-            else
-            txtTime.setText(time + ", ");
-            txtMood.setText(mood);
-            if(!clickAdd.equals(" "))
-            txtClick.setText(clickAdd);
+            txtTime.setText(time[position]);
+            txtMood.setText(note[position]);
+            txtClick.setText(ago[position]);
         }
         if(position==1) {
-            if(time.equals(" "))
-                txtTime.setText(time);
-            else
-                txtTime.setText(time + ", ");
-                txtMood.setText(mood);
-            if(!clickAdd.equals(" "))
-                txtClick.setText(clickAdd);
+            txtTime.setText(time[position]);
+            txtMood.setText(note[position]);
+            txtClick.setText(ago[position]);
         }
 		return itemView;
 	}

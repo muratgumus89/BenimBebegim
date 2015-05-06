@@ -104,11 +104,10 @@ public class ActivityHomeScreen extends FragmentActivity implements
         baby_id = pref.getString("baby_id", null);
         isSpinner=pref.getBoolean("isSpinner",false);
         if(isSpinner==false){
-            Log.i("isSpinner","isSpinner");
             getBabiesNames();
             isSpinner=true;
         }
-        if(pref.getInt("spin_position",0) != 0){
+        if(pref.getInt("spin_position",0) != 0 && pref.getInt("spin_position",0) != 1){
 
             spinnerPosition=pref.getInt("spin_position",0);
         }

@@ -238,5 +238,6 @@ public class ActivityMood extends FragmentActivity implements AdapterView.OnItem
                 Log.i("Mood Id  :", String.valueOf(act_id[i]));
             }
         }
+        db.close();
     }
 }

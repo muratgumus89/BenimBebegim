@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -32,6 +33,7 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
 
     Button btnSave, btnCancel, btnDatePicker, btnTimePicker;
     EditText etNote,etGram;
+    CheckBox cbBread,cbFruit,cbCereal,cbMeat,cbDairy,cbPasta,cbEggs,cbVegetable,cbFish,cbOther;
 
     DatePickerDialog.OnDateSetListener dateForDB;
     TimePickerDialog.OnTimeSetListener timeForDB;
@@ -40,6 +42,8 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
 
     public static final String PREFS_NAME = "MyPrefsFile";
 
+    String isBread="False",isFruit="False",isCereal="False",isMeat="False",isDairy="False"
+            ,isPasta="False",isEggs="False",isVegetable="False",isFish="False",isOther="False";
     String saveDate, saveTime,selected_time,selected_date,baby_id,user_id;
     String activity_type="Solid";
     int act_id[];
@@ -61,6 +65,17 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
         btnSave = (Button)findViewById(R.id.btnSolidActivity_Save);
         etNote  = (EditText)findViewById(R.id.etSolidActivity_Notes);
         etGram  = (EditText)findViewById(R.id.etSolidActivity_gram);
+
+        cbBread = (CheckBox)findViewById(R.id.cbBread);
+        cbFruit = (CheckBox)findViewById(R.id.cbFruit);
+        cbCereal= (CheckBox)findViewById(R.id.cbCereal);
+        cbMeat  = (CheckBox)findViewById(R.id.cbMeat);
+        cbDairy = (CheckBox)findViewById(R.id.cbDairy);
+        cbPasta = (CheckBox)findViewById(R.id.cbPasta);
+        cbEggs  = (CheckBox)findViewById(R.id.cbEggs);
+        cbVegetable = (CheckBox)findViewById(R.id.cbVegetables);
+        cbFish = (CheckBox)findViewById(R.id.cbFish);
+        cbOther= (CheckBox)findViewById(R.id.cbOther);
 
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
@@ -173,8 +188,12 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
 
     private void addSolid() {
         String note=etNote.getText().toString();
-        int    gram=Integer.valueOf(etGram.getText().toString());
-
+        int gram=0;
+        if(etGram.getText().toString().equals("")) {
+            gram = 0;
+        }else {
+            gram = Integer.valueOf(etGram.getText().toString());
+        }
         Calendar c_date = Calendar.getInstance();
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         saveDate = date.format(c_date.getTime());
@@ -188,16 +207,28 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
         a_db.insertRecord(activity_type,baby_id,user_id,selected_date,selected_time,saveDate,saveTime,note);
         a_db.close();
         getActiviyId();
+        checkedControl();
 
         Solid s_db = new Solid(getApplicationContext());
-        /*
-         Buraya veriler Eklenecek!!!!!!!!!!!!!!!!!!!1
-        s_db.insertSolid(act_id[act_id.length-1],gram);
-         */
+
+        s_db.insertSolid(act_id[act_id.length-1],gram,isBread,isFruit,isCereal,isMeat,isDairy,isPasta,isEggs,isVegetable,isFish,isOther);
         s_db.close();
 
         Toast.makeText(getApplicationContext(), getResources().getString(R.string.add_record), Toast.LENGTH_LONG).show();
         onBackPressed();
+    }
+
+    private void checkedControl() {
+        if(cbBread.isChecked()) isBread="True";
+        if(cbFruit.isChecked()) isFruit="True";
+        if(cbCereal.isChecked()) isCereal="True";
+        if(cbMeat.isChecked()) isMeat="True";
+        if(cbDairy.isChecked()) isDairy="True";
+        if(cbPasta.isChecked()) isPasta="True";
+        if(cbEggs.isChecked()) isEggs="True";
+        if(cbVegetable.isChecked()) isVegetable="True";
+        if(cbFish.isChecked()) isFish="True";
+        if(cbOther.isChecked()) isOther="True";
     }
 
     private void getActiviyId() {
@@ -210,5 +241,6 @@ public class ActivitySolid extends FragmentActivity implements View.OnClickListe
                 Log.i("Mood Id  :", String.valueOf(act_id[i]));
             }
         }
+        db.close();
     }
 }

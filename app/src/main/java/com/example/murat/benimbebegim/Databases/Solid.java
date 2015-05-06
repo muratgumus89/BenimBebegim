@@ -105,7 +105,25 @@ public class Solid {
         mDatabase.close();
         return moodlist;
     }
+    public ArrayList<HashMap<String, String>> getSpecificSolidAsaActId(String a_id){
 
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_SOLID + " WHERE a_id="+ a_id;
+        Cursor cursor = mDatabase.rawQuery(selectQuery, null);
+        ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i=0; i<cursor.getColumnCount();i++)
+                {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+                moodlist.add(map);
+            } while (cursor.moveToNext());
+        }
+        mDatabase.close();
+        return moodlist;
+    }
     public ArrayList<HashMap<String, String>> getSpecificSolidRecord(int solid_id){
 
         String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_SOLID + " WHERE solid_id="+ solid_id;

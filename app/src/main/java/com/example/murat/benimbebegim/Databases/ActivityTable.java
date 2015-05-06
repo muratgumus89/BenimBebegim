@@ -58,20 +58,20 @@ public class ActivityTable extends SQLiteOpenHelper{
     public static final String SOLID_OTHER = "other";
     public static final String SOLID_GRAM = "gram";
 
-    String CREATE_SOLID = "CREATE TABLE" + TABLE_SOLID +"("
-            + SOLID_ID    + "INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + ACTIVITY_ID + "INTEGER,"
-            + SOLID_GRAM  + "INTEGER,"
-            + SOLID_BREAD + "TEXT,"
-            + SOLID_FRUIT + "TEXT,"
-            + SOLID_CEREAL+ "TEXT,"
-            + SOLID_MEAT  + "TEXT,"
-            + SOLID_DAIRY + "TEXT,"
-            + SOLID_PASTA + "TEXT,"
-            + SOLID_EGGS  + "TEXT,"
-            + SOLID_VEGETABLE + "TEXT,"
-            + SOLID_FISH  + "TEXT,"
-            + SOLID_OTHER + "TEXT" + ")";
+    String CREATE_SOLID = "CREATE TABLE " + TABLE_SOLID +"("
+            + SOLID_ID    + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID + " INTEGER,"
+            + SOLID_GRAM  + " INTEGER,"
+            + SOLID_BREAD + " TEXT,"
+            + SOLID_FRUIT + " TEXT,"
+            + SOLID_CEREAL+ " TEXT,"
+            + SOLID_MEAT  + " TEXT,"
+            + SOLID_DAIRY + " TEXT,"
+            + SOLID_PASTA + " TEXT,"
+            + SOLID_EGGS  + " TEXT,"
+            + SOLID_VEGETABLE + " TEXT,"
+            + SOLID_FISH  + " TEXT,"
+            + SOLID_OTHER + " TEXT" + ")";
 
 
     String CREATE_ACTIVITY = "CREATE TABLE " + ACTIVITY_TABLE + "("

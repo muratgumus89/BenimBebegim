@@ -224,7 +224,6 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             Log.e("LoginButtonFinally", (String.valueOf(code)));
         }
     }
-
     private void babyControl() {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         strUserIDOpening = getUserId(userNameforLogin);
@@ -272,6 +271,18 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                 intentCreateBaby.putExtras(b);
                 startActivity(intentCreateBaby);
             } else {
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString(PREF_USERID, strUserIDOpening)
+                        .commit();
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString("baby_id", getBabyID(strUserIDOpening,getBabyName(strUserIDOpening)))
+                        .commit();
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString("baby_name", getBabyName(strUserIDOpening))
+                        .commit();
                 Intent intentHomeScreen = new Intent(getApplicationContext(),
                         ActivityHomeScreen.class);
                 startActivity(intentHomeScreen);
@@ -280,29 +291,20 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             Log.e("Fail 3", e.toString());
         }
     }
-    private void getBabyName() {
+    private String getBabyName(String userid) {
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        String strBaby_id = preferences.getString("baby_id",null);
-        Log.d("strBaby_id",strBaby_id);
-        String strUser_id = preferences.getString("user_id",null);
-        Log.d("strUser_id",strUser_id);
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-
-        nameValuePairs.add(new BasicNameValuePair("bid",strBaby_id));
-        nameValuePairs.add(new BasicNameValuePair("uid",strUser_id ));
-
-
+        nameValuePairs.add(new BasicNameValuePair("uid",strUserIDOpening ));
         try {
-
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/return_baby_name.php");
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/just_one_baby_name.php");
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
             is = entity.getContent();
-            Log.e("log_tag", "connection success ");
+            Log.e("BabyIdCon", "connection success ");
         } catch (Exception e) {
-            Log.e("Fail 1", e.toString());
+            Log.e("BabyIdFail", e.toString());
             Toast.makeText(getApplicationContext(), "Invalid IP Address",
                     Toast.LENGTH_LONG).show();
         }
@@ -312,48 +314,20 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                     (new InputStreamReader(is, "utf-8"), 8);
             StringBuilder sb = new StringBuilder();
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line);
             }
             is.close();
             result = sb.toString();
-            Log.d("log_tag", "convert response to string completed!");
+            Log.e("Baby Name: ", result);
         } catch (Exception e) {
-            Log.d("log_tag", "Error converting result " + e.toString());
+            Log.e("BabyFail 2", e.toString());
         }
-        //parse json data
-        try {
-            JSONArray jArray = new JSONArray(result);
-            for(int i=0;i<jArray.length();i++){
-                JSONObject json_data = jArray.getJSONObject(i);
-                Log.d("log_tag","BID: "+json_data.getInt("BID")+
-                                ", Name: "+json_data.getString("Name")+
-                                ", Date: "+json_data.getString("Date")
-                                +", Time: "+json_data.getString("Time")
-                                +", Image: "+json_data.getString("Image")
-                                +", UID: "+json_data.getInt("UID")
-                                +", Gender: "+json_data.getString("Gender")
-                                +", Theme: "+json_data.getString("Theme")
-
-
-                );
-                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-                        .edit()
-                        .putString("baby_id", json_data.getString("BID"))
-                        .putString("baby_name", json_data.getString("Name"))
-                        .commit();
-
-            }
-            Log.d("log_tag", "parse json data completed!");
-        } catch (Exception e) {
-            Log.d("log_tag", "Error in http connection " + e.toString());
-        } finally {
-            Log.d("log_tag", "ALL completed!");
-        }
-
+        return result;
     }
-    private String getBabyID(String strUserIDOpening)  {
+    private String getBabyID(String strUserIDOpening,String baby_name)  {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("uid", strUserIDOpening));
+        nameValuePairs.add(new BasicNameValuePair("baby_name", baby_name));
         try {
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/get_baby_id.php");
@@ -373,7 +347,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                     (new InputStreamReader(is, "utf-8"), 8);
             StringBuilder sb = new StringBuilder();
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line);
             }
             is.close();
             result = sb.toString();
