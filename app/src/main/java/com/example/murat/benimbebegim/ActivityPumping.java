@@ -1,5 +1,7 @@
 package com.example.murat.benimbebegim;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -31,19 +33,19 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
     /**
      * ***************************************************************************************
      */
-    Button btnSave, btnCancel, btnDatePicker, btnTimePicker, btnLeftBreast, btnRightBreast;
+    Button btnSave, btnCancel, btnDatePicker, btnTimePicker, btnLeftBreast, btnRightBreast, btnOunce;
     EditText etNote;
 
     DatePickerDialog.OnDateSetListener dateForDB;
     TimePickerDialog.OnTimeSetListener timeForDB;
+
+    final Context context = this;
 
     Calendar myCalendar = Calendar.getInstance();
 
     String selectedDate, selectedTime, strTime, strDate, getBabyName, getUserId,
             selectedGendersForCreateBaby, strSelectedImage = "null";
 
-    private TextView tempTextView; //Temporary TextView
-    private Button tempBtn; //Temporary Button
     private Handler mHandler = new Handler();
     private long startTime;
     private long elapsedTime;
@@ -59,6 +61,22 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
             mHandler.postDelayed(this, REFRESH_RATE);
         }
     };
+
+    private Handler mHandler1 = new Handler();
+    private long startTime1;
+    private long elapsedTime1;
+    private final int REFRESH_RATE1 = 100;
+    private String hours1, minutes1, seconds1, milliseconds1;
+    private long secs1, mins1, hrs1;
+    private boolean stopped1 = false;
+    boolean stateLeft1 = true; // T: duruyor F: calısıyor
+    private Runnable startTimer1 = new Runnable() {
+        public void run() {
+            elapsedTime1 = System.currentTimeMillis() - startTime1;
+            updateTimer1(elapsedTime1);
+            mHandler1.postDelayed(this, REFRESH_RATE1);
+        }
+    };
     /*******************************************************************************************/
     /*******************************************************************************************/
     /**
@@ -71,7 +89,6 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
         setContentView(R.layout.activity_activity_pumping);
         init();
     }
-
 
     public void startClicks() {
         if (stopped) {
@@ -131,9 +148,6 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
     	 * I included the code in the event that you wanted to include it on your own
     	 */
         milliseconds = String.valueOf((long) time);
-        Log.i("miliseconds", String.valueOf(milliseconds.length()) + " ::" + milliseconds);
-
-
         if (milliseconds.length() == 2) {
             milliseconds = "0" + milliseconds;
         }
@@ -146,7 +160,81 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
         if (milliseconds.length() > 3 && milliseconds.length() < 4) {
             milliseconds = milliseconds.substring(milliseconds.length() - 3, milliseconds.length() - 2);
         }
-        ((Button) findViewById(R.id.btnPumpingActivity_LeftBreast)).setText(minutes + ":" + seconds + ":" + milliseconds);
+        ((Button) findViewById(R.id.btnPumpingActivity_LeftBreast)).setText(hours + ":" + minutes + ":" + seconds);
+    }
+
+    public void startClicks1() {
+        if (stopped1) {
+            startTime1 = System.currentTimeMillis() - elapsedTime1;
+        } else {
+            startTime1 = System.currentTimeMillis();
+        }
+        mHandler1.removeCallbacks(startTimer1);
+        mHandler1.postDelayed(startTimer1, 0);
+    }
+
+    public void stopClicks1() {
+        mHandler1.removeCallbacks(startTimer1);
+        stopped1 = true;
+    }
+
+    private void updateTimer1(float time) {
+        secs1 = (long) (time / 1000);
+        mins1 = (long) ((time / 1000) / 60);
+        hrs1 = (long) (((time / 1000) / 60) / 60);
+
+		/* Convert the seconds to String
+         * and format to ensure it has
+		 * a leading zero when required
+		 */
+        secs1 = secs1 % 60;
+        seconds1 = String.valueOf(secs1);
+        if (secs1 == 0) {
+            seconds1 = "00";
+        }
+        if (secs1 < 10 && secs1 > 0) {
+            seconds1 = "0" + seconds1;
+        }
+
+		/* Convert the minutes to String and format the String */
+
+        mins1 = mins1 % 60;
+        minutes1 = String.valueOf(mins1);
+        if (mins1 == 0) {
+            minutes1 = "00";
+        }
+        if (mins1 < 10 && mins1 > 0) {
+            minutes1 = "0" + minutes1;
+        }
+
+    	/* Convert the hours to String and format the String */
+
+        hours1 = String.valueOf(hrs1);
+        if (hrs1 == 0) {
+            hours1 = "00";
+        }
+        if (hrs1 < 10 && hrs1 > 0) {
+            hours1 = "0" + hours1;
+        }
+
+    	/* Although we are not using milliseconds on the timer in this example
+    	 * I included the code in the event that you wanted to include it on your own
+    	 */
+        milliseconds1 = String.valueOf((long) time);
+
+        if (milliseconds1.length() == 2) {
+            milliseconds1 = "0" + milliseconds1;
+        }
+        if (milliseconds1.length() <= 1) {
+            milliseconds1 = "00";
+        }
+        if (milliseconds1.length() >= 3) {
+            milliseconds1 = milliseconds1.substring(milliseconds1.length() - 3, milliseconds1.length() - 2);
+        }
+        if (milliseconds1.length() > 3 && milliseconds1.length() < 4) {
+            milliseconds1 = milliseconds1.substring(milliseconds1.length() - 3, milliseconds1.length() - 2);
+        }
+        ((Button) findViewById(R.id.btnPumpingActivity_RightBreast)).setText(hours1 + ":" + minutes1 + ":" + seconds1);
     }
 
 
@@ -157,6 +245,7 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
         btnSave = (Button) findViewById(R.id.btnPumpingActivity_Save);
         btnLeftBreast = (Button) findViewById(R.id.btnPumpingActivity_LeftBreast);
         btnRightBreast = (Button) findViewById(R.id.btnPumpingActivity_RightBreast);
+        btnOunce = (Button) findViewById(R.id.btnPumpingActivity_Ounce);
 
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
@@ -164,6 +253,7 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
         btnSave.setOnClickListener(this);
         btnLeftBreast.setOnClickListener(this);
         btnRightBreast.setOnClickListener(this);
+        btnOunce.setOnClickListener(this);
 
         dateForDB = new DatePickerDialog.OnDateSetListener() {
 
@@ -251,7 +341,43 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
                 }
                 break;
             case R.id.btnPumpingActivity_RightBreast:
+                if (stateLeft1 == true) {
+                    startClicks1();
+                    stateLeft1 = false;
+                } else {
+                    stopClicks1();
+                    stateLeft1 = true;
+                }
+                break;
+            case R.id.btnPumpingActivity_Ounce:
+                final Dialog dialog1 = new Dialog(context);
+                dialog1.setContentView(R.layout.dialog_pumping_amaount);
+                dialog1.setTitle("Ounce amount");
+                dialog1.setCancelable(true);
 
+                final Button btnOk, btnCancel;
+                final EditText etAmount;
+
+                etAmount = (EditText)dialog1.findViewById(R.id.etDialogOunce);
+
+                btnOk = (Button) dialog1.findViewById(R.id.btnDialog_Ounce_amount_ok);
+                btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        btnOunce.setText(etAmount.getText());
+                        dialog1.dismiss();
+                    }
+                });
+
+                btnCancel = (Button) dialog1.findViewById(R.id.btnDialog_Ounce_amount_cancel);
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog1.dismiss();
+                    }
+                });
+
+                dialog1.show();
                 break;
             default:
                 break;

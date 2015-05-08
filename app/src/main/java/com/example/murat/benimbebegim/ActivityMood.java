@@ -108,12 +108,17 @@ public class ActivityMood extends FragmentActivity implements AdapterView.OnItem
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                if(monthOfYear<10) {
-                    String month = "0" + (monthOfYear + 1 );
-                    selected_date = dayOfMonth + "/" + (month) + "/"
+                if (dayOfMonth < 10 && (monthOfYear + 1) < 10) {
+                    selected_date = "0" + dayOfMonth + "/0" + (monthOfYear + 1) + "/"
                             + year;
                 }
-                else{
+                else if(dayOfMonth<10) {
+                    selected_date = "0" + dayOfMonth + "/" + (monthOfYear + 1) + "/"
+                            + year;
+                }else if ((monthOfYear + 1) < 10){
+                    selected_date = dayOfMonth + "/0" + (monthOfYear + 1) + "/"
+                            + year;
+                }else{
                     selected_date = dayOfMonth + "/" + (monthOfYear + 1) + "/"
                             + year;
                 }

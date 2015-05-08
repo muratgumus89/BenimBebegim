@@ -57,6 +57,14 @@ public class ActivityTable extends SQLiteOpenHelper{
     public static final String SOLID_FISH = "fish";
     public static final String SOLID_OTHER = "other";
     public static final String SOLID_GRAM = "gram";
+    /*
+    Areas of Bottle Table
+    */
+    public static final String TABLE_BOTTLE   = "bottle";
+    public static final String BOTTLE_ID      = "bottle_id";
+    public static final String BOTTLE_TIMER   = "timer";
+    public static final String BOTTLE_FORMULA = "formula";
+    public static final String BOTTLE_AMOUNT  = "amount";
 
     String CREATE_SOLID = "CREATE TABLE " + TABLE_SOLID +"("
             + SOLID_ID    + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -91,6 +99,13 @@ public class ActivityTable extends SQLiteOpenHelper{
             + ACTIVITY_ID + " INTEGER,"
             + MOOD_TYPE + " TEXT" + ")";
 
+    String CREATE_BOTTLE = "CREATE TABLE " + TABLE_BOTTLE + "("
+            + BOTTLE_ID      + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID    + " INTEGER,"
+            + BOTTLE_FORMULA + " TEXT,"
+            + BOTTLE_AMOUNT  + " INTEGER,"
+            + BOTTLE_TIMER   + " TEXT" + ")";
+
     public ActivityTable(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -100,6 +115,7 @@ public class ActivityTable extends SQLiteOpenHelper{
         db.execSQL(CREATE_ACTIVITY);
         db.execSQL(CREATE_MOOD);
         db.execSQL(CREATE_SOLID);
+        db.execSQL(CREATE_BOTTLE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -109,6 +125,7 @@ public class ActivityTable extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + ACTIVITY_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOOD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOLID);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOTTLE);
 
         // recreate the tables
         onCreate(db);

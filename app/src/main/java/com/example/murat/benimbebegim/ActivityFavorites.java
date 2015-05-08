@@ -231,8 +231,6 @@ public class ActivityFavorites extends Fragment {
                 solid_date[i] = records.get(i).get("select_date");
                 solid_note[i] = records.get(i).get("note");
                 activity_id[i]= records.get(i).get("a_id");
-                Log.i("Solid Time:", solid_time[i]);
-                Log.i("Solid Date:", solid_date[i]);
                 if(!solid_note[i].equals(""))
                 Log.i("Solid Note:", solid_note[i]);
                 Log.i("Activity ID:",activity_id[i]);
@@ -279,34 +277,71 @@ public class ActivityFavorites extends Fragment {
             solid_message = solid_message + "Bread";
         }
         if(fruit.equals("True")){
-            solid_message = solid_message + ",Fruit";
+            if(solid_message != "") {
+                solid_message = solid_message + ",Fruit";
+            }else{
+                solid_message = solid_message + "Fruit";
+            }
         }
         if(cereal.equals("True")){
-            solid_message = solid_message + ",Cereal";
+            if(solid_message != "") {
+                solid_message = solid_message + ", Cereal";
+            }else {
+                solid_message = solid_message + "Cereal";
+            }
         }
         if(meat.equals("True")){
-            solid_message = solid_message + ",Meat";
+            if(solid_message != "") {
+                solid_message = solid_message + ", Meat";
+            }else {
+                solid_message = solid_message + "Meat";
+            }
+
         }
         if(diary.equals("True")){
-            solid_message = solid_message + ",Dairy";
+            if(solid_message != "") {
+                solid_message = solid_message + ", Dairy";
+            }else {
+                solid_message = solid_message + "Dairy";
+            }
         }
         if(pasta.equals("True")){
-            solid_message = solid_message + ",Pasta";
+            if(solid_message != "") {
+                solid_message = solid_message + ", Pasta";
+            }else {
+                solid_message = solid_message + "Pasta";
+            }
         }
         if(eggs.equals("True")){
-            solid_message = solid_message + ",Egg";
+            if(solid_message != "") {
+                solid_message = solid_message + ", Egg";
+            }else {
+                solid_message = solid_message + "Egg";
+            }
         }
         if(vegatable.equals("True")){
-            solid_message = solid_message + ",Vegetable";
+            if(solid_message != "") {
+                solid_message = solid_message + ", Vegetable";
+            }else {
+                solid_message = solid_message + "Vegetable";
+            }
         }
         if(fish.equals("True")){
-            solid_message = solid_message + ",Fish";
+            if(solid_message != "") {
+                solid_message = solid_message + ", Fish";
+            }else {
+                solid_message = solid_message + "Fish";
+            }
         }
         if(other.equals("True")){
-            solid_message = solid_message + ",Other";
+            if(solid_message != "") {
+                solid_message = solid_message + ", Other";
+            }else {
+                solid_message = solid_message + "Other";
+            }
         }
         if(!note.equals("")) {
-            solid_message = solid_message + " " + note;
+            solid_message = solid_message + ", " + note;
         }
         Log.i("Solid_Message: ", solid_message);
         list_note[1]=solid_message;
