@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.murat.benimbebegim.Databases.ActivityTable;
 import com.example.murat.benimbebegim.Databases.Mood;
+import com.example.murat.benimbebegim.Databases.Solid;
 import com.example.murat.benimbebegim.adapters.ListViewAdapterForFavorites;
 
 import net.sourceforge.jtds.jdbc.DateTime;
@@ -32,12 +33,16 @@ public class ActivityFavorites extends Fragment {
     int[] upLogo;
     ListView list;
     ListViewAdapterForFavorites adapter;
-    ArrayList<HashMap<String, String>> moods;
+    ArrayList<HashMap<String, String>> moods,solids;
     ArrayList<HashMap<String, String>> records;
-    String mood_name[], mood_time[], mood_date[];
+    String mood_name[] = new String[0] , mood_time[] = new String[0] , mood_date[] = new String[0];
+    String solid_note[] = new String[0] , solid_time[] = new String[0], solid_date[] = new String[0];
+    String list_note[] = new String[8] ,list_time[] = new String[8] ,list_ago[] = new String[8];
+    String activity_id[] = new String[0];
     public static final String PREFS_NAME = "MyPrefsFile";
     String baby_id;
     int mood_id[];
+    String bread,fruit,cereal,diary,pasta,eggs,meat,fish,other,vegatable;
 
     private static String a;
 
@@ -78,14 +83,7 @@ public class ActivityFavorites extends Fragment {
     private void init(){
         getMoodListFromDatabase(baby_id);
 
-        if(moods.size()!=0) {
-            // Pass results to ListViewAdapter Class
-            String click_add = calculateTime(mood_date[mood_date.length-1],mood_time[mood_time.length-1]);
-            adapter = new ListViewAdapterForFavorites(getActivity(), favName, upLogo, mood_time[mood_time.length - 1], mood_name[mood_name.length - 1],click_add);
-        }
-        else{
-            adapter = new ListViewAdapterForFavorites(getActivity(), favName, upLogo, " ", " "," ");
-        }
+        fillToListViewAdapter();
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,38 +104,46 @@ public class ActivityFavorites extends Fragment {
 
     }
 
-    private String calculateTime(String r_date, String r_time) {
-        String year,mounth,day,hour,minute;
-        String c_year,c_mounth,c_day,c_hour,c_minute;
-        String result="";
-        Log.d("r_date",r_date);
-        Log.d("r_time",r_time);
-        // Split values from getting Database
-        day = r_date.substring(0,2);
-        mounth = r_date.substring(3,5);
-        year = r_date.substring(6,10);
-        hour = r_time.substring(0,2);
-        minute = r_time.substring(3,5);
+    private void fillToListViewAdapter() {
+        if(moods.size()!=0) {
+            list_note[0] = mood_name[mood_name.length-1];
+            String time  = calculateTime(mood_date[mood_date.length-1],mood_time[mood_time.length-1]);
+            list_ago[0]  = time;
+            list_time[0] = mood_time[mood_time.length-1] + " , ";
+        }
+        else{
+            list_note[0] = " ";
+            list_time[0] = " ";
+            list_ago [0] = getResources().getString(R.string.click_add);
+        }
+        if(solids.size()!=0) {
+            String time  = calculateTime(solid_date[solid_date.length-1],solid_time[solid_time.length-1]);
+            list_ago[1]  = time;
+            list_time[1] = solid_time[solid_time.length-1] + " , ";
+        }
+        else{
+            list_note[1] = " ";
+            list_time[1] = " ";
+            list_ago [1] = getResources().getString(R.string.click_add);
+        }
+        adapter = new ListViewAdapterForFavorites(getActivity(), favName, upLogo, list_time, list_note,list_ago);
+    }
 
-        //Split Current Values
+    private String calculateTime(String r_date, String r_time) {
+        String result="";
+
         Calendar c_date = Calendar.getInstance();
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-        String saveDate = date.format(c_date.getTime());
-        Log.d("C_Date",saveDate);
-        c_year = saveDate.substring(6,10);
-        c_mounth = saveDate.substring(3,5);
-        c_day = saveDate.substring(0,2);
+        String currentDate = date.format(c_date.getTime());
+
         Calendar c_time = Calendar.getInstance(TimeZone.getDefault());
         SimpleDateFormat time = new SimpleDateFormat("HH:mm",
                 Locale.getDefault());
-        String saveTime = time.format(c_time.getTime());
-        Log.d("C_Time",saveTime);
-        c_hour = saveTime.substring(0,2);
-        c_minute = saveTime.substring(3,5);
+        String currentTime = time.format(c_time.getTime());
 
         String dateStart = r_date + " " + r_time +":00";
         Log.d("Date: ",dateStart);
-        String dateStop =  saveDate + " " + saveTime +":00";
+        String dateStop =  currentDate + " " + currentTime +":00";
         Log.d("Date2: ",dateStop);
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
@@ -201,6 +207,7 @@ public class ActivityFavorites extends Fragment {
     private void getMoodListFromDatabase(String baby_id) {
         //Get values from databases for listview
         ActivityTable a_db = new ActivityTable(getActivity().getApplicationContext());
+        Log.d("Baby ID Son: " , baby_id);
         records = a_db.showRecordForActivityType("Mood",baby_id);
         if (records.size() != 0) {
             mood_time = new String[records.size()];
@@ -213,8 +220,25 @@ public class ActivityFavorites extends Fragment {
             }
         }
 
+        records = a_db.showRecordForActivityType("Solid",baby_id);
+        if (records.size() != 0) {
+            solid_time = new String[records.size()];
+            solid_date = new String[records.size()];
+            solid_note = new String[records.size()];
+            activity_id= new String[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                solid_time[i] = records.get(i).get("select_time");
+                solid_date[i] = records.get(i).get("select_date");
+                solid_note[i] = records.get(i).get("note");
+                activity_id[i]= records.get(i).get("a_id");
+                if(!solid_note[i].equals(""))
+                Log.i("Solid Note:", solid_note[i]);
+                Log.i("Activity ID:",activity_id[i]);
+            }
+        }
+
         Mood db = new Mood(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
-        moods = db.getAllRecords();
+        moods = db.getAllMoods();
         if (moods.size() != 0) {//mood listesi boşsa
             mood_name = new String[moods.size()]; // mood adlarını tutucamız string arrayi olusturduk.
             for (int i = 0; i < moods.size(); i++) {
@@ -222,6 +246,105 @@ public class ActivityFavorites extends Fragment {
                 Log.i("Mood Name:", mood_name[i]);
             }
         }
+        if(activity_id.length>0) {
+            Solid s_db = new Solid(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+            solids = s_db.getSpecificSolidAsaActId(activity_id[activity_id.length - 1]);
+            Log.i("Solids: ", solids.toString());
+            if (solids.size() != 0) {//mood listesi boşsa
+                for (int i = 0; i < solids.size(); i++) {
+                    bread = solids.get(i).get(ActivityTable.SOLID_BREAD);
+                    fruit = solids.get(i).get(ActivityTable.SOLID_FRUIT);
+                    cereal = solids.get(i).get(ActivityTable.SOLID_CEREAL);
+                    meat = solids.get(i).get(ActivityTable.SOLID_MEAT);
+                    diary = solids.get(i).get(ActivityTable.SOLID_DAIRY);
+                    pasta = solids.get(i).get(ActivityTable.SOLID_PASTA);
+                    eggs = solids.get(i).get(ActivityTable.SOLID_EGGS);
+                    vegatable = solids.get(i).get(ActivityTable.SOLID_VEGETABLE);
+                    fish = solids.get(i).get(ActivityTable.SOLID_FISH);
+                    other = solids.get(i).get(ActivityTable.SOLID_OTHER);
+                    fillSolidInfo(bread, fruit, cereal, meat, diary, pasta, eggs, vegatable, fish, other, solid_note[solid_note.length - 1]);
+                }
+            }
+        }
+        else{
+            solids = new ArrayList<HashMap<String, String>>();
+        }
+    }
+
+    private void fillSolidInfo(String bread, String fruit, String cereal, String meat, String diary, String pasta, String eggs, String vegatable, String fish, String other, String note) {
+        String solid_message = "";
+        if(bread.equals("True")){
+            solid_message = solid_message + "Bread";
+        }
+        if(fruit.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ",Fruit";
+            }else{
+                solid_message = solid_message + "Fruit";
+            }
+        }
+        if(cereal.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ", Cereal";
+            }else {
+                solid_message = solid_message + "Cereal";
+            }
+        }
+        if(meat.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ", Meat";
+            }else {
+                solid_message = solid_message + "Meat";
+            }
+
+        }
+        if(diary.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ", Dairy";
+            }else {
+                solid_message = solid_message + "Dairy";
+            }
+        }
+        if(pasta.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ", Pasta";
+            }else {
+                solid_message = solid_message + "Pasta";
+            }
+        }
+        if(eggs.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ", Egg";
+            }else {
+                solid_message = solid_message + "Egg";
+            }
+        }
+        if(vegatable.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ", Vegetable";
+            }else {
+                solid_message = solid_message + "Vegetable";
+            }
+        }
+        if(fish.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ", Fish";
+            }else {
+                solid_message = solid_message + "Fish";
+            }
+        }
+        if(other.equals("True")){
+            if(solid_message != "") {
+                solid_message = solid_message + ", Other";
+            }else {
+                solid_message = solid_message + "Other";
+            }
+        }
+        if(!note.equals("")) {
+            solid_message = solid_message + ", " + note;
+        }
+        Log.i("Solid_Message: ", solid_message);
+        list_note[1]=solid_message;
     }
 
     @Override

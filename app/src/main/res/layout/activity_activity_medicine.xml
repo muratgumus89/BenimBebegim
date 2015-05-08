@@ -74,6 +74,7 @@
                 android:id="@+id/etMedicineActivity_dose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:numeric="decimal"
                 android:background="@drawable/bg_form_rounded"
                 android:layout_weight="50"
                 android:hint="Dose : " />

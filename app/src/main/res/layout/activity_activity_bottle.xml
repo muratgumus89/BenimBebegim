@@ -83,8 +83,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="100"
+        android:orientation="vertical"
         android:id="@+id/linearLayout4"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -94,30 +93,15 @@
 
         <Button
             android:id="@+id/btnBottleActivity_amount"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_weight="50"
             android:background="@drawable/bg_button_rounded"
             android:text="@string/Bottle_activity_amaount_button"
             android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/btnBottleActivity_meas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_time"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="50"
-            android:background="@drawable/bg_button_rounded"
-            android:text="@string/Bottle_activity_meas_button"
-            android:textColor="@color/white" />
     </LinearLayout>
 
     <LinearLayout
@@ -131,7 +115,7 @@
         android:layout_alignParentStart="true">
 
         <EditText
-            android:id="@+id/etMoodActivity_Notes"
+            android:id="@+id/etBottleActivity_Notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_form_rounded"

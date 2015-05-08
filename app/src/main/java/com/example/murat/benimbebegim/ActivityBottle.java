@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -25,7 +26,16 @@ import android.widget.TimePicker;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.murat.benimbebegim.Databases.ActivityTable;
+import com.example.murat.benimbebegim.Databases.Bottle;
+import com.example.murat.benimbebegim.Databases.Solid;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class ActivityBottle extends FragmentActivity implements View.OnClickListener {
@@ -35,6 +45,9 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
     EditText etNote;
 
     final Context context = this;
+    public static final String PREFS_NAME = "MyPrefsFile";
+    String activity_type="Bottle";
+    int act_id[];
 
     DatePickerDialog.OnDateSetListener dateForDB;
     TimePickerDialog.OnTimeSetListener timeForDB;
@@ -43,6 +56,8 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
 
     String selectedDate, selectedTime, strTime, strDate, getBabyName, getUserId,
             selectedGendersForCreateBaby, strSelectedImage = "null";
+
+    String saveDate, saveTime,selected_time,selected_date,baby_id,user_id;
 
     private TextView tempTextView; //Temporary TextView
     private Button tempBtn; //Temporary Button
@@ -67,7 +82,9 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_bottle);
-
+        SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        baby_id = pref.getString("baby_id", null);
+        user_id = pref.getString("user_id",null);
         init();
     }
 
@@ -148,13 +165,14 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
     }
 
     private void init(){
-        btnDatePicker = (Button)findViewById(R.id.btnBottleActivity_Date);
-        btnTimePicker = (Button)findViewById(R.id.btnBottleActivity_Time);
-        btnCancel = (Button)findViewById(R.id.btnBottleActivity_Cancel);
-        btnSave = (Button)findViewById(R.id.btnBottleActivity_Save);
+        btnDatePicker   = (Button)findViewById(R.id.btnBottleActivity_Date);
+        btnTimePicker   = (Button)findViewById(R.id.btnBottleActivity_Time);
+        btnCancel       = (Button)findViewById(R.id.btnBottleActivity_Cancel);
+        btnSave         = (Button)findViewById(R.id.btnBottleActivity_Save);
         btnTypeOfBottle = (Button)findViewById(R.id.btnBottleActivity_formula);
-        btnTime = (Button)findViewById(R.id.btnBottleActivity_time);
-        btnAmount = (Button)findViewById(R.id.btnBottleActivity_amount);
+        btnTime         = (Button)findViewById(R.id.btnBottleActivity_time);
+        btnAmount       = (Button)findViewById(R.id.btnBottleActivity_amount);
+        etNote          = (EditText)findViewById(R.id.etBottleActivity_Notes);
 
 
         btnDatePicker.setOnClickListener(this);
@@ -165,6 +183,25 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
         btnTime.setOnClickListener(this);
         btnAmount.setOnClickListener(this);
 
+        /******************
+         * Naming The Date Button
+         */
+        Calendar c_date = Calendar.getInstance();
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        saveDate = date.format(c_date.getTime());
+        btnDatePicker.setText(saveDate);
+        selected_date = saveDate;
+
+        /******************
+         * Naming The Time Button
+         */
+        Calendar c_time = Calendar.getInstance(TimeZone.getDefault());
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm",
+                Locale.getDefault());
+        saveTime = time.format(c_time.getTime());
+        btnTimePicker.setText(saveTime);
+        selected_time = saveTime;
+
         dateForDB = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -174,8 +211,20 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/"
-                        + year;
+                if (dayOfMonth < 10 && (monthOfYear + 1) < 10) {
+                    selectedDate = "0" + dayOfMonth + "/0" + (monthOfYear + 1) + "/"
+                            + year;
+                }
+                else if(dayOfMonth<10) {
+                    selectedDate = "0" + dayOfMonth + "/" + (monthOfYear + 1) + "/"
+                            + year;
+                }else if ((monthOfYear + 1) < 10){
+                        selectedDate = dayOfMonth + "/0" + (monthOfYear + 1) + "/"
+                                + year;
+                }else{
+                        selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/"
+                                + year;
+                }
                 btnDatePicker.setText(selectedDate);
 
             }
@@ -235,6 +284,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
                 onBackPressed();
                 break;
             case R.id.btnBottleActivity_Save:
+                addBottleRecord();
                 break;
             case R.id.btnBottleActivity_time:
                 if (state == true) {
@@ -341,5 +391,60 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
             default:
                 break;
         }
+    }
+
+    private void addBottleRecord() {
+        String note         = etNote.getText().toString();
+        String typeOfBottle = btnTypeOfBottle.getText().toString();
+        int amount;
+
+
+        if(btnAmount.getText().toString().equals("0,00 lt")) {
+            amount = 0;
+        }else {
+            amount = Integer.valueOf(btnAmount.getText().toString());
+        }
+        Calendar c_date = Calendar.getInstance();
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String saveDate = date.format(c_date.getTime());
+
+        Calendar c_time = Calendar.getInstance(TimeZone.getDefault());
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm",
+                Locale.getDefault());
+        String saveTime = time.format(c_time.getTime());
+
+
+        try {
+            ActivityTable a_db = new ActivityTable(getApplicationContext());
+            a_db.insertRecord(activity_type, baby_id, user_id,btnDatePicker.getText().toString(), btnTimePicker.getText().toString(), saveDate, saveTime, note);
+            a_db.close();
+        }catch (Exception e){
+            Log.e("Bottle:ToActivityTable","Error");
+        }
+
+        getActiviyId();
+        try {
+            Bottle b_db = new Bottle(getApplicationContext());
+            Log.e("Bottle:Timer=", btnTime.getText().toString());
+            b_db.insertBottle(act_id[act_id.length - 1], typeOfBottle, amount, btnTime.getText().toString());
+            b_db.close();
+        }catch (Exception e){
+            Log.e("Bottle:InsertBottle","Error");
+        }
+
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.add_record), Toast.LENGTH_LONG).show();
+        onBackPressed();
+    }
+    private void getActiviyId() {
+        ActivityTable db = new ActivityTable(getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+        ArrayList<HashMap<String, String>> activity_id = db.showRecordForActivityType(activity_type, baby_id);//mood listesini alıyoruz
+        if (activity_id.size() != 0) {//mood listesi boşsa
+            act_id = new int[activity_id.size()]; // mood id lerini tutucamız string arrayi olusturduk.
+            for (int i = 0; i < activity_id.size(); i++) {
+                act_id[i] = Integer.parseInt(activity_id.get(i).get("a_id"));
+                Log.i("Mood Id  :", String.valueOf(act_id[i]));
+            }
+        }
+        db.close();
     }
 }
