@@ -115,7 +115,7 @@
     <string-array name="activity_diaper_poop">
         <item>Pee</item>
         <item>Poop</item>
-        <item>Pee and poop</item>
+        <item>Pee and Poop</item>
     </string-array>
 
 </resources>

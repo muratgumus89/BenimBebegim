@@ -75,12 +75,7 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
 		txtfavName.setText(favName[position]);
 		// Capture position and set to the ImageView
 		imgLogo.setImageResource(upLogo[position]);
-        if(position==0) {
-            txtTime.setText(time[position]);
-            txtMood.setText(note[position]);
-            txtClick.setText(ago[position]);
-        }
-        if(position==1) {
+        if(position==0 || position ==1 || position ==2 || position == 3 || position ==4 || position == 5 || position == 6) {
             txtTime.setText(time[position]);
             txtMood.setText(note[position]);
             txtClick.setText(ago[position]);

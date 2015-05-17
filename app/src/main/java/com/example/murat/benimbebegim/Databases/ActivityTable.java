@@ -42,6 +42,44 @@ public class ActivityTable extends SQLiteOpenHelper{
     public static final String MOOD_ID = "m_id";
     public static final String MOOD_TYPE = "m_type";
     /*
+    Areas of Health Table
+    */
+    public static final String TABLE_HEALTH = "health";
+    public static final String HEALTH_ID    = "health_id";
+    public static final String HEALTH_TYPE  = "health_type";
+    public static final String HEALTH_TEMP  = "health_temp";
+    /*
+    Areas of Medicine Table
+    */
+    public static final String TABLE_MEDICINE    = "medicine";
+    public static final String MEDICINE_ID       = "medicine_id";
+    public static final String MEDICINE_TYPE     = "medicine_type";
+    public static final String MEDICINE_DOSE     = "medicine_dose";
+    public static final String MEDICINE_DOSE_TYPE= "dose_type";
+    /*
+
+    /*
+    Areas of Vaccination TAble
+    */
+    public static final String TABLE_VACCINATION = "vaccination";
+    public static final String VACCINATION_ID    = "vaccination_id";
+    public static final String VACCINATION_TYPE  = "vaccination_type";
+
+    /*
+    Areas of Hygiene TAble
+    */
+    public static final String TABLE_HYGIENE = "hygiene";
+    public static final String HYGIENE_ID    = "hygiene_id";
+    public static final String HYGIENE_TYPE  = "hygiene_type";
+
+    /*
+    Areas of Hygiene TAble
+    */
+    public static final String TABLE_TEETH = "teeth";
+    public static final String TEETH_ID    = "teeth_id";
+    public static final String TEETH_TYPE  = "teeth_type";
+
+    /*
     Areas of Solid Table
      */
     public static final String TABLE_SOLID = "solid";
@@ -65,6 +103,35 @@ public class ActivityTable extends SQLiteOpenHelper{
     public static final String BOTTLE_TIMER   = "timer";
     public static final String BOTTLE_FORMULA = "formula";
     public static final String BOTTLE_AMOUNT  = "amount";
+
+    /*
+   Areas of Breast Table
+   */
+    public static final String TABLE_BREAST   = "breast";
+    public static final String BREAST_ID      = "breast_id";
+    public static final String BREAST_TIME    = "total_time";
+
+    /*
+    Areas of Sleep Table
+    */
+    public static final String TABLE_SLEEP   = "sleep";
+    public static final String SLEEP_ID      = "sleep_id";
+    public static final String SLEEP_TIME    = "total_time";
+
+    /*
+    Areas of Diaper Table
+    */
+    public static final String TABLE_DIAPER   = "diaper";
+    public static final String DIAPER_ID      = "diaper_id";
+    public static final String DIAPER_TYPE    = "diaper_type";
+
+    /*
+    Areas of Diaper Table
+    */
+    public static final String TABLE_PUMPING   = "pumping";
+    public static final String PUMPING_ID      = "pumping_id";
+    public static final String PUMPING_TIME    = "pumping_time";
+    public static final String PUMPING_AMOUNT  = "pumping_amount";
 
     String CREATE_SOLID = "CREATE TABLE " + TABLE_SOLID +"("
             + SOLID_ID    + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -99,6 +166,55 @@ public class ActivityTable extends SQLiteOpenHelper{
             + ACTIVITY_ID + " INTEGER,"
             + MOOD_TYPE + " TEXT" + ")";
 
+    String CREATE_HEALTH = "CREATE TABLE " + TABLE_HEALTH + "("
+            + HEALTH_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID + " INTEGER,"
+            + HEALTH_TEMP + " TEXT,"
+            + HEALTH_TYPE + " TEXT" + ")";
+
+    String CREATE_VACCINATION = "CREATE TABLE " + TABLE_VACCINATION + "("
+            + VACCINATION_ID   + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID      + " INTEGER,"
+            + VACCINATION_TYPE + " TEXT" + ")";
+
+    String CREATE_HYGIENE = "CREATE TABLE " + TABLE_HYGIENE + "("
+            + HYGIENE_ID   + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID  + " INTEGER,"
+            + HYGIENE_TYPE + " TEXT" + ")";
+
+    String CREATE_TEETH = "CREATE TABLE " + TABLE_TEETH + "("
+            + TEETH_ID   + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID  + " INTEGER,"
+            + TEETH_TYPE + " TEXT" + ")";
+
+    String CREATE_MEDICINE = "CREATE TABLE " + TABLE_MEDICINE + "("
+            + MEDICINE_ID        + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID        + " INTEGER,"
+            + MEDICINE_TYPE      + " TEXT,"
+            + MEDICINE_DOSE      + " TEXT,"
+            + MEDICINE_DOSE_TYPE + " TEXT" + ")";
+
+    String CREATE_BREAST = "CREATE TABLE " + TABLE_BREAST + "("
+            + BREAST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID + " INTEGER,"
+            + BREAST_TIME + " TEXT" + ")";
+
+    String CREATE_PUMPING = "CREATE TABLE " + TABLE_PUMPING + "("
+            + PUMPING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID + " INTEGER,"
+            + PUMPING_AMOUNT + " INTEGER,"
+            + PUMPING_TIME + " TEXT" + ")";
+
+    String CREATE_SLEEP = "CREATE TABLE " + TABLE_SLEEP + "("
+            + SLEEP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID + " INTEGER,"
+            + SLEEP_TIME + " TEXT" + ")";
+
+    String CREATE_DIAPER = "CREATE TABLE " + TABLE_DIAPER + "("
+            + DIAPER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ACTIVITY_ID + " INTEGER,"
+            + DIAPER_TYPE + " TEXT" + ")";
+
     String CREATE_BOTTLE = "CREATE TABLE " + TABLE_BOTTLE + "("
             + BOTTLE_ID      + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + ACTIVITY_ID    + " INTEGER,"
@@ -116,6 +232,15 @@ public class ActivityTable extends SQLiteOpenHelper{
         db.execSQL(CREATE_MOOD);
         db.execSQL(CREATE_SOLID);
         db.execSQL(CREATE_BOTTLE);
+        db.execSQL(CREATE_BREAST);
+        db.execSQL(CREATE_SLEEP);
+        db.execSQL(CREATE_DIAPER);
+        db.execSQL(CREATE_PUMPING);
+        db.execSQL(CREATE_HEALTH);
+        db.execSQL(CREATE_MEDICINE);
+        db.execSQL(CREATE_VACCINATION);
+        db.execSQL(CREATE_HYGIENE);
+        db.execSQL(CREATE_TEETH);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -126,7 +251,15 @@ public class ActivityTable extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOOD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOLID);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOTTLE);
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BREAST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SLEEP);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIAPER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PUMPING);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HEALTH);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MEDICINE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_VACCINATION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HYGIENE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TEETH);
         // recreate the tables
         onCreate(db);
     }

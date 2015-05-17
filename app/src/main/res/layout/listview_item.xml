@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="35"
+        android:layout_weight="38"
         android:paddingLeft="10dp">
         <ImageView
             android:id="@+id/logo"
@@ -22,13 +22,14 @@
             android:id="@+id/fav_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="12dp"
             android:textColor="@color/white"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="15">
+            android:layout_weight="12">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,11 +39,13 @@
                     android:id="@+id/show_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/sa_green"/>
+                    android:textColor="@color/sa_green"
+                    android:textSize="12dp"/>
                 <TextView
                     android:id="@+id/show_mood_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="12dp"
                     android:textColor="@color/sa_green"/>
             </LinearLayout>
             <TextView
@@ -51,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/click_add"
                 android:paddingTop="5dp"
+                android:textSize="12dp"
                 android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>

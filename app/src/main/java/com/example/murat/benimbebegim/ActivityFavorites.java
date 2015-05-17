@@ -14,9 +14,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.murat.benimbebegim.Databases.ActivityTable;
+import com.example.murat.benimbebegim.Databases.Bottle;
+import com.example.murat.benimbebegim.Databases.Breast;
+import com.example.murat.benimbebegim.Databases.Diaper;
 import com.example.murat.benimbebegim.Databases.Mood;
+import com.example.murat.benimbebegim.Databases.Pumping;
+import com.example.murat.benimbebegim.Databases.Sleep;
 import com.example.murat.benimbebegim.Databases.Solid;
 import com.example.murat.benimbebegim.adapters.ListViewAdapterForFavorites;
+import com.example.murat.benimbebegim.adapters.ListViewAdapterForMoreEvents;
 
 import net.sourceforge.jtds.jdbc.DateTime;
 
@@ -33,17 +39,28 @@ public class ActivityFavorites extends Fragment {
     int[] upLogo;
     ListView list;
     ListViewAdapterForFavorites adapter;
-    ArrayList<HashMap<String, String>> moods,solids;
+    ArrayList<HashMap<String, String>> diapers,moods,solids,bottles,breasts,sleeps,pumpings;
     ArrayList<HashMap<String, String>> records;
-    String mood_name[] = new String[0] , mood_time[] = new String[0] , mood_date[] = new String[0];
-    String solid_note[] = new String[0] , solid_time[] = new String[0], solid_date[] = new String[0];
-    String list_note[] = new String[8] ,list_time[] = new String[8] ,list_ago[] = new String[8];
-    String activity_id[] = new String[0];
+    String mood_name[]   = new String[0] , mood_time[]    = new String[0] , mood_date[]    = new String[0];
+    String solid_note[]  = new String[0] , solid_time[]   = new String[0] , solid_date[]   = new String[0];
+    String bottle_time[] = new String[0] , bottle_date[]  = new String[0] , bottle_note[]  = new String[0];
+    String breast_time[] = new String[0] , breast_date[]  = new String[0] , breast_note[]  = new String[0];
+    String sleep_time[]  = new String[0] , sleep_date[]   = new String[0] , sleep_note[]   = new String[0];
+    String diaper_time[] = new String[0] , diaper_date[]  = new String[0] , diaper_note[]  = new String[0];
+    String pumping_time[]= new String[0] , pumping_date[] = new String[0] , pumping_note[] = new String[0];
+    String list_note[]  = new String[8] ,list_time[]   = new String[8] ,list_ago[]  = new String[8];
+    String solid_aid[]  = new String[0];
+    String bottle_aid[] = new String[0];
+    String breast_aid[] = new String[0];
+    String sleep_aid[]  = new String[0];
+    String diaper_aid[] = new String[0];
+    String pumping_aid[]= new String[0];
+    String mood_note[]  = new String[0];
     public static final String PREFS_NAME = "MyPrefsFile";
     String baby_id;
     int mood_id[];
     String bread,fruit,cereal,diary,pasta,eggs,meat,fish,other,vegatable;
-
+    String bottle_type,bottle_amount,bottle_timer,breast_amount,sleep_duration,diaper_type,pumping_amount,pumping_duration;
     private static String a;
 
     String classes[] = {"ActivityMood",
@@ -106,7 +123,12 @@ public class ActivityFavorites extends Fragment {
 
     private void fillToListViewAdapter() {
         if(moods.size()!=0) {
-            list_note[0] = mood_name[mood_name.length-1];
+            if(!mood_note[mood_note.length - 1].equals("")) {
+                list_note[0] = mood_name[mood_name.length - 1] + " - " + mood_note[mood_note.length - 1];
+            }
+            else{
+                list_note[0] = mood_name[mood_name.length - 1];
+            }
             String time  = calculateTime(mood_date[mood_date.length-1],mood_time[mood_time.length-1]);
             list_ago[0]  = time;
             list_time[0] = mood_time[mood_time.length-1] + " , ";
@@ -125,6 +147,81 @@ public class ActivityFavorites extends Fragment {
             list_note[1] = " ";
             list_time[1] = " ";
             list_ago [1] = getResources().getString(R.string.click_add);
+        }
+        if(bottles.size()!=0) {
+            String time  = calculateTime(bottle_date[bottle_date.length-1],bottle_time[bottle_time.length-1]);
+            list_ago[2]  = time;
+            list_time[2] = bottle_time[bottle_time.length-1] + " , ";
+            if(!bottle_note[bottle_note.length - 1].equals("")) {
+                list_note[2] = bottle_timer + " " + getResources().getString(R.string.duration) + " & " + bottle_amount + " ml " + bottle_type + " - " + bottle_note[bottle_note.length - 1];
+            }else{
+                list_note[2] = bottle_timer + " " + getResources().getString(R.string.duration) + " & " + bottle_amount + " ml " + bottle_type;
+            }
+        }
+        else{
+            list_note[2] = " ";
+            list_time[2] = " ";
+            list_ago [2] = getResources().getString(R.string.click_add);
+        }
+        if(breasts.size()!=0) {
+            String time  = calculateTime(breast_date[breast_date.length-1],breast_time[breast_time.length-1]);
+            list_ago[3]  = time;
+            list_time[3] = breast_time[breast_time.length-1] + " , ";
+            if(!breast_note[breast_note.length - 1].equals("")) {
+                list_note[3] = breast_amount + " " + getResources().getString(R.string.duration) + " - " + breast_note[breast_note.length - 1];
+            }else{
+                list_note[3] = breast_amount + " " + getResources().getString(R.string.duration);
+            }
+        }
+        else{
+            list_note[3] = " ";
+            list_time[3] = " ";
+            list_ago [3] = getResources().getString(R.string.click_add);
+        }
+        if(sleeps.size()!=0) {
+            String time  = calculateTime(sleep_date[sleep_date.length-1],sleep_time[sleep_time.length-1]);
+            list_ago[4]  = time;
+            list_time[4] = sleep_time[sleep_time.length-1] + " , ";
+            if(!sleep_note[sleep_note.length - 1].equals("")) {
+                list_note[4] = sleep_duration + " " + getResources().getString(R.string.duration) + " - " + sleep_note[sleep_note.length - 1];
+            }else{
+                list_note[4] = sleep_duration + " " + getResources().getString(R.string.duration);
+            }
+        }
+        else{
+            list_note[4] = " ";
+            list_time[4] = " ";
+            list_ago [4] = getResources().getString(R.string.click_add);
+        }
+        if(diapers.size()!=0) {
+            String time  = calculateTime(diaper_date[diaper_date.length-1],diaper_time[diaper_time.length-1]);
+            list_ago[5]  = time;
+            list_time[5] = diaper_time[diaper_time.length-1] + " , ";
+            if(!diaper_note[diaper_note.length-1].equals("")) {
+                list_note[5] = diaper_type + " - " + diaper_note[diaper_note.length - 1];
+            }else{
+                list_note[5] = diaper_type;
+            }
+        }
+        else{
+            list_note[5] = " ";
+            list_time[5] = " ";
+            list_ago [5] = getResources().getString(R.string.click_add);
+        }
+        if(pumpings.size()!=0) {
+            String time  = calculateTime(pumping_date[pumping_date.length-1],pumping_time[pumping_time.length-1]);
+            list_ago[6]  = time;
+            list_time[6] = pumping_time[pumping_time.length-1] + " , ";
+            if(!pumping_note[pumping_note.length-1].equals("")) {
+                list_note[6] = pumping_duration + " " + getResources().getString(R.string.duration) + " & " + pumping_amount + " ml" + " - " + pumping_note[pumping_note.length - 1];
+            }else{
+                list_note[6] = pumping_duration + " " + getResources().getString(R.string.duration) + " & " + pumping_amount + " ml";
+            }
+        }
+        else{
+            list_note[6] = " ";
+            list_time[6] = " ";
+            list_ago [6] = getResources().getString(R.string.click_add);
         }
         adapter = new ListViewAdapterForFavorites(getActivity(), favName, upLogo, list_time, list_note,list_ago);
     }
@@ -212,11 +309,11 @@ public class ActivityFavorites extends Fragment {
         if (records.size() != 0) {
             mood_time = new String[records.size()];
             mood_date = new String[records.size()];
+            mood_note = new String[records.size()];
             for (int i = 0; i < records.size(); i++) {
                 mood_time[i] = records.get(i).get("select_time");
                 mood_date[i] = records.get(i).get("select_date");
-                Log.i("Mood Time:", mood_time[i]);
-                Log.i("Mood Date:", mood_date[i]);
+                mood_note[i] = records.get(i).get("note");
             }
         }
 
@@ -225,15 +322,82 @@ public class ActivityFavorites extends Fragment {
             solid_time = new String[records.size()];
             solid_date = new String[records.size()];
             solid_note = new String[records.size()];
-            activity_id= new String[records.size()];
+            solid_aid= new String[records.size()];
             for (int i = 0; i < records.size(); i++) {
                 solid_time[i] = records.get(i).get("select_time");
                 solid_date[i] = records.get(i).get("select_date");
                 solid_note[i] = records.get(i).get("note");
-                activity_id[i]= records.get(i).get("a_id");
-                if(!solid_note[i].equals(""))
-                Log.i("Solid Note:", solid_note[i]);
-                Log.i("Activity ID:",activity_id[i]);
+                solid_aid[i]= records.get(i).get("a_id");
+            }
+        }
+
+        records = a_db.showRecordForActivityType("Bottle",baby_id);
+        if (records.size() != 0) {
+            bottle_time = new String[records.size()];
+            bottle_date = new String[records.size()];
+            bottle_aid  = new String[records.size()];
+            bottle_note = new String[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                bottle_time[i] = records.get(i).get("select_time");
+                bottle_date[i] = records.get(i).get("select_date");
+                bottle_aid [i] = records.get(i).get("a_id");
+                bottle_note[i] = records.get(i).get("note");
+            }
+        }
+
+        records = a_db.showRecordForActivityType("Breast",baby_id);
+        if (records.size() != 0) {
+            breast_time = new String[records.size()];
+            breast_date = new String[records.size()];
+            breast_aid  = new String[records.size()];
+            breast_note = new String[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                breast_time[i] = records.get(i).get("select_time");
+                breast_date[i] = records.get(i).get("select_date");
+                breast_aid[i]  = records.get(i).get("a_id");
+                breast_note[i] = records.get(i).get("note");
+            }
+        }
+
+        records = a_db.showRecordForActivityType("Sleep",baby_id);
+        if (records.size() != 0) {
+            sleep_time = new String[records.size()];
+            sleep_date = new String[records.size()];
+            sleep_aid  = new String[records.size()];
+            sleep_note = new String[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                sleep_time[i] = records.get(i).get("select_time");
+                sleep_date[i] = records.get(i).get("select_date");
+                sleep_aid[i]  = records.get(i).get("a_id");
+                sleep_note[i] = records.get(i).get("note");
+            }
+        }
+
+        records = a_db.showRecordForActivityType("Diaper",baby_id);
+        if (records.size() != 0) {
+            diaper_time = new String[records.size()];
+            diaper_date = new String[records.size()];
+            diaper_aid  = new String[records.size()];
+            diaper_note = new String[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                diaper_time[i] = records.get(i).get("select_time");
+                diaper_date[i] = records.get(i).get("select_date");
+                diaper_aid[i]  = records.get(i).get("a_id");
+                diaper_note[i] = records.get(i).get("note");
+            }
+        }
+
+        records = a_db.showRecordForActivityType("Pumping",baby_id);
+        if (records.size() != 0) {
+            pumping_time = new String[records.size()];
+            pumping_date = new String[records.size()];
+            pumping_aid  = new String[records.size()];
+            pumping_note = new String[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                pumping_time[i] = records.get(i).get("select_time");
+                pumping_date[i] = records.get(i).get("select_date");
+                pumping_aid[i]  = records.get(i).get("a_id");
+                pumping_note[i] = records.get(i).get("note");
             }
         }
 
@@ -246,9 +410,9 @@ public class ActivityFavorites extends Fragment {
                 Log.i("Mood Name:", mood_name[i]);
             }
         }
-        if(activity_id.length>0) {
+        if(solid_aid.length>0) {
             Solid s_db = new Solid(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
-            solids = s_db.getSpecificSolidAsaActId(activity_id[activity_id.length - 1]);
+            solids = s_db.getSpecificSolidAsaActId(solid_aid[solid_aid.length - 1]);
             Log.i("Solids: ", solids.toString());
             if (solids.size() != 0) {//mood listesi boşsa
                 for (int i = 0; i < solids.size(); i++) {
@@ -268,6 +432,76 @@ public class ActivityFavorites extends Fragment {
         }
         else{
             solids = new ArrayList<HashMap<String, String>>();
+        }
+
+
+        if(bottle_aid.length>0) {
+            Bottle bottle_db = new Bottle(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+            bottles = bottle_db.getSpecificBottle(bottle_aid[bottle_aid.length - 1]);
+            Log.e("Bottles: ", bottles.toString());
+            if (bottles.size() != 0) {//mood listesi boşsa
+                for (int i = 0; i < bottles.size(); i++) {
+                    bottle_type   = bottles.get(i).get(ActivityTable.BOTTLE_FORMULA);
+                    bottle_amount = bottles.get(i).get(ActivityTable.BOTTLE_AMOUNT);
+                    bottle_timer  = bottles.get(i).get(ActivityTable.BOTTLE_TIMER);
+                }
+            }
+        }
+        else{
+            bottles = new ArrayList<HashMap<String, String>>();
+        }
+
+        if(breast_aid.length>0) {
+            Breast breast_db = new Breast(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+            breasts = breast_db.getSpecificBreast(breast_aid[breast_aid.length - 1]);
+            if (breasts.size() != 0) {//mood listesi boşsa
+                for (int i = 0; i < breasts.size(); i++) {
+                    breast_amount = breasts.get(i).get(ActivityTable.BREAST_TIME);
+                }
+            }
+        }
+        else{
+            breasts = new ArrayList<HashMap<String, String>>();
+        }
+
+        if(sleep_aid.length>0) {
+            Sleep sleep_db = new Sleep(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+            sleeps = sleep_db.getSpecificSleepRecordWıthAID(sleep_aid[sleep_aid.length - 1]);
+            if (sleeps.size() != 0) {//mood listesi boşsa
+                for (int i = 0; i < sleeps.size(); i++) {
+                    sleep_duration = sleeps.get(i).get(ActivityTable.SLEEP_TIME);
+                }
+            }
+        }
+        else{
+            sleeps = new ArrayList<HashMap<String, String>>();
+        }
+
+        if(diaper_aid.length>0) {
+            Diaper diaper_db = new Diaper(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+            diapers = diaper_db.getSpecificDiaper(diaper_aid[diaper_aid.length - 1]);
+            if (diapers.size() != 0) {//mood listesi boşsa
+                for (int i = 0; i < diapers.size(); i++) {
+                    diaper_type = diapers.get(i).get(ActivityTable.DIAPER_TYPE);
+                }
+            }
+        }
+        else{
+            diapers = new ArrayList<HashMap<String, String>>();
+        }
+
+        if(pumping_aid.length>0) {
+            Pumping diaper_db = new Pumping(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+            pumpings = diaper_db.getSpecificPumpingWithAID(pumping_aid[pumping_aid.length - 1]);
+            if (pumpings.size() != 0) {//mood listesi boşsa
+                for (int i = 0; i < pumpings.size(); i++) {
+                    pumping_duration = pumpings.get(i).get(ActivityTable.PUMPING_TIME);
+                    pumping_amount   = pumpings.get(i).get(ActivityTable.PUMPING_AMOUNT);
+                }
+            }
+        }
+        else{
+            pumpings = new ArrayList<HashMap<String, String>>();
         }
     }
 
@@ -341,7 +575,7 @@ public class ActivityFavorites extends Fragment {
             }
         }
         if(!note.equals("")) {
-            solid_message = solid_message + ", " + note;
+            solid_message = solid_message + " - " + note;
         }
         Log.i("Solid_Message: ", solid_message);
         list_note[1]=solid_message;

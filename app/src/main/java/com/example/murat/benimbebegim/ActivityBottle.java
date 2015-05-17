@@ -161,7 +161,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
         if (milliseconds.length() > 3 && milliseconds.length() < 4) {
             milliseconds = milliseconds.substring(milliseconds.length() - 3, milliseconds.length() - 2);
         }
-        ((Button) findViewById(R.id.btnBottleActivity_time)).setText(hours + " : " + minutes + " : " + seconds);
+        ((Button) findViewById(R.id.btnBottleActivity_time)).setText(hours + ":" + minutes + ":" + seconds);
     }
 
     private void init(){
@@ -399,7 +399,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
         int amount;
 
 
-        if(btnAmount.getText().toString().equals("0,00 lt")) {
+        if(btnAmount.getText().toString().equals("0,00 ml")) {
             amount = 0;
         }else {
             amount = Integer.valueOf(btnAmount.getText().toString());
