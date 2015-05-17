@@ -13,19 +13,22 @@ import com.example.murat.benimbebegim.R;
 public class ListViewAdapterForMoreEvents extends BaseAdapter {
 
 	// Declare Variables
-	Context context;
-	String mood;
-    String time;
+    // Declare Variables
+    Context context;
+    String[] note;
+    String[] time;
+    String[] ago;
     String[] favName;
-	int[] upLogo;
-	LayoutInflater inflater;
+    int[] upLogo;
+    LayoutInflater inflater;
 
-	public ListViewAdapterForMoreEvents(Context context, String[] favName, int[] upLogo, String time, String mood) {
-		this.context = context;
-		this.favName = favName;
-		this.upLogo  = upLogo;
+	public ListViewAdapterForMoreEvents(Context context, String[] favName, int[] upLogo, String[] time, String[] note,String[] ago) {
+        this.context = context;
+        this.favName = favName;
+        this.upLogo  = upLogo;
         this.time    = time;
-        this.mood    = mood;
+        this.note    = note;
+        this.ago     = ago;
 	}
 
 	public int getCount() {
@@ -69,7 +72,11 @@ public class ListViewAdapterForMoreEvents extends BaseAdapter {
 
         // Capture position and set to the ImageView
         imgLogo.setImageResource(upLogo[position]);
-
+        if(position==0 || position == 1 || position==2 || position == 3 || position==4) {
+            txtTime.setText(time[position]);
+            txtMood.setText(note[position]);
+            txtClick.setText(ago[position]);
+        }
 		return itemView;
 	}
 }

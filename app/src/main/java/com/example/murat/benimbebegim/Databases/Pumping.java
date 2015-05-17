@@ -13,17 +13,16 @@ import java.util.HashMap;
 /**
  * Created by Murat on 18.4.2015.
  */
-public class Bottle {
+public class Pumping {
 
     private Context mContext;
 
     // Database fields
     private SQLiteDatabase mDatabase;
     private ActivityTable mDbHelper;
-    private String[] mAllColumns = { ActivityTable.ACTIVITY_ID, ActivityTable.BOTTLE_FORMULA,ActivityTable.BOTTLE_AMOUNT,
-                                    ActivityTable.BOTTLE_TIMER};
+    private String[] mAllColumns = { ActivityTable.ACTIVITY_ID, ActivityTable.PUMPING_TIME,ActivityTable.PUMPING_AMOUNT};
 
-    public Bottle(Context context) {
+    public Pumping(Context context) {
         mDbHelper = new ActivityTable(context);
         this.mContext = context;
         // open the database
@@ -45,41 +44,40 @@ public class Bottle {
     }
 
 
-    public void insertBottle(int activity_id,String formula,int amount,String timer) {
+    public void insertPumping(int activity_id,String actual_time,int pumping_amount) {
         ContentValues values = new ContentValues();
         values.put(ActivityTable.ACTIVITY_ID, activity_id);
-        values.put(ActivityTable.BOTTLE_FORMULA,formula);
-        values.put(ActivityTable.BOTTLE_AMOUNT,amount);
-        values.put(ActivityTable.BOTTLE_TIMER,timer);
-        mDatabase.insert(ActivityTable.TABLE_BOTTLE, null, values);
+        values.put(ActivityTable.PUMPING_TIME,actual_time);
+        values.put(ActivityTable.PUMPING_AMOUNT,pumping_amount);
+        mDatabase.insert(ActivityTable.TABLE_PUMPING, null, values);
         mDatabase.close();
 }
 
-    public void deleteBottle(int a_id) {
-        mDatabase.delete(ActivityTable.TABLE_BOTTLE, ActivityTable.ACTIVITY_ID + " = " + a_id, null);
+    public void deletePumping(int a_id) {
+        mDatabase.delete(ActivityTable.TABLE_PUMPING, ActivityTable.ACTIVITY_ID + " = " + a_id, null);
     }
 
-    public HashMap<String, String> getBottleID(String a_id){
+    public HashMap<String, String> getPumpingID(String a_id){
 
-        HashMap<String,String> mood = new HashMap<String,String>();
-        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_BOTTLE+ " WHERE a_id="+a_id;
+        HashMap<String,String> pumpingID = new HashMap<String,String>();
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_PUMPING + " WHERE a_id="+a_id;
 
         Cursor cursor = mDatabase.rawQuery(selectQuery, null);
         // Move to first row
         cursor.moveToFirst();
         if(cursor.getCount() > 0){
-            mood.put(ActivityTable.BOTTLE_ID, String.valueOf(cursor.getInt(0)));
+            pumpingID.put(ActivityTable.PUMPING_ID, String.valueOf(cursor.getInt(0)));
         }
         cursor.close();
         mDatabase.close();
-        return mood;
+        return pumpingID;
     }
 
-    public ArrayList<HashMap<String, String>> getAllBottle(){
+    public ArrayList<HashMap<String, String>> getAllPumping(){
 
-        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_BOTTLE ;
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_PUMPING ;
         Cursor cursor = mDatabase.rawQuery(selectQuery, null);
-        ArrayList<HashMap<String, String>> bottlelist = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> pumpingList = new ArrayList<HashMap<String, String>>();
 
         if (cursor.moveToFirst()) {
             do {
@@ -88,17 +86,17 @@ public class Bottle {
                 {
                     map.put(cursor.getColumnName(i), cursor.getString(i));
                 }
-                bottlelist.add(map);
+                pumpingList.add(map);
             } while (cursor.moveToNext());
         }
         mDatabase.close();
-        return bottlelist;
+        return pumpingList;
     }
-    public ArrayList<HashMap<String, String>> getSpecificBottle(String a_id){
+    public ArrayList<HashMap<String, String>> getSpecificPumpingWithAID(String a_id){
 
-        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_BOTTLE + " WHERE a_id="+ a_id;
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_PUMPING + " WHERE a_id="+ a_id;
         Cursor cursor = mDatabase.rawQuery(selectQuery, null);
-        ArrayList<HashMap<String, String>> bottlelist = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> pumpingList = new ArrayList<HashMap<String, String>>();
 
         if (cursor.moveToFirst()) {
             do {
@@ -107,17 +105,17 @@ public class Bottle {
                 {
                     map.put(cursor.getColumnName(i), cursor.getString(i));
                 }
-                bottlelist.add(map);
+                pumpingList.add(map);
             } while (cursor.moveToNext());
         }
         mDatabase.close();
-        return bottlelist;
+        return pumpingList;
     }
-    public ArrayList<HashMap<String, String>> getSpecificBottleRecord(String bottle_id){
+    public ArrayList<HashMap<String, String>> getSpecificPumpingWithBID(String breast_id){
 
-        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_BOTTLE + " WHERE bottle_id="+ bottle_id;
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_PUMPING + " WHERE breast_id="+ breast_id;
         Cursor cursor = mDatabase.rawQuery(selectQuery, null);
-        ArrayList<HashMap<String, String>> bottlelist = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> pumpingList = new ArrayList<HashMap<String, String>>();
 
         if (cursor.moveToFirst()) {
             do {
@@ -126,28 +124,27 @@ public class Bottle {
                 {
                     map.put(cursor.getColumnName(i), cursor.getString(i));
                 }
-                bottlelist.add(map);
+                pumpingList.add(map);
             } while (cursor.moveToNext());
         }
         mDatabase.close();
-        return bottlelist;
+        return pumpingList;
     }
 
-    public void editMood(String formula,int amount,String timer,int bottle_id) {
+    public void editPumping(String actual_time,int pumping_id,int pumping_amount) {
         //Bu methodda ise var olan veriyi güncelliyoruz(update)
         ContentValues values = new ContentValues();
-        values.put(ActivityTable.BOTTLE_FORMULA,formula);
-        values.put(ActivityTable.BOTTLE_AMOUNT,amount);
-        values.put(ActivityTable.BOTTLE_TIMER,timer);
+        values.put(ActivityTable.PUMPING_TIME,actual_time);
+        values.put(ActivityTable.PUMPING_AMOUNT,pumping_amount);
 
         // updating row
-        mDatabase.update(ActivityTable.TABLE_BOTTLE, values, ActivityTable.BOTTLE_ID + " = ?",
-                new String[]{String.valueOf(bottle_id)});
+        mDatabase.update(ActivityTable.TABLE_PUMPING, values, ActivityTable.PUMPING_ID + " = ?",
+                new String[]{String.valueOf(pumping_id)});
         mDatabase.close();
     }
     public void resetTables(){
         //Bunuda uygulamada kullanmıyoruz. Tüm verileri siler. tabloyu resetler.
-        mDatabase.delete(ActivityTable.TABLE_BOTTLE, null, null);
+        mDatabase.delete(ActivityTable.TABLE_PUMPING, null, null);
         mDatabase.close();
     }
 

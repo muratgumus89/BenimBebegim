@@ -46,25 +46,81 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp"
-            android:weightSum="100">
+            android:background="@drawable/bg_button_rounded"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:text="@string/Pumping_activity_total_edittext"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="30">
 
-            <TextView
+                <TextView
+                    android:id="@+id/tVTotalPumping"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_weight="25"
+                    android:text="@string/Bottle_Dialog_tv_total"/>
+
+                <TextView
+                    android:id="@+id/tVTotalPumpingTimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:textColor="@color/white"
+                    android:text="00:00:00"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:text="@string/Pumping_activity_paused_edittext"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="30">
+
+                <TextView
+                    android:id="@+id/tVPausePumping"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_weight="25"
+                    android:text="@string/Bottle_Dialog_tv_paused"/>
+
+                <TextView
+                    android:id="@+id/tVPausePumpingTimer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:textColor="@color/white"
+                    android:text="00:00:00"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="30">
+                <TextView
+                    android:id="@+id/tVActualPumping"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_weight="25"
+                    android:text="@string/Bottle_Dialog_tv_actual"/>
+                <TextView
+                    android:id="@+id/tVActualPumpingTimer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:textColor="@color/white"
+                    android:text="00:00:00"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -129,7 +185,7 @@
                     android:background="@drawable/bg_button_rounded"
                     android:layout_marginBottom="8dp"
                     android:drawableLeft="@drawable/icon_time"
-                    android:text="@string/Pumping_activity_ounce_button"
+                    android:text="0.00 ml"
                     android:textColor="@color/white" />
 
                 <EditText

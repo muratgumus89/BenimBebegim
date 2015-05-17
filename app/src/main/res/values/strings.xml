@@ -189,8 +189,8 @@
 
     <!--ActivitySleep Values goes in here-->
     <string name="sleep_activity_finish_button">Finish</string>
-    <string name="sleep_activity_total_button">total</string>
-    <string name="sleep_activity_paused_button">paused</string>
+    <string name="sleep_activity_total_button">Total = </string>
+    <string name="sleep_activity_paused_button">Paused = </string>
     <string name="sleep_activity_date_button">Date</string>
     <string name="sleep_activity_time_button">Time</string>
     <string name="sleep_activity_writesomething_button">Write something</string>
@@ -238,7 +238,7 @@
     <string name="Bottle_activity_date_button">Date</string>
     <string name="Bottle_activity_time_button">Time</string>
     <string name="Bottle_activity_formula_button">Formula</string>
-    <string name="Bottle_activity_amaount_button">0,00 lt</string>
+    <string name="Bottle_activity_amaount_button">0,00 ml</string>
     <string name="Bottle_activity_meas_button">Meas</string>
     <string name="Bottle_activity_writesth_button">Write something</string>
     <string name="Bottle_activity_cancel_button">Cancel</string>
@@ -254,9 +254,10 @@
     <string name="Bottle_Dialog_amount_cancel">Cancel</string>
     <string name="Bottle_Dialog_amount_ok">Okay</string>
 
-    <string name="Bottle_Dialog_tv_total">Total     : </string>
-    <string name="Bottle_Dialog_tv_paused">Paused   : </string>
-    <string name="Bottle_Dialog_tv_actual">Actual   :</string>
+    <string name="Bottle_Dialog_tv_total">Total: </string>
+    <string name="Bottle_Dialog_tv_paused">Paused: </string>
+    <string name="Bottle_Dialog_tv_actual">Actual
+        :</string>
 
 
     <!--ActivityBreast Values goes in here-->
@@ -422,4 +423,5 @@
     <string name="hour_ago"> hour ago</string>
     <string name="minute_ago"> minute ago</string>
     <string name="a_minute_ago">just now</string>
+    <string name="duration">duration</string>
 </resources>
