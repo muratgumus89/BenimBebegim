@@ -9,30 +9,8 @@
     android:id="@+id/layout_earlier">
 
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.example.murat.benimbebegim.stickHeader.StickyListHeadersListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:drawSelectorOnTop="true"
-            android:padding="16dp"
-            android:scrollbarStyle="outsideOverlay"
-            android:fastScrollEnabled="true"
-            android:overScrollMode="never"/>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-    <TextView
-        android:id="@+id/empty"
-        android:layout_width="match_parent"
+    <ExpandableListView
+        android:id="@+id/elvEarlierActivities"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="empty"
-        android:textSize="30sp"
-        android:visibility="gone"/>
+        android:layout_width="match_parent"/>
 </LinearLayout>

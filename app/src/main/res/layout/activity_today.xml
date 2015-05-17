@@ -4,9 +4,9 @@
     android:layout_height="fill_parent"
     android:background="@drawable/bg_gradient">
 
-    <ListView
-        android:id="@+id/listTodayFragment"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+    <ExpandableListView
+        android:id="@+id/elvTodayActivities"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
 
 </RelativeLayout>

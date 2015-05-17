@@ -220,7 +220,36 @@ public class ActivityTable extends SQLiteOpenHelper{
         String columns[]={"a_id","a_type","b_id","u_id","select_date","select_time","save_date","save_time","note"};
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(ACTIVITY_TABLE, columns, "a_type=? and b_id=?", new String[] { a_type, babyId }, null, null, null);
+        Cursor cursor = db.query(ACTIVITY_TABLE, columns, "a_type=? and b_id=?", new String[]{a_type, babyId}, null, null, null);
+
+        ArrayList<HashMap<String, String>> activityList = new ArrayList<HashMap<String, String>>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i=0; i<cursor.getColumnCount();i++)
+                {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+
+                activityList.add(map);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return activityList;
+    }
+
+    public ArrayList<HashMap<String, String>> getTodayActivityRecords(String a_type,String babyId,String cdate,String ydate){
+
+        //Bu methodda ise tablodaki tüm değerleri alıyoruz
+        //ArrayList adı üstünde Array lerin listelendiği bir Array.Burda hashmapleri listeleyeceğiz
+        //Herbir satırı değer ve value ile hashmap a atıyoruz. Her bir satır 1 tane hashmap arrayı demek.
+        //olusturdugumuz tüm hashmapleri ArrayList e atıp geri dönüyoruz(return).
+        String columns[]={"a_id","a_type","b_id","u_id","select_date","select_time","save_date","save_time","note"};
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(ACTIVITY_TABLE, columns, "a_type=? and b_id=? and select_date<=? and select_date>=?", new String[] { a_type, babyId, cdate, ydate }, null, null, null);
+
 
         ArrayList<HashMap<String, String>> activityList = new ArrayList<HashMap<String, String>>();
 
@@ -260,7 +289,25 @@ public class ActivityTable extends SQLiteOpenHelper{
         db.close();
         return moodlist;
     }
+    public ArrayList<HashMap<String, String>> getSpesificActivityRecord(String a_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + ActivityTable.ACTIVITY_TABLE + " WHERE a_id="+ a_id;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
 
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i=0; i<cursor.getColumnCount();i++)
+                {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+                moodlist.add(map);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return moodlist;
+    }
     public void updateRecord(String a_type, String baby_id,String user_id,String select_date,
                              String select_time,String save_time,String save_date,String note,int id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -273,7 +320,7 @@ public class ActivityTable extends SQLiteOpenHelper{
         values.put(SELECT_TIME, select_time);
         values.put(SAVE_DATE,save_date);
         values.put(SAVE_TIME,save_time);
-        values.put(NOTE,note);;
+        values.put(NOTE,note);
 
         // updating row
         db.update(ACTIVITY_TABLE, values, ACTIVITY_ID + " = ?",
