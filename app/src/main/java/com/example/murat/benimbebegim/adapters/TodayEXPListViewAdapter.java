@@ -144,7 +144,7 @@ public class TodayEXPListViewAdapter extends BaseExpandableListAdapter {
         }
         if (groupPosition == 1) {
             Solid solid_db = new Solid(ActivityToday.myContext);
-            solid = solid_db.getSpecificMoodAsaActId(a_id);
+            solid = solid_db.getSpecificMAsaActId(a_id);
             if(solid.size() != 0){
                 mood_type = moods.get(0).get("m_type");
             }
