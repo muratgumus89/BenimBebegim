@@ -1,0 +1,16 @@
+﻿Revert "m"
+
+This reverts commit 38dc63e134bb3c6e384b2470e38ba6f8ce841846.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   app/src/main/java/com/example/murat/benimbebegim/ActivityFavorites.java
+#	modified:   app/src/main/java/com/example/murat/benimbebegim/adapters/ListViewAdapterForFavorites.java
+#
+# Changes not staged for commit:
+#	modified:   .idea/misc.xml
+#	modified:   app/src/main/AndroidManifest.xml
+#
+

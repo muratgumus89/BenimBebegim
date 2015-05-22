@@ -136,6 +136,11 @@
             android:name=".ActivityOther"
             android:label="@string/title_activity_activity_other" >
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_activity_other" >
+        </activity>
+
     </application>
 
 </manifest>
