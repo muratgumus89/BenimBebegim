@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -272,7 +273,7 @@ public class ActivityTable extends SQLiteOpenHelper{
 
         SQLiteDatabase db = this.getWritableDatabase();//Okuma Modunda Database i Aç
         db.delete(ACTIVITY_TABLE, ACTIVITY_ID + " = ?",
-                new String[] { String.valueOf(id) });//mood_id=id olan kaydı sil
+                new String[]{String.valueOf(id)});//mood_id=id olan kaydı sil
         db.close();
     }
 
@@ -288,7 +289,7 @@ public class ActivityTable extends SQLiteOpenHelper{
         values.put(SELECT_TIME, select_time);
         values.put(SAVE_DATE,save_date);
         values.put(SAVE_TIME,save_time);
-        values.put(NOTE,note);
+        values.put(NOTE, note);
 
         db.insert(ACTIVITY_TABLE, null, values);
         db.close(); //Database Bağlantısını kapattık
@@ -404,7 +405,7 @@ public class ActivityTable extends SQLiteOpenHelper{
     public ArrayList<HashMap<String, String>> getTodaysData(String date,String babyId){
         String columns[]={"mood","detail","time"};
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(ACTIVITY_TABLE, columns, "baby_id=? and date=?", new String[] { babyId, date }, null, null, null);
+        Cursor cursor = db.query(ACTIVITY_TABLE, columns, "baby_id=? and date=?", new String[]{babyId, date}, null, null, null);
         //Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
 
@@ -437,6 +438,26 @@ public class ActivityTable extends SQLiteOpenHelper{
                 }
                 moodlist.add(map);
             } while (cursor.moveToNext());
+        }
+        db.close();
+        return moodlist;
+    }
+    public ArrayList<HashMap<String,String>> getMoodsInfoForMoodPieChart(String a_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT m_type, activitiy.[b_id] FROM mood, activitiy WHERE activitiy.[a_id] = mood.[a_id] and activitiy.[b_id] = '" + a_id + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
+
+        Log.i("coloumn count", String.valueOf(cursor.getColumnCount()));
+        Log.i("row Count", String.valueOf(cursor.getCount()));
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for (int i = 0; i < cursor.getColumnCount(); i++) {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+                moodlist.add(map);
+            }while (cursor.moveToNext());
         }
         db.close();
         return moodlist;

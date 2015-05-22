@@ -37,6 +37,7 @@ public class FragmentStats extends Fragment {
 
     public static final String TAG = FragmentStats.class.getSimpleName();
     private static ActionBar actionBar;
+
     public static FragmentStats newInstance() {
         return new FragmentStats();
     }

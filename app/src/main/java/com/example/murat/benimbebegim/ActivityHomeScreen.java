@@ -425,6 +425,12 @@ public class ActivityHomeScreen extends FragmentActivity implements
             Log.d("log_tag", "ALL completed!");
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
     public Bitmap StringToBitMap(String encodedString) {
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DECODE);
