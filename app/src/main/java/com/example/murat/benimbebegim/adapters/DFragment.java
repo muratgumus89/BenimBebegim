@@ -17,5 +17,6 @@ public class DFragment extends DialogFragment {
         getDialog().setTitle("DialogFragment Tutorial");
         // Do something else
         return rootView;
+        //Murat Gümüş
     }
 }

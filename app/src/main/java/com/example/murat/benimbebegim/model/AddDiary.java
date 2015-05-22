@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.murat.benimbebegim.Databases.DiaryDatabase;
-import com.example.murat.benimbebegim.MainActivity;
 import com.example.murat.benimbebegim.R;
 
 import java.io.File;

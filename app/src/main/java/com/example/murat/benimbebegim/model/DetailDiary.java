@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.murat.benimbebegim.Databases.DiaryDatabase;
-import com.example.murat.benimbebegim.MainActivity;
+import com.example.murat.benimbebegim.ActivityDiary;
 
 import java.util.HashMap;
 
@@ -72,7 +72,7 @@ public class DetailDiary extends Activity {
                         DiaryDatabase db = new DiaryDatabase(getApplicationContext());
                         db.deleteDiary(id);
                         Toast.makeText(getApplicationContext(), "Kitap Başarıyla Silindi", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ActivityDiary.class);
                         startActivity(intent);//bu id li kitabı sildik ve Anasayfaya döndük
                         finish();
 

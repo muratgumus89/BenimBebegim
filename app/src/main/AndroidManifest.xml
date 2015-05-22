@@ -145,10 +145,6 @@
             android:label="@string/title_activity_calendar" >
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/diary_activity" >
-        </activity>
-        <activity
             android:name=".model.AddDiary"
             android:label="Add Diary" >
         </activity>

@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -26,7 +25,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
 import com.example.murat.benimbebegim.adapters.TitleNavigationAdapter;
-import com.example.murat.benimbebegim.model.ChangeTheme;
 import com.example.murat.benimbebegim.model.SpinnerNavItem;
 
 import org.apache.http.HttpEntity;
@@ -283,8 +281,8 @@ public class ActivityHomeScreen extends FragmentActivity implements
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame,
-                                MainActivity.newInstance(),
-                                MainActivity.TAG).commit();
+                                ActivityDiary.newInstance(),
+                                ActivityDiary.TAG).commit();
                 break;
             case 4:
                 getSupportFragmentManager()
