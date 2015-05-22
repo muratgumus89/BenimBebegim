@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -56,6 +57,7 @@ public class ActivityFavorites extends Fragment {
     String diaper_aid[] = new String[0];
     String pumping_aid[]= new String[0];
     String mood_note[]  = new String[0];
+    ImageView iv;
     public static final String PREFS_NAME = "MyPrefsFile";
     String baby_id;
     int mood_id[];
@@ -87,7 +89,7 @@ public class ActivityFavorites extends Fragment {
 
         // Locate the ListView in fragmenttab1.xml
         list = (ListView) rootView.findViewById(R.id.listFavorites);
-
+        iv = (ImageView)rootView.findViewById(R.id.ivChartFavoritesIcon);
         //Get babyid from SP
         SharedPreferences pref;
         pref = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -100,6 +102,7 @@ public class ActivityFavorites extends Fragment {
     private void init(){
         getMoodListFromDatabase(baby_id);
 
+
         fillToListViewAdapter();
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
@@ -107,15 +110,32 @@ public class ActivityFavorites extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                try {
-                    Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
-                    Intent intent = new Intent(getActivity(), ourClass);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
+                switch (view.getId()) {
+                    case R.id.ivChartFavoritesIcon:
+
+                        try {
+                            Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
+                            Intent intent = new Intent(getActivity(), ourClass);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                            Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
+                        }
+                         break;
+                    default:
+                        try {
+                            Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
+                            Intent intent = new Intent(getActivity(), ourClass);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                            Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
                 }
+
             }
         });
 
