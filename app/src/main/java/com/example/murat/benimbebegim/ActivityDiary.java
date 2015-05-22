@@ -31,7 +31,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends Fragment {
+public class ActivityDiary extends Fragment {
 
     ListView lv;
     ListViewAdapterForDiaries adapter;
@@ -48,9 +48,9 @@ public class MainActivity extends Fragment {
     int position;
     TextView txtInfo;
     File mediaFile;
-    public static final String TAG = MainActivity.class.getSimpleName();
-    public static MainActivity newInstance() {
-        return new MainActivity();
+    public static final String TAG = ActivityDiary.class.getSimpleName();
+    public static ActivityDiary newInstance() {
+        return new ActivityDiary();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -147,10 +147,7 @@ public class MainActivity extends Fragment {
                 startActivity(intent);
                 break;
             case R.id.cancel_context:
-                Intent intentMain = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                startActivity(intentMain
-                );
-
+                onResume();
             default:
                 break;
         }
@@ -159,7 +156,7 @@ public class MainActivity extends Fragment {
 
     private void setDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                getActivity().getApplicationContext());
+                getActivity());
 
         // set title
         alertDialogBuilder.setTitle(getResources().getString(R.string.deleting_record) + "!!!");
@@ -194,8 +191,7 @@ public class MainActivity extends Fragment {
         DiaryDatabase db = new DiaryDatabase(getActivity().getApplicationContext());
         db.deleteDiary(position);
         Toast.makeText(getActivity().getApplicationContext(), getResources().getString(R.string.delete_record), Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-        startActivity(intent);//bu id li kitabı sildik ve Anasayfaya döndük
+        onResume();
     }
 
     @Override
