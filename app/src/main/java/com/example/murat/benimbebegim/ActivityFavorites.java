@@ -3,6 +3,7 @@ package com.example.murat.benimbebegim;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -89,7 +90,7 @@ public class ActivityFavorites extends Fragment {
 
         // Locate the ListView in fragmenttab1.xml
         list = (ListView) rootView.findViewById(R.id.listFavorites);
-        iv = (ImageView)rootView.findViewById(R.id.ivChartFavoritesIcon);
+        //iv = (ImageView)rootView.findViewById(R.id.ivChartFavoritesIcon);
         //Get babyid from SP
         SharedPreferences pref;
         pref = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -109,33 +110,24 @@ public class ActivityFavorites extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                switch (view.getId()) {
-                    case R.id.ivChartFavoritesIcon:
-
-                        try {
-                            Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
-                            Intent intent = new Intent(getActivity(), ourClass);
-                            startActivity(intent);
-                        } catch (Exception e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                            Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
-                        }
-                         break;
-                default:
-                    try {
-                        Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
-                        Intent intent = new Intent(getActivity(), ourClass);
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                        Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
+                ImageView iv = (ImageView) view.findViewById(R.id.ivChartFavoritesIcon);
+                iv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),"Control", Toast.LENGTH_SHORT).show();
                     }
-                    break;
-                }
+                });
 
+//                Log.i("Favorites Chart", "Click işlemi gerçekleştirildi");
+//                try {
+//                    Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
+//                    Intent intent = new Intent(getActivity(), ourClass);
+//                    startActivity(intent);
+//                } catch (Exception e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                    Toast.makeText(getActivity(), classes[position] + " ", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 
