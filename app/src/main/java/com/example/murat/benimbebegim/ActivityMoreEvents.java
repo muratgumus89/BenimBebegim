@@ -247,7 +247,7 @@ public class ActivityMoreEvents extends Fragment {
 
         if(teeths.size()!=0) {
             if(!teeth_note[teeth_note.length-1].equals("")) {
-                list_note[4] = teeth_type + " - " + teeth_note[hygiene_note.length - 1];
+                list_note[4] = teeth_type + " - " + teeth_note[teeth_note.length - 1];
             }else{
                 list_note[4] = teeth_type;
             }

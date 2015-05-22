@@ -80,7 +80,6 @@ public class ActivityAlarm extends ListActivity {
                 cal.set(Calendar.SECOND, 0);
                 cal.set(Calendar.MILLISECOND, 0);
         }
-
         registerForContextMenu(getListView());
 
     }
