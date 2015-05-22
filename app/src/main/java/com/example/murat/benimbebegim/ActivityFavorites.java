@@ -596,7 +596,6 @@ public class ActivityFavorites extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getActivity().getApplicationContext(),"Kontrol",Toast.LENGTH_SHORT).show();
         init();
     }
 

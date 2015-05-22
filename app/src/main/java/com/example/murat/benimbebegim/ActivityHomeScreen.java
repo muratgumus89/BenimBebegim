@@ -216,7 +216,6 @@ public class ActivityHomeScreen extends FragmentActivity implements
     private void setupSpinner( MenuItem item)
     {
         if(getActionBar().getNavigationMode()== ActionBar.NAVIGATION_MODE_TABS) {
-            Log.d("Spinner", "Çok yaşa SpinTAB");
             item.setVisible(getActionBar().getNavigationMode() == ActionBar.NAVIGATION_MODE_TABS);
         }
         View view = item.getActionView();
@@ -245,7 +244,6 @@ public class ActivityHomeScreen extends FragmentActivity implements
             new TitleNavigationAdapter(baby_name);
             adapter = new TitleNavigationAdapter(getApplicationContext(),
                     navSpinner);
-            Log.d("Spinner","Çok yaşa Spin10");
             Spinner spinner = (Spinner) view;
             spinner.setAdapter(adapter);
             spinner.setSelection(spinnerPosition);
@@ -285,8 +283,8 @@ public class ActivityHomeScreen extends FragmentActivity implements
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame,
-                                FragmentDiary.newInstance(),
-                                FragmentDiary.TAG).commit();
+                                MainActivity.newInstance(),
+                                MainActivity.TAG).commit();
                 break;
             case 4:
                 getSupportFragmentManager()
@@ -465,7 +463,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
                     (new InputStreamReader(is, "utf-8"), 8);
             StringBuilder sb = new StringBuilder();
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line);
             }
             is.close();
             result = sb.toString();

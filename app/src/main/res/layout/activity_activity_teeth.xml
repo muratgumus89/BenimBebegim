@@ -1,18 +1,81 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.murat.benimbebegim.ActivityTeeth">
+    android:background="@drawable/border_2">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:weightSum="100">
 
+        <Button
+            android:id="@+id/btnTeethActivity_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
+            android:drawableLeft="@drawable/icon_date"
+            android:text="@string/Teeth_activity_date_button"
+            android:textColor="@color/white" />
 
+        <Button
+            android:id="@+id/btnTeethActivity_Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="50"
+            android:background="@drawable/bg_button_rounded"
+            android:drawableLeft="@drawable/icon_time"
+            android:text="@string/Teeth_activity_time_button"
+            android:textColor="@color/white" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivTeethActivity_TeethChart"
+            android:layout_width="match_parent"
+            android:src="@drawable/teeth_activity_chart"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="300dp" />
+
+        <Spinner
+            android:id="@+id/spnr_TeethActivity_TeethChart"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <EditText
+            android:id="@+id/etTeethActivity_Notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_form_rounded"
+            android:hint="Notes : "
+            android:layout_below="@+id/spnr_VaccinationActivity_Moods" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:weightSum="100">
 
@@ -38,67 +101,5 @@
             android:text="@string/Teeth_activity_save_button"
             android:textColor="@color/white" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout3"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/ivTeethActivity_TeethChart"
-            android:layout_width="361dp"
-            android:src="@drawable/a"
-            android:layout_height="1600dp" />
-
-        <Spinner
-            android:id="@+id/spnr_TeethActivity_TeethChart"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:id="@+id/btnTeethActivity_Time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="50"
-            android:background="@drawable/bg_button_rounded"
-            android:drawableLeft="@drawable/icon_time"
-            android:text="@string/Teeth_activity_time_button"
-            android:textColor="@color/white"
-            android:layout_gravity="center_horizontal" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:orientation="horizontal"
-            android:weightSum="100">
-
-            <Button
-                android:id="@+id/btnTeethActivity_Date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="50"
-                android:background="@drawable/bg_button_rounded"
-                android:drawableLeft="@drawable/icon_date"
-                android:text="@string/Teeth_activity_date_button"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/etTeethActivity_Notes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="3"
-            android:background="@drawable/bg_form_rounded"
-            android:hint="Notes : "
-            android:layout_below="@+id/spnr_VaccinationActivity_Moods" />
-    </LinearLayout>
-
-
-</RelativeLayout>
+</LinearLayout>
+</ScrollView>

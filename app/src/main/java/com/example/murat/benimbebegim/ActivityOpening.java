@@ -91,7 +91,6 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
          Save Remember User or Not
          */
         SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        Log.i("info", "pref cekildi");
         String username = pref.getString(PREF_USERNAME, null);
         String password = pref.getString(PREF_PASSWORD, null);
         boolean b = pref.getBoolean("remembers", false);
@@ -99,7 +98,6 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             etUserName.setText(username);
             etPassword.setText(password);
             cbRememberMe.setChecked(true);
-            Log.i("info", "editTextleri Ben doldurdum");
         }
     }
 
@@ -206,7 +204,6 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                             .putString(PREF_PASSWORD, passwordforLogin)
                             .putBoolean("remembers", true)
                             .commit();
-                    Log.i("info", "pref kaydedildi");
                 } else {
                     getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                             .edit()
@@ -214,7 +211,6 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                             .putString(PREF_PASSWORD, "")
                             .putBoolean("remembers", false)
                             .commit();
-                    Log.i("info", "cb checked edilmis değil ( kaydedilmedi )");
                 }
                 babyControl();
             }
@@ -318,7 +314,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             }
             is.close();
             result = sb.toString();
-            Log.e("Baby Name: ", result);
+            Log.e("Opening - Baby Name: ", result);
         } catch (Exception e) {
             Log.e("BabyFail 2", e.toString());
         }
@@ -351,10 +347,11 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             }
             is.close();
             result = sb.toString();
-            Log.e("Babyresult", result);
+            Log.e("Opening - Baby_ID: ", result);
         } catch (Exception e) {
             Log.e("BabyFail 2", e.toString());
         }
+        Log.i("Result: ",result);
         return result;
     }
 
@@ -387,11 +384,11 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
             StringBuilder sb = new StringBuilder();
             while ((line = reader.readLine()) != null)
             {
-                sb.append(line + "\n");
+                sb.append(line);
             }
             is.close();
             result = sb.toString();
-            Log.e("result", result);
+            Log.e("Opening - User ID: ", result);
         }
         catch(Exception e)
         {

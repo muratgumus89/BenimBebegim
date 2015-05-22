@@ -23,8 +23,4 @@
     <color name="stacked_green">#118504</color>
     <color name="accent_green">#97e08f</color>
     <color name="pressed">#CC97e08f</color>
-
-    <color name="header_normal">#ffe74c3c</color>
-    <color name="header_pressed">#ffc0392b</color>
-    <color name="menu_section_header">#FFDDDDDD</color>
 </resources>
