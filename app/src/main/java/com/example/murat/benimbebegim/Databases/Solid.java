@@ -130,7 +130,7 @@ public class Solid {
 
         String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_SOLID + " WHERE a_id="+ a_id;
         Cursor cursor = mDatabase.rawQuery(selectQuery, null);
-        ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
+        ArrayList<HashMap<String, String>> solidlist = new ArrayList<HashMap<String, String>>();
 
         if (cursor.moveToFirst()) {
             do {
@@ -139,11 +139,11 @@ public class Solid {
                 {
                     map.put(cursor.getColumnName(i), cursor.getString(i));
                 }
-                moodlist.add(map);
+                solidlist.add(map);
             } while (cursor.moveToNext());
         }
         mDatabase.close();
-        return moodlist;
+        return solidlist;
     }
     public ArrayList<HashMap<String, String>> getSpecificSolidRecord(int solid_id){
 

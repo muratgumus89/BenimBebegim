@@ -28,18 +28,12 @@ import java.util.List;
 
 
 public class ActivityToday extends Fragment{
-    ArrayList<HashMap<String, String>> records,moods;
-    String mood_name[]   = new String[0] , mood_time[]    = new String[0] , mood_date[]    = new String[0];
-    String mood_note[]  = new String[0];
+
     public static Context myContext;
     public static final String TAG = ActivityToday.class.getSimpleName();
     public static ActivityToday newInstance() {
         return new ActivityToday();
     }
-
-
-
-
 
     TodayEXPListViewAdapter listAdapter;
     ExpandableListView expListView;
@@ -62,7 +56,7 @@ public class ActivityToday extends Fragment{
         //**********************************************************************************//
         expListView = (ExpandableListView)view.findViewById(R.id.elvTodayActivities);
         //prepareListData();
-        intHeaderIconResourse = new int[2];
+        intHeaderIconResourse = new int[7];
         getTodaysLog();
         listAdapter = new TodayEXPListViewAdapter(getActivity().getApplicationContext(), listDataHeader, listDataChild, intHeaderIconResourse);
         expListView.setAdapter(listAdapter);
@@ -141,67 +135,14 @@ public class ActivityToday extends Fragment{
         return dateFormat.format(cal.getTime());
     }
 
-    private void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
-
-        // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
-        listDataHeader.add("moods");
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
-
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
-
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
-
-
-        //getTodayActivityRecords
-        ArrayList<HashMap<String, String>> activityList;
-        HashMap<String, String> a;
-        List<String> moodstoday = new ArrayList<String>();
-
-        ActivityTable s_db = new ActivityTable(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
-        activityList = s_db.getTodayActivityRecords("Mood",baby_id,"14/05/2015", "13/05/2015"); // üç paremetre
-        Log.i("sdgfsfasfd: ", String.valueOf(activityList.size()));
-        if (activityList.size() != 0) {//mood listesi boşsa
-            for (int i = 0; i < activityList.size(); i++) {
-                a = activityList.get(i);
-                Log.i("bid\t\t",a.get("b_id"));
-                moodstoday.add(a.get("b_id"));
-            }
-        }
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
-        listDataChild.put(listDataHeader.get(3), moodstoday);
-
-    }
-
     private void getTodaysLog(){
-        intHeaderIconResourse[0] = R.drawable.ic_mood;
-        intHeaderIconResourse[1] = R.drawable.ic_solid;
+        intHeaderIconResourse[0] = R.drawable.ic_mood_bullet;
+        intHeaderIconResourse[1] = R.drawable.ic_solid_bullet;
+        intHeaderIconResourse[2] = R.drawable.ic_bottle_bullet;
+        intHeaderIconResourse[3] = R.drawable.ic_breastfeed_bullet;
+        intHeaderIconResourse[4] = R.drawable.ic_sleep_bullet;
+        intHeaderIconResourse[5] = R.drawable.ic_diaper_bullet;
+        intHeaderIconResourse[6] = R.drawable.ic_pumping_milk_bullet;
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
         ArrayList<HashMap<String, String>> activityList;
@@ -209,42 +150,19 @@ public class ActivityToday extends Fragment{
         //List HeaderLarı
         listDataHeader.add("Mood");
         listDataHeader.add("Solid");
-//        listDataHeader.add("Bottle");
-//        listDataHeader.add("Breast");
-//        listDataHeader.add("Sleep");
-//        listDataHeader.add("Diaper");
-//        listDataHeader.add("Pumping");
+        listDataHeader.add("Bottle");
+        listDataHeader.add("Breast");
+        listDataHeader.add("Sleep");
+        listDataHeader.add("Diaper");
+        listDataHeader.add("Pumping");
 //        listDataHeader.add("Health");
 //        listDataHeader.add("Medicine");
 //        listDataHeader.add("Vaccination");
 //        listDataHeader.add("Hygiene");
 //        listDataHeader.add("Teeth");
 
-/*        ActivityTable a_db = new ActivityTable(getActivity().getApplicationContext());
-        records = a_db.getTodayActivityRecords("Mood",baby_id,getCurrentDate(),getYesterdayDateString());
-        if (records.size() != 0) {
-            mood_time = new String[records.size()];
-            mood_date = new String[records.size()];
-            mood_note = new String[records.size()];
-            mood_ActID= new String[records.size()];
-            for (int i = 0; i < records.size(); i++) {
-                mood_time[i] = records.get(i).get("select_time");
-                mood_note[i] = records.get(i).get("note");
-                mood_ActID[i]= records.get(i).get("a_id");
-            }
-        }
 
-        if(mood_ActID.length() != 0) {
-            for(int i=0;i<mood_ActID.length();i++) {
-                Mood db = new Mood(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
-                moods = db.getTodayMoods(mood_ActId[i],getCurrentDate(),getYesterdayDateString());
-                if (moods.size() != 0) {//mood listesi boşsa
-                    mood_name = new String[ds.size()]; // mood adlarını tutucamız string arrayi olusturduk.
-                    mood_name[i] = moods.get(i).get("m_type");
 
-                }
-            }
-        }*/
         ActivityTable s_db = new ActivityTable(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
         /*********************************************/
         activityList = s_db.getTodayActivityRecords("Mood",baby_id,getCurrentDate(),getYesterdayDateString()); // üç paremetre
@@ -266,41 +184,55 @@ public class ActivityToday extends Fragment{
             }
             listDataChild.put(listDataHeader.get(1), solids);
         }
+        /*********************************************/
+        activityList = s_db.getTodayActivityRecords("Bottle", baby_id, getCurrentDate(), getYesterdayDateString());
+        List<String> bottle = new ArrayList<String>();
+        if (activityList.size() != 0) {
+            for (int i = 0; i < activityList.size(); i++) {
+                HashMap<String, String> a = activityList.get(i);
+                bottle.add(a.get("a_id"));
+            }
+            listDataChild.put(listDataHeader.get(2), bottle);
+        }
+        /*********************************************/ // ----------------
+        activityList = s_db.getTodayActivityRecords("Breast", baby_id, getCurrentDate(), getYesterdayDateString());
+        List<String> breast = new ArrayList<String>();
+        if (activityList.size() != 0) {
+            for (int i = 0; i < activityList.size(); i++) {
+                HashMap<String, String> a = activityList.get(i);
+                breast.add(a.get("a_id"));
+            }
+            listDataChild.put(listDataHeader.get(3), breast);
+        }
+        /*********************************************/
+        activityList = s_db.getTodayActivityRecords("Sleep", baby_id, getCurrentDate(), getYesterdayDateString());
+        List<String> sleep = new ArrayList<String>();
+        if (activityList.size() != 0) {
+            for (int i = 0; i < activityList.size(); i++) {
+                HashMap<String, String> a = activityList.get(i);
+                sleep.add(a.get("a_id"));
+            }
+            listDataChild.put(listDataHeader.get(4), bottle);
+        }
+        /*********************************************/
+        activityList = s_db.getTodayActivityRecords("Diaper", baby_id, getCurrentDate(), getYesterdayDateString());
+        List<String> diaper = new ArrayList<String>();
+        if (activityList.size() != 0) {
+            for (int i = 0; i < activityList.size(); i++) {
+                HashMap<String, String> a = activityList.get(i);
+                diaper.add(a.get("a_id"));
+            }
+            listDataChild.put(listDataHeader.get(5), bottle);
+        }
+        /*********************************************/
+        activityList = s_db.getTodayActivityRecords("Pumping", baby_id, getCurrentDate(), getYesterdayDateString());
+        List<String> pumping = new ArrayList<String>();
+        if (activityList.size() != 0) {
+            for (int i = 0; i < activityList.size(); i++) {
+                HashMap<String, String> a = activityList.get(i);
+                pumping.add(a.get("a_id"));
+            }
+            listDataChild.put(listDataHeader.get(6), bottle);
+        }
     }
-
-
-
-
-//    private void getMoods(String baby_id) {
-//        ArrayList<HashMap<String, String>> moods;
-//        String mood_name[] = new String[0], mood_time[] = new String[0], mood_info[]= new String[0];
-//        //Get values from databases for listview
-//        MoodDatabase db = new MoodDatabase(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
-//        String currentDate = getCurrentDate();
-//        Log.d("CurrentDate:",currentDate);
-//        moods = db.getTodaysData(currentDate,baby_id);//od listesini alıyoruz
-//        if (moods.size() != 0) {//mood listesi boşsa
-//            mood_name = new String[moods.size()]; // mood adlarını tutucamız string arrayi olusturduk.
-//            mood_time = new String[moods.size()];
-//            mood_info = new String[moods.size()];
-//            for (int i = 0; i < moods.size(); i++) {
-//                mood_name[i] = moods.get(i).get("mood");
-//                mood_time[i] = moods.get(i).get("time");
-//                mood_info[i] = moods.get(i).get("detail");
-//                Log.i("Mood Name:", mood_name[i]);
-//                Log.i("Mood Time:", mood_time[i]);
-//                if(mood_info[i].equals(""))
-//                Log.i("Mood Info:", "boş");
-//                else
-//                Log.i("Mood Info:", mood_info[i]);
-//            }
-//        }
-//            count = count + moods.size();
-//            adapter = new ListViewAdapterForTodayFragment(getActivity(),R.drawable.ic_mood_bullet,mood_time,mood_name,mood_info,count);
-//            list.setAdapter(adapter);
-//
-//
-//
-//        Log.d("Count",String.valueOf(count));
-//    }
 }
