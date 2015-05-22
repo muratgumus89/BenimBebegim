@@ -123,17 +123,17 @@ public class ActivityFavorites extends Fragment {
                             Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
                         }
                          break;
-                    default:
-                        try {
-                            Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
-                            Intent intent = new Intent(getActivity(), ourClass);
-                            startActivity(intent);
-                        } catch (Exception e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                            Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
+                default:
+                    try {
+                        Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
+                        Intent intent = new Intent(getActivity(), ourClass);
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), classes[position] + " aktivitesi yok", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
                 }
 
             }
