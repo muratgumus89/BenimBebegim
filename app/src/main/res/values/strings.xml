@@ -127,14 +127,14 @@
     <string name="click_add">Click to Add Event...</string>
     //String Values For Favorites ListView
     <string-array name="Favorites">
-    <item>Mood</item>
-    <item>Solid</item>
-    <item>"Bottle</item>
-    <item>Breast</item>
-    <item>Sleep</item>
-    <item>Diaper</item>
-    <item>Pumping</item>
-</string-array>
+        <item>Mood</item>
+        <item>Solid</item>
+        <item>"Bottle</item>
+        <item>Breast</item>
+        <item>Sleep</item>
+        <item>Diaper</item>
+        <item>Pumping</item>
+    </string-array>
     //String Values For MoreEvents ListView
     <string-array name="MoreEvents">
         <item>Health</item>
@@ -396,8 +396,8 @@
 
 
     <string name="title_sction1">Section 1</string>
-        <string name="title_sction2">Section 2</string>
-        <string name="title_sction3">Section 3</string>
+    <string name="title_sction2">Section 2</string>
+    <string name="title_sction3">Section 3</string>
     <string-array name="spinner_items">
         <item>Dhaka</item>
         <item>Chittagong</item>
@@ -424,5 +424,71 @@
     <string name="minute_ago"> minute ago</string>
     <string name="a_minute_ago">just now</string>
     <string name="duration">duration</string>
-    <string name="title_activity_activity_mood_chart">ActivityMoodChart</string>
+    <string name="video">Videos</string>
+    <string name="capture_video">Capture Video</string>
+    <string name="capture_photo">Capture Photo</string>
+    <string name="title_activity_capture_video">Baby Sitter Capture Video</string>
+    <string name="title_activity_calendar">Baby Sitter Calendar</string>
+    <string name="title_activity_capture_photo">Baby Sitter Capture Photo</string>
+    <string name="btnRecordVideo">Record Video</string>
+    <string name="or">(or)</string>
+    <string name="btnUploadToServer">Upload to Server</string>
+    <string-array name="activity_mood_moods">
+        <item>Quite</item>
+        <item>Clinge</item>
+        <item>Chatty</item>
+        <item>Mischievour</item>
+        <item>Sleepy</item>
+        <item>Sweet</item>
+        <item>Happy</item>
+        <item>Fussy</item>
+        <item>Angry</item>
+        <item>Grumpy</item>
+        <item>Sad</item>
+        <item>Crying</item>
+        <item>Playfull</item>
+        <item>Bashfull</item>
+    </string-array>
+
+    <string-array name="activity_diaper_poop">
+        <item>Pee</item>
+        <item>Poop</item>
+        <item>Pee and Poop</item>
+    </string-array>
+    <string name="selected">Selected: </string>
+    <string name="video_cancel">Your Saving is Cancelled!</string>
+    <string name="photo_cancel">Your Saving is Cancelled!</string>
+    <string name="video_save">Your Saving is Completed!</string>
+    <string name="photo_save">Your Saving is Completed!</string>
+    <string name="no_record">No Record Yet!!</string>
+    <string name="add_item">Press the (+) button to add new record</string>
+    <string name="title">Title: </string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="finish">Finish</string>
+    <string name="play">Play</string>
+    <string name="save_button">Save</string>
+    <string name="voice_record">Voice Record</string>
+    <string name="date">Date</string>
+    <string name="speech">Speech to Text</string>
+    <string name="recording_start">Recording Started...!</string>
+    <string name="recording_finish">Recording Finished...!</string>
+    <string name="recording_play">Playing Record...!</string>
+    <string name="recording_stop">Recordind Played...!</string>
+    <string name="recording">Recording...</string>
+    <string name="ready_to_play">Ready to Play</string>
+    <string name="playing">Playing...</string>
+    <string name="finished">Finished</string>
+    <string name="added_record">Record Added Succesfully</string>
+    <string name="update_record">Record Updated Succesfully</string>
+    <string name="delete_record">Record Deleted Succesfully</string>
+    <string name="delete_context">Delete</string>
+    <string name="edit_context">Edit</string>
+    <string name="operations">Operations</string>
+    <string name="deleting_record">Warning</string>
+    <string name="confirm">Confirm</string>
+    <string name="are_you_sure">Are You Sure ?</string>
+    <string name="diary_activity">Baby Sitter Diary</string>
+    <string name="diary_add">Add Diary</string>
+    <string name="diary_edit">Edit Diary</string>
 </resources>
