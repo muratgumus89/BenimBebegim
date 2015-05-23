@@ -39,8 +39,15 @@ public class ActivityFavorites extends Fragment {
     int[] upLogo;
     ListView list;
     ListViewAdapterForFavorites adapter;
-    ArrayList<HashMap<String, String>> diapers,moods,solids,bottles,breasts,sleeps,pumpings;
+    ArrayList<HashMap<String, String>> diapers;
+    ArrayList<HashMap<String, String>> moods;
+    ArrayList<HashMap<String, String>> solids;
+    ArrayList<HashMap<String, String>> bottles;
+    ArrayList<HashMap<String, String>> breasts;
+    ArrayList<HashMap<String, String>> sleeps;
+    ArrayList<HashMap<String, String>> pumpings;
     ArrayList<HashMap<String, String>> records;
+
     String mood_name[]   = new String[0] , mood_time[]    = new String[0] , mood_date[]    = new String[0];
     String solid_note[]  = new String[0] , solid_time[]   = new String[0] , solid_date[]   = new String[0];
     String bottle_time[] = new String[0] , bottle_date[]  = new String[0] , bottle_note[]  = new String[0];
@@ -48,17 +55,19 @@ public class ActivityFavorites extends Fragment {
     String sleep_time[]  = new String[0] , sleep_date[]   = new String[0] , sleep_note[]   = new String[0];
     String diaper_time[] = new String[0] , diaper_date[]  = new String[0] , diaper_note[]  = new String[0];
     String pumping_time[]= new String[0] , pumping_date[] = new String[0] , pumping_note[] = new String[0];
-    String list_note[]  = new String[8] ,list_time[]   = new String[8] ,list_ago[]  = new String[8];
+    String list_note[]   = new String[8] , list_time[]    = new String[8] , list_ago[]     = new String[8];
+
     String solid_aid[]  = new String[0];
     String bottle_aid[] = new String[0];
     String breast_aid[] = new String[0];
     String sleep_aid[]  = new String[0];
     String diaper_aid[] = new String[0];
     String pumping_aid[]= new String[0];
+    String mood_aid[]   = new String[0];
     String mood_note[]  = new String[0];
+    int mood_id[]       = new int[0];
     public static final String PREFS_NAME = "MyPrefsFile";
     String baby_id;
-    int mood_id[];
     String bread,fruit,cereal,diary,pasta,eggs,meat,fish,other,vegatable;
     String bottle_type,bottle_amount,bottle_timer,breast_amount,sleep_duration,diaper_type,pumping_amount,pumping_duration;
     private static String a;
@@ -310,10 +319,12 @@ public class ActivityFavorites extends Fragment {
             mood_time = new String[records.size()];
             mood_date = new String[records.size()];
             mood_note = new String[records.size()];
+            mood_aid  = new String[records.size()];
             for (int i = 0; i < records.size(); i++) {
                 mood_time[i] = records.get(i).get("select_time");
                 mood_date[i] = records.get(i).get("select_date");
                 mood_note[i] = records.get(i).get("note");
+                mood_aid[i]  = records.get(i).get("a_id");
             }
         }
 
@@ -400,15 +411,19 @@ public class ActivityFavorites extends Fragment {
                 pumping_note[i] = records.get(i).get("note");
             }
         }
-
-        Mood db = new Mood(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
-        moods = db.getAllMoods();
-        if (moods.size() != 0) {//mood listesi boşsa
-            mood_name = new String[moods.size()]; // mood adlarını tutucamız string arrayi olusturduk.
-            for (int i = 0; i < moods.size(); i++) {
-                mood_name[i] = moods.get(i).get("m_type");
-                Log.i("Mood Name:", mood_name[i]);
+        if(mood_aid.length>0) {
+            Mood db = new Mood(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.
+            moods = db.getAllMoods();
+            if (moods.size() != 0) {//mood listesi boşsa
+                mood_name = new String[moods.size()]; // mood adlarını tutucamız string arrayi olusturduk.
+                for (int i = 0; i < moods.size(); i++) {
+                    mood_name[i] = moods.get(i).get("m_type");
+                    Log.i("Mood Name:", mood_name[i]);
+                }
             }
+        }
+        else{
+            moods = new ArrayList<HashMap<String, String>>();
         }
         if(solid_aid.length>0) {
             Solid s_db = new Solid(getActivity().getApplicationContext()); // Db bağlantısı oluşturuyoruz. İlk seferde database oluşturulur.

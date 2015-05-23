@@ -24,7 +24,8 @@ public class FragmentHome extends Fragment implements ActionBar.TabListener {
     ViewPager mViewPager;
     private ActionBar actionBar;
     private TabsFragmentPagerAdapter tabsAdapter;
-    private String[] days = new String[]{"Features", "Favorites", "More Events"};
+    private String[] days;
+
 
 
 
@@ -43,6 +44,7 @@ public class FragmentHome extends Fragment implements ActionBar.TabListener {
         tabsAdapter = new TabsFragmentPagerAdapter(
                 getChildFragmentManager());
 
+        days = getResources().getStringArray(R.array.tabs_home);
         mViewPager = (ViewPager) v.findViewById(R.id.viewPager);
         mViewPager.setAdapter(tabsAdapter);
         actionBar = getActivity().getActionBar();

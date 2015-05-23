@@ -5,9 +5,11 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Message;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Locale;
+
 import android.os.Handler;
 
 
@@ -48,6 +53,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     TextView txtSign;
     EditText etUserName, etPassword;
     Button btnLogin;
+    ImageButton btnTurkish,btnEnglish;
     String userNameforLogin, passwordforLogin;
     CheckBox cbRememberMe;
     /*
@@ -58,6 +64,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     String strUserIDOpening;
     String line = null;
     int code;
+    String strLocale ="";
     //For RememberMe
     public static final String PREFS_NAME = "MyPrefsFile";
     private static final String PREF_USERNAME = "username";
@@ -65,32 +72,55 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     private static final String PREF_USERID = "user_id";
 
 
-    private Dialog dialog;
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        if(pref.getString("locale", null)!= null)
+        strLocale = pref.getString("locale", null);
+        Locale local = new Locale(strLocale);
+        Locale.setDefault(local);
+        Configuration config = new Configuration();
+        config.locale = local;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+/*        finish();//mevcut acivity i bitir.
+        startActivity(getIntent());//activity i baştan yükle*/
         setContentView(R.layout.activity_activity_opening);
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+        }
         initUI();
     }
     private void initUI() {
-         /*
-         Initialize Xml Components
-         */
+
+        SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        /*strLocale = pref.getString("locale", null);
+        Locale local = new Locale(strLocale);
+        Locale.setDefault(local);
+        Configuration config = new Configuration();
+        config.locale = local;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        finish();//mevcut acivity i bitir.
+        startActivity(getIntent());//activity i baştan yükle
+*/
         txtSign = (TextView) findViewById(R.id.txtSign_Opening);
         txtSign.setOnClickListener(this);
         etUserName = (EditText) findViewById(R.id.edtEmail_Opening);
         etPassword = (EditText) findViewById(R.id.edtPassword_Opening);
         btnLogin = (Button) findViewById(R.id.btnLogin_Opening);
         btnLogin.setOnClickListener(this);
+        btnTurkish = (ImageButton)findViewById(R.id.turkish_lang_Opening);
+        btnEnglish = (ImageButton)findViewById(R.id.english_lang_Opening);
+        btnTurkish.setOnClickListener(this);
+        btnEnglish.setOnClickListener(this);
         cbRememberMe = (CheckBox) findViewById(R.id.check_Remember_Me_Opening);
         cbRememberMe.setOnClickListener(this);
         /*
          Save Remember User or Not
          */
-        SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String username = pref.getString(PREF_USERNAME, null);
         String password = pref.getString(PREF_PASSWORD, null);
         boolean b = pref.getBoolean("remembers", false);
@@ -102,7 +132,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-        dialog = MyDialog.displayProgress(this);
+
         switch (v.getId()) {
             case R.id.txtSign_Opening:
                 /*****************************
@@ -124,12 +154,37 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                     return;
                 }else
                 {
-                    new BackgroundTask().execute((Void) null);
                     loginControl();
                 }
                 break;
+            case R.id.english_lang_Opening:
 
-
+                        Locale locale = new Locale("en");  //locale en yaptık. Artık değişkenler values-en paketinden alınacak
+                        Locale.setDefault(locale);
+                        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString("locale", "en")
+                        .commit();
+                        Configuration config = new Configuration();
+                        config.locale = locale;
+                        getBaseContext().getResources().updateConfiguration(config,
+                                getBaseContext().getResources().getDisplayMetrics());
+                        finish();//mevcut acivity i bitir.
+                        startActivity(getIntent());//activity i baştan yükle
+                break;
+            case R.id.turkish_lang_Opening:
+                Locale locale2 = new Locale(""); //locale i default locale yani türkçe yaptık. Artık değişkenler values paketinden alınacak
+                Locale.setDefault(locale2);
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString("locale","")
+                        .commit();
+                Configuration config2 = new Configuration();
+                config2.locale = locale2;
+                getBaseContext().getResources().updateConfiguration(config2,
+                        getBaseContext().getResources().getDisplayMetrics());
+                finish();//mevcut acivity i bitir.
+                startActivity(getIntent());//activity i baştan yükle
             default:
                 break;
         }
@@ -187,7 +242,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                         Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getBaseContext(), R.string.login_succesfully,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
                 strUserIDOpening = getUserId(userNameforLogin);
                 getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
                         .edit()
@@ -212,7 +267,7 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
                             .putBoolean("remembers", false)
                             .commit();
                 }
-                babyControl();
+                new BackgroundTask().execute();
             }
         } catch (Exception e) {
             Log.e("LoginButtonFail 3", e.toString());
@@ -398,33 +453,39 @@ public class ActivityOpening extends Activity implements View.OnClickListener {
     }
 
     public class BackgroundTask extends AsyncTask<Void, Integer, Void> {
-
+        Dialog dialog = MyDialog.displayProgress(ActivityOpening.this);
+        //ProgressDialog pd = new ProgressDialog(ActivityOpening.this);
         @Override
         protected void onPreExecute() {
+            //AsyncTask'ın ilk çalışan metodu.
+            //Burada Progressdialogun mes set ediyoruz ve show diyerek gösteriyoruz
+/*            pd.setMessage("Loading ...");
+            pd.show();*/
+
+            dialog.show();
             super.onPreExecute();
-            dialog = MyDialog.displayProgress(ActivityOpening.this);
+
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            try {
-
-            }
-            catch (Exception e) {
-            }
+            babyControl();
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
+            //En son çalışan fonskiyonumuz Tüm işlemler
+            //bittikten sonra çalışıyor ve Progress dialogu kapatıyor
+            //pd.dismiss();
             dialog.dismiss();
+            super.onPostExecute(result);
         }
 
         @Override
         protected void onCancelled(Void result) {
             super.onCancelled(result);
-            dialog.dismiss();
+
         }
     }
 }

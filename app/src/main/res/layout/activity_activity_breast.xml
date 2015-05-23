@@ -111,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:layout_weight="25"
+                android:layout_weight="20"
                 android:text="@string/Bottle_Dialog_tv_total"/>
 
             <TextView
@@ -134,7 +134,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:layout_weight="25"
+                android:layout_weight="20"
                 android:text="@string/Bottle_Dialog_tv_paused"/>
 
             <TextView
@@ -156,7 +156,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:layout_weight="25"
+                android:layout_weight="20"
                 android:text="@string/Bottle_Dialog_tv_actual"/>
                 <TextView
                     android:id="@+id/tVActualBreastTimer"

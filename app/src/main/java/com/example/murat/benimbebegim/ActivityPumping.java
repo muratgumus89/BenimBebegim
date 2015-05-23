@@ -611,7 +611,7 @@ public class ActivityPumping extends FragmentActivity implements View.OnClickLis
             case R.id.btnPumpingActivity_Ounce:
                 final Dialog dialog1 = new Dialog(context);
                 dialog1.setContentView(R.layout.dialog_pumping_amaount);
-                dialog1.setTitle("Ounce amount");
+                dialog1.setTitle(getResources().getString(R.string.once_amount));
                 dialog1.setCancelable(true);
 
                 final Button btnOk, btnCancel;

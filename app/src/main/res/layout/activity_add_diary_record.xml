@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_marginLeft="5dp"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:drawableLeft="@android:drawable/ic_media_play"
                 android:text="@string/start"/>
             <Button
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_marginLeft="2dp"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:drawableLeft="@android:drawable/picture_frame"
                 android:text="@string/finish"/>
             <Button
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_marginLeft="2dp"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:drawableLeft="@android:drawable/ic_media_play"
                 android:text="@string/play"/>
             <Button
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:layout_marginLeft="2dp"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:drawableLeft="@android:drawable/picture_frame"
                 android:text="@string/stop"/>
         </LinearLayout>

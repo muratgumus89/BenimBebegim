@@ -22,7 +22,7 @@ public class TabsFragmentPagerAdapterForHistory extends FragmentPagerAdapter {
  public Fragment getItem(int index) {
  // TODO Auto-generated method stub
  if(index == 0)
- return new ActivityEarlier();
+ return new ActivityToday();
  if(index == 1)
  return new ActivityToday();
  if(index == 2)

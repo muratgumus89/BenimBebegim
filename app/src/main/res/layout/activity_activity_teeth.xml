@@ -49,7 +49,7 @@
             android:src="@drawable/teeth_activity_chart"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_height="300dp" />
+            android:layout_height="275dp" />
 
         <Spinner
             android:id="@+id/spnr_TeethActivity_TeethChart"

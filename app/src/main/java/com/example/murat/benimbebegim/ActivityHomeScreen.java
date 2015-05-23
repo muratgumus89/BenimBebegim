@@ -91,7 +91,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
-        Log.d("Spinner","Çok yaşa Spin6");
+
         super.onCreate( savedInstanceState );
         setContentView(R.layout.activity_home_screen);
 
@@ -101,6 +101,8 @@ public class ActivityHomeScreen extends FragmentActivity implements
         user_id = pref.getString("user_id", null);
         baby_id = pref.getString("baby_id", null);
         isSpinner=pref.getBoolean("isSpinner",false);
+        Log.d("ActivityHomeScreenBaby",baby_id);
+
         if(isSpinner==false){
             getBabiesNames();
             isSpinner=true;
@@ -170,8 +172,6 @@ public class ActivityHomeScreen extends FragmentActivity implements
         }
         this.menu = menu;
         return  true;
-
-
     }
     private void addDrawerItems() {
         // Navigationdaki Drawer için listview adapteri
@@ -305,6 +305,21 @@ public class ActivityHomeScreen extends FragmentActivity implements
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+            switch (item.getItemId()) {
+                case R.id.logout:
+                    getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                            .edit()
+                            .putString("user_id",null)
+                            .putString("password",null)
+                            .putBoolean("remembers",false)
+                            .commit();
+                    Intent intent = new Intent(getApplicationContext(), ActivityOpening.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("EXIT", true);
+                    startActivity(intent);
+                    return true;
+                default:
+            }
         return super.onOptionsItemSelected(item);
     }
 
@@ -459,7 +474,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
             }
             is.close();
             result = sb.toString();
-            Log.e("Babyresult", result);
+            Log.e("Baby-Id Home Screen", result);
         } catch (Exception e) {
             Log.e("BabyFail 2", e.toString());
         }

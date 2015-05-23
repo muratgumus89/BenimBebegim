@@ -25,7 +25,7 @@ public class FragmentHistory extends Fragment implements ActionBar.TabListener {
     ViewPager mViewPager;
     private ActionBar actionBar;
     private TabsFragmentPagerAdapterForHistory tabsAdapter;
-    private String[] days = new String[]{"Features", "Favorites", "More Events","Earlier", "Today", "Category"};
+    private String[] days;
 
 
 
@@ -44,6 +44,7 @@ public class FragmentHistory extends Fragment implements ActionBar.TabListener {
         tabsAdapter = new TabsFragmentPagerAdapterForHistory(
                 getChildFragmentManager());
 
+        days = getResources().getStringArray(R.array.tabs);
         mViewPager = (ViewPager) v.findViewById(R.id.viewPager);
         mViewPager.setAdapter(tabsAdapter);
         actionBar = getActivity().getActionBar();
