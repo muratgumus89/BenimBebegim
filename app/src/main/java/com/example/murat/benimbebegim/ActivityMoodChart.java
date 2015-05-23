@@ -1,6 +1,7 @@
 package com.example.murat.benimbebegim;
 
 import android.graphics.Color;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class ActivityMoodChart extends ActionBarActivity implements OnChartValueSelectedListener {
+public class ActivityMoodChart extends FragmentActivity implements OnChartValueSelectedListener {
 
     private PieChart mChart;
 
@@ -115,9 +116,9 @@ public class ActivityMoodChart extends ActionBarActivity implements OnChartValue
         xVals.add("Angry");
         xVals.add("Grumpy");
         xVals.add("Sad");
-        xVals.add("Sad");
-        xVals.add("Sad");
-        xVals.add("Sad");
+        xVals.add("Crying");
+        xVals.add("Playfull");
+        xVals.add("Bashfull");
 
         PieDataSet dataSet = new PieDataSet(yVals1, "Baby Moods");
         dataSet.setSliceSpace(3f);
