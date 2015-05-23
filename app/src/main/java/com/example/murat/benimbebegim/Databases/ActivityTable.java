@@ -526,4 +526,30 @@ public class ActivityTable extends SQLiteOpenHelper{
         return moodlist;
     }
 
+    public ArrayList<HashMap<String,String>> getBottleChartInfo(String a_id, String date){ /**Solid Information gathers here*/
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select bottle.[amount], bottle.[timer], activitiy.[b_id] " +
+                "from activitiy, bottle " +
+                "where activitiy.[a_type] = 'Bottle' " +
+                "and activitiy.[a_id] = bottle.[a_id] " +
+                "and activitiy.[select_date] like '%" + date.substring(2) + "' and activitiy.[b_id] = '" + a_id + "'";
+
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
+
+        Log.i("coloumn count", String.valueOf(cursor.getColumnCount()));
+        Log.i("row Count", String.valueOf(cursor.getCount()));
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for (int i = 0; i < cursor.getColumnCount(); i++) {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+                moodlist.add(map);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return moodlist;
+    }
+
 }

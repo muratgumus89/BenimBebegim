@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.murat.benimbebegim.Databases.ActivityTable;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -20,6 +21,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Highlight;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class ActivityBottleChart extends FragmentActivity implements OnChartValueSelectedListener {
@@ -52,7 +54,7 @@ public class ActivityBottleChart extends FragmentActivity implements OnChartValu
         // set an alternative background color
         mChart.setBackgroundColor(Color.LTGRAY);
         // add data
-        setData(20, 30);
+        setData(12, 30);
 
         mChart.animateX(2500);
 
@@ -123,6 +125,23 @@ public class ActivityBottleChart extends FragmentActivity implements OnChartValu
         SharedPreferences pref = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
 
         String[] mMonths = new String[] {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"};
+        ArrayList<HashMap<String, String>> Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Okt, Nov, Dec;
+        ActivityTable a_db = new ActivityTable(getApplicationContext());
+
+        Jan = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/01/2015");
+        Feb = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/02/2015");
+        Mar = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/03/2015");
+        Apr = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/04/2015");
+        May = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/05/2015");
+        Jun = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/06/2015");
+        Jul = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/07/2015");
+        Aug = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/08/2015");
+        Sep = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/09/2015");
+        Okt = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/10/2015");
+        Nov = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/11/2015");
+        Dec = a_db.getBottleChartInfo(pref.getString("baby_id", null), "01/12/2015");
+
+
 
         ArrayList<String> xVals = new ArrayList<String>();
         for (int i = 0; i < count; i++) {
@@ -131,18 +150,68 @@ public class ActivityBottleChart extends FragmentActivity implements OnChartValu
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
-        yVals1.add(new Entry(100, 0));
-        yVals1.add(new Entry(200, 1));
-        yVals1.add(new Entry(124, 2));
-        yVals1.add(new Entry(213, 3));
-        yVals1.add(new Entry(543, 4));
-        yVals1.add(new Entry(123, 5));
-        yVals1.add(new Entry(234, 6));
-        yVals1.add(new Entry(321, 7));
-        yVals1.add(new Entry(414, 8));
-        yVals1.add(new Entry(222, 9));
-        yVals1.add(new Entry(155, 10));
-        yVals1.add(new Entry(190, 11));
+        /**************************************************************************/
+        if(Jan.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Jan.get(0).get("[SUM](solid.[gram])")), 0));
+        }else{
+            yVals1.add(new Entry(0, 0));
+        }
+        if(Feb.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Feb.get(0).get("[SUM](solid.[gram])")), 1));
+        }else {
+            yVals1.add(new Entry(0,1));
+        }
+        if(Mar.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Mar.get(0).get("[SUM](solid.[gram])")), 2));
+        }else {
+            yVals1.add(new Entry(0,2));
+        }
+        if(Apr.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Apr.get(0).get("[SUM](solid.[gram])")), 3));
+        }else {
+            yVals1.add(new Entry(0,3));
+        }
+        if(May.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(May.get(0).get("[SUM](solid.[gram])")), 4));
+        }else {
+            yVals1.add(new Entry(0,4));
+        }
+        if(Jun.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Jun.get(0).get("[SUM](solid.[gram])")), 5));
+        }else {
+            yVals1.add(new Entry(0,5));
+        }
+        if(Jul.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Jul.get(0).get("[SUM](solid.[gram])")), 6));
+        }else {
+            yVals1.add(new Entry(0,6));
+        }
+        if(Aug.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Aug.get(0).get("[SUM](solid.[gram])")), 7));
+        }else {
+            yVals1.add(new Entry(0,7));
+        }
+        if(Sep.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Sep.get(0).get("[SUM](solid.[gram])")), 8));
+        }else {
+            yVals1.add(new Entry(0,8));
+        }
+        if(Okt.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Okt.get(0).get("[SUM](solid.[gram])")), 9));
+        }else {
+            yVals1.add(new Entry(0,9));
+        }
+        if(Nov.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Nov.get(0).get("[SUM](solid.[gram])")), 10));
+        }else {
+            yVals1.add(new Entry(0,10));
+        }
+        if(Dec.get(0).get("[SUM](solid.[gram])") != null){
+            yVals1.add(new Entry(Integer.valueOf(Dec.get(0).get("[SUM](solid.[gram])")), 11));
+        }else {
+            yVals1.add(new Entry(0,11));
+        }
+        /***************************************************************************/
 
         // create a dataset and give it a type
         LineDataSet set1 = new LineDataSet(yVals1, "Amount");
