@@ -68,7 +68,7 @@ public class ActivityFavorites extends Fragment {
 
     String classes[] = {"ActivityMoodChart",
             "ActivitySolidChart",
-            "ActivityBottle",
+            "ActivityBottleChart",
             "ActivityBreast",
             "ActivitySleep",
             "ActivityDiaper",

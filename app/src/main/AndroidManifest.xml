@@ -161,6 +161,10 @@
             android:name=".ActivitySolidChart"
             android:label="@string/title_activity_solid_activity_chart" >
         </activity>
+        <activity
+            android:name=".ActivityBottleChart"
+            android:label="@string/title_activity_activity_bottle_chart" >
+        </activity>
     </application>
 
 </manifest>
