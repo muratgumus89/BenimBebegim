@@ -425,7 +425,7 @@ public class ActivityTable extends SQLiteOpenHelper{
     }
     public ArrayList<HashMap<String, String>> getSpesificActivityRecord(String a_id){
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + ActivityTable.ACTIVITY_TABLE + " WHERE a_id="+ a_id;
+        String selectQuery = "SELECT * FROM " + ACTIVITY_TABLE + " WHERE a_id="+ a_id;
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
 
@@ -462,6 +462,7 @@ public class ActivityTable extends SQLiteOpenHelper{
         db.close();
         return moodlist;
     }
+
     public void updateRecord(String a_type, String baby_id,String user_id,String select_date,
                              String select_time,String save_time,String save_date,String note,int id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -473,12 +474,12 @@ public class ActivityTable extends SQLiteOpenHelper{
         values.put(SELECT_DATE, select_date);
         values.put(SELECT_TIME, select_time);
         values.put(SAVE_DATE,save_date);
-        values.put(SAVE_TIME,save_time);
-        values.put(NOTE,note);
+        values.put(SAVE_TIME, save_time);
+        values.put(NOTE, note);
 
         // updating row
         db.update(ACTIVITY_TABLE, values, ACTIVITY_ID + " = ?",
-                new String[] { String.valueOf(id) });
+                new String[]{String.valueOf(id)});
     }
 
     public int getRowCount() {
@@ -497,6 +498,32 @@ public class ActivityTable extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(ACTIVITY_TABLE, null, null);
         db.close();
+    }
+
+    public ArrayList<HashMap<String,String>> getSolidChartInfoByMonths(String a_id, String dateFrom, String dateEnd){ /**Solid Information gathers here*/
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select [SUM](solid.[gram]), solid.[solid_id] " +
+                "from solid, activitiy " +
+                "where activitiy.[a_id] = solid.[a_id] " +
+                "and activitiy.[b_id] = '" + a_id + "'" +
+                "and activitiy.[select_date] like '%" + dateFrom.substring(2) + "'";
+
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
+
+        Log.i("coloumn count", String.valueOf(cursor.getColumnCount()));
+        Log.i("row Count", String.valueOf(cursor.getCount()));
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for (int i = 0; i < cursor.getColumnCount(); i++) {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+                moodlist.add(map);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return moodlist;
     }
 
 }

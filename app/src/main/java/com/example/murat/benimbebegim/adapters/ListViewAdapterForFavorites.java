@@ -51,14 +51,6 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 
-		String classes[] = {"ActivityMood",
-				"ActivitySolid",
-				"ActivityBottle",
-				"ActivityBreast",
-				"ActivitySleep",
-				"ActivityDiaper",
-				"ActivityPumping"};
-
 		// Declare Variables
 		TextView txtfavName;
         TextView txtTime;
@@ -92,7 +84,7 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
             txtTime.setText(time[position]);
             txtMood.setText(note[position]);
             txtClick.setText(ago[position]);
-			if (!(position == 0 || position == 1 || position == 3 || position == 4)) {
+			if (!(position == 0 || position == 1 || position == 2 )) {
 				chartIcon.setVisibility(View.INVISIBLE);
 			}
 		}
