@@ -93,7 +93,7 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
             txtMood.setText(note[position]);
             txtClick.setText(ago[position]);
 			if (!(position == 0 || position == 1 || position == 3 || position == 4)) {
-				chartIcon.setVisibility(View.GONE);
+				chartIcon.setVisibility(View.INVISIBLE);
 			}
 		}
 		return itemView;

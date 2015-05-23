@@ -152,6 +152,10 @@
             android:name=".model.EditDiary"
             android:label="Edit Diary" >
         </activity>
+        <activity
+            android:name=".ActivityMoodChart"
+            android:label="MoodChart">
+        </activity>
     </application>
 
 </manifest>
