@@ -3,14 +3,12 @@ package com.example.murat.benimbebegim;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -58,7 +56,6 @@ public class ActivityFavorites extends Fragment {
     String diaper_aid[] = new String[0];
     String pumping_aid[]= new String[0];
     String mood_note[]  = new String[0];
-    ImageView iv;
     public static final String PREFS_NAME = "MyPrefsFile";
     String baby_id;
     int mood_id[];
@@ -66,20 +63,13 @@ public class ActivityFavorites extends Fragment {
     String bottle_type,bottle_amount,bottle_timer,breast_amount,sleep_duration,diaper_type,pumping_amount,pumping_duration;
     private static String a;
 
-    String classes[] = {"ActivityMoodChart",
-            "ActivitySolidChart",
-            "ActivityBottleChart",
+    String classes[] = {"ActivityMood",
+            "ActivitySolid",
+            "ActivityBottle",
             "ActivityBreast",
             "ActivitySleep",
             "ActivityDiaper",
             "ActivityPumping"};
-    String chartClasses[] = {"ActivityMoodChart",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""};
 
     LayoutInflater inf;
     ViewGroup cntr;
@@ -97,6 +87,7 @@ public class ActivityFavorites extends Fragment {
 
         // Locate the ListView in fragmenttab1.xml
         list = (ListView) rootView.findViewById(R.id.listFavorites);
+
         //Get babyid from SP
         SharedPreferences pref;
         pref = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -109,13 +100,13 @@ public class ActivityFavorites extends Fragment {
     private void init(){
         getMoodListFromDatabase(baby_id);
 
-
         fillToListViewAdapter();
         // Binds the Adapter to the ListView
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 try {
                     Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
                     Intent intent = new Intent(getActivity(), ourClass);
@@ -127,6 +118,7 @@ public class ActivityFavorites extends Fragment {
                 }
             }
         });
+
     }
 
     private void fillToListViewAdapter() {

@@ -23,7 +23,7 @@ public class ActivityFeatures extends Fragment implements View.OnClickListener {
         // TODO Auto-generated method stub
         View view = inflater.inflate(R.layout.activity_features, container, false);
         txtTheme = (TextView) view.findViewById(R.id.txtTheme_Home_Screen);
-        txtTheme.setOnClickListener(this);
+        //txtTheme.setOnClickListener(this);
         txtCalendar = (TextView) view.findViewById(R.id.txtCalendar_Home_Screen);
         txtCalendar.setOnClickListener(this);
         txtReminder = (TextView) view.findViewById(R.id.txtReminder_Home_Screen);

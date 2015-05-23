@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="time_option_arr">
+   <!-- <string-array name="time_option_arr">
         <item>Actual</item>
         <item>Remaining</item>
     </string-array>
@@ -10,7 +10,7 @@
         <item>Daily</item>
         <item>Weekly</item>
         <item>Monthly</item>
-        <!--item>Yearly</item-->
+        &lt;!&ndash;item>Yearly</item&ndash;&gt;
     </string-array>
 
     <string-array name="val_arr">
@@ -53,7 +53,7 @@
         <item>29th</item>
         <item>30th</item>
         <item>31st</item>
-        <!--item>Last</item-->
+        &lt;!&ndash;item>Last</item&ndash;&gt;
     </string-array>
 
     <string-array name="spinner2_arr">
@@ -93,6 +93,6 @@
         <item>d MMM yyyy</item>
         <item>dd-MM-yyyy</item>
         <item>dd/MM/yy</item>
-    </string-array>
+    </string-array>-->
 
 </resources>

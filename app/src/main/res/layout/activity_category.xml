@@ -38,6 +38,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="150"
         >
 
         <TextView
@@ -46,16 +47,16 @@
             android:layout_marginLeft="30dp"
             android:text="@string/mood"
             android:textSize="18dp"
+            android:layout_weight="50"
             android:textColor="@color/white"
             android:id="@+id/txtMood" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="75dp"
-            android:layout_marginRight="45dp"
             android:text="@string/solid"
             android:textSize="18dp"
+            android:layout_weight="50"
             android:textColor="@color/white"
             android:id="@+id/txtSolid" />
 
@@ -63,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_weight="50"
             android:text="@string/bottle"
             android:textSize="18dp"
             android:textColor="@color/white"
@@ -104,6 +105,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="150"
         >
 
         <TextView
@@ -112,14 +114,14 @@
             android:layout_marginLeft="30dp"
             android:text="@string/breast"
             android:textSize="18dp"
+            android:layout_weight="50"
             android:textColor="@color/white"
             android:id="@+id/txtBreast" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="40dp"
+            android:layout_weight="50"
             android:text="@string/sleep"
             android:textSize="18dp"
             android:textColor="@color/white"
@@ -129,7 +131,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="29dp"
+            android:layout_weight="50"
             android:text="@string/diaper"
             android:textSize="18dp"
             android:textColor="@color/white"
@@ -170,6 +172,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="150"
         >
 
         <TextView
@@ -178,26 +181,25 @@
             android:layout_marginLeft="30dp"
             android:text="@string/pumping"
             android:textSize="18dp"
+            android:layout_weight="20"
             android:textColor="@color/white"
             android:id="@+id/txtPumping" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="40dp"
             android:text="@string/health"
             android:textSize="18dp"
             android:textColor="@color/white"
+            android:layout_weight="60"
             android:id="@+id/txtHealth"/>
-        S
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:text="@string/medicine"
             android:textSize="18dp"
+            android:layout_weight="50"
             android:textColor="@color/white"
             android:id="@+id/txtMedicine" />
 
@@ -237,13 +239,15 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="150"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="30dp"
             android:text="@string/vaccination"
+            android:layout_weight="55"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:id="@+id/txtVaccination" />
@@ -251,8 +255,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="40dp"
+            android:layout_weight="45"
             android:text="@string/hygiene"
             android:textSize="18dp"
             android:textColor="@color/white"
@@ -262,11 +265,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_weight="50"
             android:text="@string/teeth"
             android:textSize="18dp"
             android:textColor="@color/white"
             android:id="@+id/txtTeeth" />
-
     </LinearLayout>
 </LinearLayout>

@@ -2,111 +2,111 @@
 <resources>
 
     <string name="app_name">Baby Sitter</string>
-    <string name="action_settings">Settings</string>
-    <string name="select_lang">Please Select Language!</string>
-    <string name="welcome">Welcome!</string>
-    <string name="email">Email Address</string>
-    <string name="password">Password</string>
-    <string name="password_conf">Confirm Password</string>
-    <string name="user">User Name</string>
-    <string name="name">Name</string>
-    <string name="surname">Surname</string>
-    <string name="login">Login</string>
-    <string name="save">Register</string>
-    <string name="turkish">Türkish</string>
-    <string name="english">English</string>
-    <string name="create">Create Account</string>
-    <string name="cancel">Cancel</string>
-    <string name="delete">Delete</string>
-    <string name="gender">Gender : </string>
-    <string name="txtTitleBabyCreate">Create Baby Profile</string>
-    <string name="txtTitleBabyEdit">Edit Baby Profile</string>
-    <string name="ok">OK</string>
-    <string name="theme">Themes</string>
-    <string name="settings">Settings</string>
-    <string name="help">Help</string>
-    <string name="blue">Blue</string>
-    <string name="green">Green</string>
-    <string name="yellow">Yellow</string>
-    <string name="black">Black</string>
-    <string name="white">White</string>
-    <string name="gray">Gray</string>
-    <string name="orange">Orange</string>
-    <string name="pink">Pink</string>
-    <string name="purple">Purple</string>
-    <string name="reminder">Reminders</string>
-    <string name="photos">Photos</string>
-    <string name="calendar">Calendar</string>
-    <string name="signup">Don\'t have account? Sign Up</string>
-    <string name="button_label">OK</string>
-    <string name="pref_name">Pick a color</string>
-    <string name="Remember_Me">Remember Me</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="select_lang">Lütfen Dil Seçiniz!</string>
+    <string name="welcome">Hoşgeldiniz!</string>
+    <string name="email">E-Posta Adresi</string>
+    <string name="password">Şifre</string>
+    <string name="password_conf">Şifreyi Onayla</string>
+    <string name="user">Kullanıcı Adı</string>
+    <string name="name">isim</string>
+    <string name="surname">Soyisim</string>
+    <string name="login">Giriş</string>
+    <string name="save">Kayıt</string>
+    <string name="turkish">Türkçe</string>
+    <string name="english">İngilizce</string>
+    <string name="create">Hesap Oluştur</string>
+    <string name="cancel">İptal</string>
+    <string name="delete">Sil</string>
+    <string name="gender">Cinsiyet : </string>
+    <string name="txtTitleBabyCreate">Yeni Bebek</string>
+    <string name="txtTitleBabyEdit">Bebek Güncelle</string>
+    <string name="ok">Tamam</string>
+    <string name="theme">Tema</string>
+    <string name="settings">Ayarlar</string>
+    <string name="help">Yardım</string>
+    <string name="blue">Mavi</string>
+    <string name="green">Yeşil</string>
+    <string name="yellow">Sarı</string>
+    <string name="black">Siyah</string>
+    <string name="white">Beyaz</string>
+    <string name="gray">Gri</string>
+    <string name="orange">Turuncu</string>
+    <string name="pink">Pembe</string>
+    <string name="purple">Mor</string>
+    <string name="reminder">Hatırlatıcılar</string>
+    <string name="photos">Fotoğraflar</string>
+    <string name="calendar">Takvim</string>
+    <string name="signup">Hesabınız Yok mu?  Kayıt ol</string>
+    <string name="button_label">TAMAM</string>
+    <string name="pref_name">Renk Seç</string>
+    <string name="Remember_Me">Beni Hatırla</string>
     <string name="pref_summary">DialogPreference with Color Picker.</string>
-    <string name="selecttheme">SELECT THEME</string>
-    <string name="Button_Date">BUTTON DATE</string>
-    <string name="Button_Time">BUTTON TIME</string>
+    <string name="selecttheme">TEMA SEÇ</string>
+    <string name="Button_Date">TARİH BUTONU</string>
+    <string name="Button_Time">SAAT BUTONU</string>
     //For Hİnts
-    <string name="hint_user_name">User Name</string>
-    <string name="hint_name">Name</string>
-    <string name="hint_surname">Surname</string>
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_user_name">Kullanıcı Adı</string>
+    <string name="hint_name">İsim</string>
+    <string name="hint_surname">Soyisim</string>
+    <string name="hint_email">E-Posta</string>
+    <string name="hint_password">Şifre</string>
+    <string name="hint_confirm_password">Şifre Onayla</string>
     //For Toast Messages
-    <string name="valid_User_name">Valid UserName Required!!!</string>
-    <string name="valid_Name">Valid Name Required!!!</string>
-    <string name="valid_Surname">Valid Surname Required!!!</string>
-    <string name="valid_Email">Valid Email Required!!!</string>
-    <string name="valid_Password">Valid Password Required!!!</string>
-    <string name="valid_Confirm_Password">Valid Confirm Required!!!</string>
-    <string name="valid_Gender">Valid Gender Information Required!!!</string>
-    <string name="wrong_User_Name">Wrong UserName/Email Adress!!!</string>
-    <string name="wrong_Password">Wrong Password!!!</string>
-    <string name="wrong_Email_Format">Wrong Email Format!!!</string>
-    <string name="login_succesfully">Login Successfully</string>
-    <string name="create_succesfully">Account Created Successfully</string>
-    <string name="not_Match_Password">Password Doesnt Match!!!</string>
-    <string name="exist_User_Name">is Existed UserName!!!</string>
-    <string name="exist_Email">Existed Email Adress!!!</string>
-    <string name="sorry">Sorry, Try Again!!!</string>
-    <string name="have_a_baby">is Already Belongs This User!!!</string>
-    <string name="update_account">Updated</string>
-    <string name="delete_account">Account Deleted</string>
+    <string name="valid_User_name">Kullacını Adı Boş Bırakılamaz!!!</string>
+    <string name="valid_Name">İsim Alanı Boş Bırakılamaz!!!</string>
+    <string name="valid_Surname">Soyisim Alanı Boş Bırakılamaz!!!</string>
+    <string name="valid_Email">E-Posta Adresi Boş Bırakılamaz!!!</string>
+    <string name="valid_Password">Şifre Alanı Boş Bırakılamaz!!!</string>
+    <string name="valid_Confirm_Password">Şifre Onay Alanı Boş Bırakılamaz!!!</string>
+    <string name="valid_Gender">Cinsiyet Bilgisi Boş Bırakılamaz!!!</string>
+    <string name="wrong_User_Name">Yanlış Kullanıcı Adı/E-Posta Adresi!!!</string>
+    <string name="wrong_Password">Yanlış Şifre!!!</string>
+    <string name="wrong_Email_Format">Geçersiz E-Posta Biçimi!!!</string>
+    <string name="login_succesfully">Giriş Yapıldı</string>
+    <string name="create_succesfully">Hesap Oluşturuldu</string>
+    <string name="not_Match_Password">Şifreler Eşleşmiyor!!!</string>
+    <string name="exist_User_Name">isimli kullanıcı mevcuttur!!!</string>
+    <string name="exist_Email">adresi mevcuttur!!!</string>
+    <string name="sorry">Üzgünüm, Yeniden Deneyin!!!</string>
+    <string name="have_a_baby">isimli bebek bu kullanıcı için MEVCUT!!!</string>
+    <string name="update_account">Kayıt Güncellendi</string>
+    <string name="delete_account">Kayıt Silindi</string>
     /**
     ****  FOR REMİND ME
     ***/
-    <string name="message">Message</string>
-    <string name="play_ringtone">Play Ringtone</string>
-    <string name="once">Once</string>
-    <string name="repeat">Repeat</string>
-    <string name="from_date">From Date:    </string>
-    <string name="to_date">To Date:    </string>
-    <string name="at_time">At Time:    </string>
-    <string name="rule">Rule</string>
-    <string name="interval">Interval</string>
+    <string name="message">Mesaj</string>
+    <string name="play_ringtone">Zilsesi</string>
+    <string name="once">Bir Kere</string>
+    <string name="repeat">Tekrarla</string>
+    <string name="from_date">Başlangıç:    </string>
+    <string name="to_date">Bitiş:    </string>
+    <string name="at_time">Saat:    </string>
+    <string name="rule">Zamanla</string>
+    <string name="interval">Gecikme</string>
     <string name="of">of</string>
-    <string name="mins">min(s)    </string>
-    <string name="hours">hour(s)    </string>
-    <string name="days">day(s)    </string>
-    <string name="mounths">mounth(s)    </string>
-    <string name="years">year(s)    </string>
-    <string name="no_data">No Data</string>
-    <string name="display_time">Display Time</string>
-    <string name="display_settings">Display Settings</string>
-    <string name="date_range">Date Range</string>
-    <string name="date_format">Date Format</string>
-    <string name="time_format">Time Format</string>
-    <string name="vibrate">Vibrate</string>
-    <string name="vibrate_on">Vibrate On Notification</string>
-    <string name="set_ringtone">Set Ringtone</string>
-    <string name="notification_Setting">Notification Settings</string>
-    <string name="use_hour">Use 24-hour format</string>
-    <string name="daily">Daily</string>
-    <string name="actual">Actual</string>
-    <string name="cancel_capture">User Cancelled Image Capture</string>
-    <string name="cancel_select">User Cancelled Image Selecting</string>
-    <string name="add_baby">Add Another Baby</string>
-    <string name="edit_baby">Edit Baby Info</string>
+    <string name="mins">dakika(s)    </string>
+    <string name="hours">saat(s)    </string>
+    <string name="days">gün(s)    </string>
+    <string name="mounths">ay(s)    </string>
+    <string name="years">yıl(s)    </string>
+    <string name="no_data">Kayıt Yok</string>
+    <string name="display_time">Saati Göster</string>
+    <string name="display_settings">Ayarları Göster</string>
+    <string name="date_range">Tarih Aralığı</string>
+    <string name="date_format">Tarih Biçimi</string>
+    <string name="time_format">Zaman Biçimi</string>
+    <string name="vibrate">Titreşim</string>
+    <string name="vibrate_on">Bildirimle Titret</string>
+    <string name="set_ringtone">Zil Sesi Ayarla</string>
+    <string name="notification_Setting">Bildirim Ayarları</string>
+    <string name="use_hour">24 saatlik biçim kullan</string>
+    <string name="daily">Günlük</string>
+    <string name="actual">Güncel</string>
+    <string name="cancel_capture">Resim Çekme İşlemi İptal Edildi</string>
+    <string name="cancel_select">Resim Seçme İşlemi İptal Edildi</string>
+    <string name="add_baby">Yeni Bebek Ekle</string>
+    <string name="edit_baby">Seçili Bebeğin Bilgilerini Düzenle</string>
 
     <style name="DefaultButtonText">
         <item name="android:layout_width">fill_parent</item>
@@ -121,190 +121,189 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
     </style>
-    <string name="ImageViewChoseFromGallery">Choose From Gallery</string>
-    <string name="ImageViewTakePicture">Take Picture</string>
-    <string name="ImageCancel">Cancel</string>
-    <string name="click_add">Click to Add Event...</string>
+
+    <string name="ImageViewChoseFromGallery">Galeriden Seç</string>
+    <string name="ImageViewTakePicture">Fotoğraf Çek</string>
+    <string name="ImageCancel">İptal</string>
+    <string name="click_add">Tıkla ve Kayıt Ekle...</string>
     //String Values For Favorites ListView
     <string-array name="Favorites">
-        <item>Mood</item>
-        <item>Solid</item>
-        <item>"Bottle</item>
-        <item>Breast</item>
-        <item>Sleep</item>
-        <item>Diaper</item>
-        <item>Pumping</item>
-    </string-array>
+    <item>Ruh Hali</item>
+    <item>Beslenme</item>
+    <item>Biberon</item>
+    <item>Emzirme</item>
+    <item>Uyku</item>
+    <item>Bez Değişim</item>
+    <item>Süt Sağma</item>
+</string-array>
     //String Values For MoreEvents ListView
     <string-array name="MoreEvents">
-        <item>Health</item>
-        <item>Medicine</item>
-        <item>Vaccination</item>
-        <item>Hygiene</item>
-        <item>Teeth</item>
+        <item>Sağlık</item>
+        <item>İlaç</item>
+        <item>Aşı</item>
+        <item>Temizlik</item>
+        <item>Diş</item>
     </string-array>
     <string-array name="menu">
-        <item >Home</item>
-        <item >History</item>
-        <item >Stats</item>
-        <item >Diary</item>
-        <item >Growth</item>
+        <item >AnaSayfa</item>
+        <item >Geçmiş</item>
+        <item >İstatistik</item>
+        <item >Günlük</item>
+        <item >Gelişim</item>
     </string-array>
-    <string name="mood">Mood</string>
-    <string name="solid">Solid</string>
-    <string name="bottle">Bottle</string>
-    <string name="breast">Breast</string>
-    <string name="sleep">Sleep</string>
-    <string name="diaper">Diaper</string>
-    <string name="pumping">Pumping</string>
-    <string name="medicine">Medicine</string>
-    <string name="health">Health</string>
-    <string name="vaccination">Vaccination</string>
-    <string name="hygiene">Hygiene</string>
-    <string name="teeth">Teeth</string>
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string name="title_activity_item_one">ItemOne</string>
-    <string name="title_section1">Features</string>
-    <string name="title_section2">Favorites</string>
-    <string name="title_section3">More Events</string>
-    <string name="edit">Edit</string>
-    <string name="delete_repeating">Delete repeating</string>
-    <string name="delete_all">Delete all</string>
-    <string name="title_activity_activity_mood">ActivityMood</string>
+    <string name="mood">Ruh Hali</string>
+    <string name="solid">Beslenme</string>
+    <string name="bottle">Biberon</string>
+    <string name="breast">Emzirme</string>
+    <string name="sleep">Uyku</string>
+    <string name="diaper">Bez Değişim</string>
+    <string name="pumping">Süt Sağma</string>
+    <string name="medicine">İlaç</string>
+    <string name="health">Sağlık</string>
+    <string name="vaccination">Aşı</string>
+    <string name="hygiene">Temizlik</string>
+    <string name="teeth">Diş</string>
+    <string name="drawer_open">Hızlı Menüyü Aç</string>
+    <string name="drawer_close">Hızlı Menüyü Kapat</string>
+    <string name="title_activity_item_one">Kayıt</string>
+    <string name="title_section1">Özellikler</string>
+    <string name="title_section2">Favoriler</string>
+    <string name="title_section3">Ekstra Olay</string>
+    <string name="edit">Düzenle</string>
+    <string name="delete_repeating">Tekrarlamayı Sil</string>
+    <string name="delete_all">Hepsini Sil</string>
+    <string name="title_activity_activity_mood">Ruh Hali</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_activity_solid">ActivitySolid</string>
-    <string name="title_activity_activity_bottle">ActivityBottle</string>
-    <string name="title_activity_activity_breast">ActivityBreast</string>
-    <string name="title_activity_activity_sleep">ActivitySleep</string>
-    <string name="title_activity_activity_diaper">ActivityDiaper</string>
-    <string name="title_activity_activity_pumping">ActivityPumping</string>
-    <string name="title_activity_activity_health">ActivityHealth</string>
-    <string name="title_activity_activity_medicine">ActivityMedicine</string>
-    <string name="title_activity_activity_vaccination">ActivityVaccination</string>
-    <string name="title_activity_activity_hygiene">ActivityHygiene</string>
-    <string name="title_activity_activity_teeth">ActivityTeeth</string>
-    <string name="title_activity_activity_other">ActivityOther</string>
+    <string name="title_activity_activity_solid">Beslenme</string>
+    <string name="title_activity_activity_bottle">Biberon</string>
+    <string name="title_activity_activity_breast">Emzirme</string>
+    <string name="title_activity_activity_sleep">Uyku</string>
+    <string name="title_activity_activity_diaper">Bez Değişim</string>
+    <string name="title_activity_activity_pumping">Süt Sağma</string>
+    <string name="title_activity_activity_health">Sağlık</string>
+    <string name="title_activity_activity_medicine">İlaç</string>
+    <string name="title_activity_activity_vaccination">Aşı</string>
+    <string name="title_activity_activity_hygiene">Temizlik</string>
+    <string name="title_activity_activity_teeth">Diş</string>
+    <string name="title_activity_activity_other">Diğer</string>
 
     <!--ActivitySleep Values goes in here-->
-    <string name="sleep_activity_finish_button">Finish</string>
-    <string name="sleep_activity_total_button">Total = </string>
-    <string name="sleep_activity_paused_button">Paused = </string>
-    <string name="sleep_activity_date_button">Date</string>
-    <string name="sleep_activity_time_button">Time</string>
-    <string name="sleep_activity_writesomething_button">Write something</string>
+    <string name="sleep_activity_finish_button">Bitir</string>
+    <string name="sleep_activity_total_button">Toplam = </string>
+    <string name="sleep_activity_paused_button">Duraklatılmış = </string>
+    <string name="sleep_activity_date_button">Tarih</string>
+    <string name="sleep_activity_time_button">Zaman</string>
+    <string name="sleep_activity_writesomething_button">Bir şeyler Yaz</string>
 
 
     <!--ActivityDiaper Values goes in here-->
-    <string name="Diaper_activity_date_button">Date</string>
-    <string name="Diaper_activity_time_button">Time</string>
-    <string name="Diaper_activity_cancel_button">Cancel</string>
-    <string name="Diaper_activity_save_button">save</string>
+    <string name="Diaper_activity_date_button">Tarih</string>
+    <string name="Diaper_activity_time_button">Zaman</string>
+    <string name="Diaper_activity_cancel_button">İptal</string>
+    <string name="Diaper_activity_save_button">Kaydet</string>
 
     <!--ActivityMoods Values goes in here-->
-    <string name="Moods_activity_date_button">Date</string>
-    <string name="Moods_activity_time_button">Time</string>
-    <string name="Moods_activity_cancel_button">Cancel</string>
-    <string name="Moods_activity_save_button">save</string>
+    <string name="Moods_activity_date_button">Tarih</string>
+    <string name="Moods_activity_time_button">Zaman</string>
+    <string name="Moods_activity_cancel_button">İptal</string>
+    <string name="Moods_activity_save_button">Kaydet</string>
 
     <!--ActivityOther Values goes in here-->
-    <string name="Other_activity_cancel_button">Cancel</string>
-    <string name="Other_activity_save_button">Save</string>
-    <string name="Other_activity_total_button">total</string>
-    <string name="Other_activity_paused_button">paused</string>
-    <string name="Other_activity_date_button">Date</string>
-    <string name="Other_activity_time_button">Time</string>
-    <string name="Other_activity_writesomething_button">Write something</string>
-    <string name="Other_activity_play_button">Play</string>
+    <string name="Other_activity_cancel_button">İptal</string>
+    <string name="Other_activity_save_button">Kaydet</string>
+    <string name="Other_activity_total_button">Toplam</string>
+    <string name="Other_activity_paused_button">Duraklatılmış</string>
+    <string name="Other_activity_date_button">Tarih</string>
+    <string name="Other_activity_time_button">Zaman</string>
+    <string name="Other_activity_writesomething_button">Bir şeyler yaz</string>
+    <string name="Other_activity_play_button">Oynat</string>
 
     <!--ActivitySolid Values goes in here-->
-    <string name="Solid_activity_date_button">Date</string>
-    <string name="Solid_activity_time_button">Time</string>
-    <string name="Solid_activity_cancel_button">Cancel</string>
-    <string name="Solid_activity_save_button">save</string>
-    <string name="Solid_activity_checkbox_cereal">Cereal</string>
-    <string name="Solid_activity_checkbox_meat">Meat</string>
-    <string name="Solid_activity_checkbox_pasta">Pasta</string>
-    <string name="Solid_activity_checkbox_fish">Fish</string>
-    <string name="Solid_activity_checkbox_bread">Bread</string>
-    <string name="Solid_activity_checkbox_fruit">Fruit</string>
-    <string name="Solid_activity_checkbox_vegetable">Vegetable</string>
-    <string name="Solid_activity_checkbox_dairy">Dairy</string>
-    <string name="Solid_activity_checkbox_eggs">Eggs</string>
-    <string name="Solid_activity_checkbox_other">Other</string>
+    <string name="Solid_activity_date_button">Tarih</string>
+    <string name="Solid_activity_time_button">Zaman</string>
+    <string name="Solid_activity_cancel_button">İptal</string>
+    <string name="Solid_activity_save_button">Kaydet</string>
+    <string name="Solid_activity_checkbox_cereal">Tahıl</string>
+    <string name="Solid_activity_checkbox_meat">Et</string>
+    <string name="Solid_activity_checkbox_pasta">Makarna</string>
+    <string name="Solid_activity_checkbox_fish">Balık</string>
+    <string name="Solid_activity_checkbox_bread">Ekmek</string>
+    <string name="Solid_activity_checkbox_fruit">Meyve</string>
+    <string name="Solid_activity_checkbox_vegetable">Sebze</string>
+    <string name="Solid_activity_checkbox_dairy">Süt Ürünleri</string>
+    <string name="Solid_activity_checkbox_eggs">Yumurta</string>
+    <string name="Solid_activity_checkbox_other">Diğer</string>
 
     <!--ActivityBottle Values goes in here-->
-    <string name="Bottle_activity_date_button">Date</string>
-    <string name="Bottle_activity_time_button">Time</string>
-    <string name="Bottle_activity_formula_button">Formula</string>
+    <string name="Bottle_activity_date_button">Tarih</string>
+    <string name="Bottle_activity_time_button">Zaman</string>
+    <string name="Bottle_activity_formula_button">Formül</string>
     <string name="Bottle_activity_amaount_button">0,00 ml</string>
-    <string name="Bottle_activity_meas_button">Meas</string>
-    <string name="Bottle_activity_writesth_button">Write something</string>
-    <string name="Bottle_activity_cancel_button">Cancel</string>
-    <string name="Bottle_activity_save_button">Save</string>
+    <string name="Bottle_activity_meas_button">Ölçü</string>
+    <string name="Bottle_activity_writesth_button">Bir şeyler yaz</string>
+    <string name="Bottle_activity_cancel_button">İptal</string>
+    <string name="Bottle_activity_save_button">Kaydet</string>
 
-    <string name="Bottle_Dialog_checkbox_formula">Formula</string>
-    <string name="Bottle_Dialog_checkbox_milk">Milk</string>
-    <string name="Bottle_Dialog_checkbox_water">Water</string>
-    <string name="Bottle_Dialog_checkbox_juice">Juice</string>
-    <string name="Bottle_Dialog_checkbox_breastmilk">BreastMilk</string>
-    <string name="Bottle_Dialog_checkbox_other">Other</string>
+    <string name="Bottle_Dialog_checkbox_formula">Formül</string>
+    <string name="Bottle_Dialog_checkbox_milk">Süt</string>
+    <string name="Bottle_Dialog_checkbox_water">Su</string>
+    <string name="Bottle_Dialog_checkbox_juice">Meyve Suyu</string>
+    <string name="Bottle_Dialog_checkbox_breastmilk">Anne Sütü</string>
+    <string name="Bottle_Dialog_checkbox_other">Diğer</string>
 
-    <string name="Bottle_Dialog_amount_cancel">Cancel</string>
-    <string name="Bottle_Dialog_amount_ok">Okay</string>
+    <string name="Bottle_Dialog_amount_cancel">İptal</string>
+    <string name="Bottle_Dialog_amount_ok">Tamam</string>
 
-    <string name="Bottle_Dialog_tv_total">Total: </string>
-    <string name="Bottle_Dialog_tv_paused">Paused: </string>
-    <string name="Bottle_Dialog_tv_actual">Actual
-        :</string>
+    <string name="Bottle_Dialog_tv_total">Toplam: </string>
+    <string name="Bottle_Dialog_tv_paused">Duraklatılmış: </string>
+    <string name="Bottle_Dialog_tv_actual">Güncel: </string>
 
 
     <!--ActivityBreast Values goes in here-->
-    <string name="Breast_activity_date_button">Date</string>
-    <string name="Breast_activity_time_button">Time</string>
-    <string name="Breast_activity_writesth_button">Write something</string>
-    <string name="Breast_activity_cancel_button">Cancel</string>
-    <string name="Breast_activity_save_button">Save</string>
+    <string name="Breast_activity_date_button">Tarih</string>
+    <string name="Breast_activity_time_button">Zaman</string>
+    <string name="Breast_activity_writesth_button">Bir şeyler yaz</string>
+    <string name="Breast_activity_cancel_button">İptal</string>
+    <string name="Breast_activity_save_button">Kaydet</string>
 
     <!--ActivitySleep Values goes in here-->
-    <string name="Sleep_activity_date_button">Date</string>
-    <string name="Sleep_activity_time_button">Time</string>
-    <string name="Sleep_activity_writesth_button">Write something</string>
-    <string name="Sleep_activity_cancel_button">Cancel</string>
-    <string name="Sleep_activity_save_button">Save</string>
+    <string name="Sleep_activity_date_button">Tarih</string>
+    <string name="Sleep_activity_time_button">Zaman</string>
+    <string name="Sleep_activity_writesth_button">Bir şeyler yaz</string>
+    <string name="Sleep_activity_cancel_button">İptal</string>
+    <string name="Sleep_activity_save_button">Kaydet</string>
 
     <!--ActivityHealth Values goes in here-->
     <string-array name="spinneritem_healthActivity">
-        <item>Diarrhea</item>
-        <item>Vomit</item>
-        <item>Pink eye</item>
-        <item>Fever</item>
-        <item>Wheeze</item>
-        <item>Stuffy nose</item>
-        <item>Other</item>
+        <item>İshal</item>
+        <item>Kusma</item>
+        <item>Göz Nezlesi</item>
+        <item>Ateş</item>
+        <item>Nefes Darlığı</item>
+        <item>Tıkalı Burun</item>
+        <item>Diğer</item>
     </string-array>
-    <string name="Health_activity_date_button">Date</string>
-    <string name="Health_activity_time_button">Time</string>
-    <string name="Health_activity_writesth_button">Write something</string>
-    <string name="Health_activity_cancel_button">Cancel</string>
-    <string name="Health_activity_save_button">Save</string>
+    <string name="Health_activity_date_button">Tarih</string>
+    <string name="Health_activity_time_button">Zaman</string>
+    <string name="Health_activity_writesth_button">Bir şeyler yaz</string>
+    <string name="Health_activity_cancel_button">İptal</string>
+    <string name="Health_activity_save_button">Kaydet</string>
 
     <!--ActivityMedicine Values goes in here-->
     <string-array name="spinneritem_MedicineActivity">
         <item>DHA</item>
-        <item>Gas relief</item>
-        <item>Gripe water</item>
-        <item>Iron</item>
-        <item>Ibubprofen</item>
-        <item>Reflux</item>
+        <item>Gaz Çıkarma</item>
+        <item>Sancı Suyu</item>
+        <item>Demir</item>
+        <item>Reflu</item>
         <item>Paracetemol</item>
-        <item>Teething tablets</item>
+        <item>Diş Tableti</item>
         <item>Vitamin D</item>
         <item>Vitamin B</item>
         <item>Vitamin B12</item>
-        <item>Allergy</item>
-        <item>Other</item>
+        <item>Alerji</item>
+        <item>Diğer</item>
     </string-array>
     <string-array name="spinnerUnit_MedicineActivity">
         <item>ml</item>
@@ -317,180 +316,287 @@
         <item>mg</item>
         <item>iu</item>
     </string-array>
-    <string name="Medicine_activity_date_button">Date</string>
-    <string name="Medicine_activity_time_button">Time</string>
-    <string name="Medicine_activity_writesth_button">Write something</string>
-    <string name="Medicine_activity_cancel_button">Cancel</string>
-    <string name="Medicine_activity_save_button">Save</string>
+    <string name="Medicine_activity_date_button">Tarih</string>
+    <string name="Medicine_activity_time_button">Zaman</string>
+    <string name="Medicine_activity_writesth_button">Bir şeyler yaz</string>
+    <string name="Medicine_activity_cancel_button">İptal</string>
+    <string name="Medicine_activity_save_button">Kaydet</string>
 
     <!--ActivityVaccination Values goes in here-->
     <string-array name="spinnerItem_VaccinationActivity">
         <item>BCG</item>
         <item>Dtab</item>
-        <item>Flu Vaccine</item>
+        <item>Grip Aşısı</item>
         <item>HepA</item>
         <item>HepB</item>
         <item>Hib</item>
         <item>HPV(girls only)</item>
         <item>PCV(Pneumo)</item>
-        <item>Polio(IPV)</item>
+        <item>Çocuk Felci(IPV)</item>
         <item>RV(Rotavirus)</item>
-        <item>Varicella</item>
-        <item>Other</item>
+        <item>Su Çiçeği</item>
+        <item>Diğer</item>
     </string-array>
-    <string name="Vaccination_activity_date_button">Date</string>
-    <string name="Vaccination_activity_time_button">Time</string>
-    <string name="Vaccination_activity_writesth_button">Write something</string>
-    <string name="Vaccination_activity_cancel_button">Cancel</string>
-    <string name="Vaccination_activity_save_button">Save</string>
+    <string name="Vaccination_activity_date_button">Tarih</string>
+    <string name="Vaccination_activity_time_button">Zaman</string>
+    <string name="Vaccination_activity_writesth_button">Bir şeyler yaz</string>
+    <string name="Vaccination_activity_cancel_button">İptal</string>
+    <string name="Vaccination_activity_save_button">Kaydet</string>
 
     <!--ActivityHygiene Values goes in here-->
     <string-array name="spinnerItem_HygieneActivity">
-        <item>Bath</item>
-        <item>Trim hair</item>
-        <item>Clip nails</item>
+        <item>Banyo</item>
+        <item>Saç kesimi</item>
+        <item>Tırnak kesimi</item>
     </string-array>
-    <string name="Hygiene_activity_date_button">Date</string>
-    <string name="Hygiene_activity_time_button">Time</string>
-    <string name="Hygiene_activity_writesth_button">Write something</string>
-    <string name="Hygiene_activity_cancel_button">Cancel</string>
-    <string name="Hygiene_activity_save_button">Save</string>
+    <string name="Hygiene_activity_date_button">Tarih</string>
+    <string name="Hygiene_activity_time_button">Zaman</string>
+    <string name="Hygiene_activity_writesth_button">Bir şeyler yaz</string>
+    <string name="Hygiene_activity_cancel_button">İptal</string>
+    <string name="Hygiene_activity_save_button">Kaydet</string>
 
     <!--ActivityPumping Values goes in here-->
-    <string name="Pumping_activity_date_button">Date</string>
-    <string name="Pumping_activity_time_button">Time</string>
+    <string name="Pumping_activity_date_button">Tarih</string>
+    <string name="Pumping_activity_time_button">Zaman</string>
     <string name="Pumping_activity_ounce_button">Ounce</string>
-    <string name="Pumping_activity_writesth_button">Write something</string>
-    <string name="Pumping_activity_cancel_button">Cancel</string>
-    <string name="Pumping_activity_save_button">Save</string>
-    <string name="Pumping_activity_total_edittext">Total : </string>
-    <string name="Pumping_activity_paused_edittext">Paused : </string>
+    <string name="Pumping_activity_writesth_button">Bir şeyler yaz</string>
+    <string name="Pumping_activity_cancel_button">İptal</string>
+    <string name="Pumping_activity_save_button">Kaydet</string>
+    <string name="Pumping_activity_total_edittext">Toplam : </string>
+    <string name="Pumping_activity_paused_edittext">Duraklatılmış : </string>
 
     <!--ActivityTeeth Values goes in here-->
     <string-array name="spinnerItem_TeethActivity">
-        <item>1 - Central incisor</item>
-        <item>2 - Central incisor</item>
-        <item>3 - Central incisor</item>
-        <item>4 - Central incisor</item>
-        <item>5 - Leteral incisor</item>
-        <item>6 - Leteral incisor</item>
-        <item>7 - Leteral incisor</item>
-        <item>8 - Leteral incisor</item>
-        <item>9 - First molar</item>
-        <item>10 - First molar</item>
-        <item>11 - First molar</item>
-        <item>12 - First molar</item>
-        <item>13 - Canine</item>
-        <item>14 - Canine</item>
-        <item>15 - Canine</item>
-        <item>16 - Canine</item>
-        <item>17 - Second molar</item>
-        <item>18 - Second molar</item>
-        <item>19 - Second molar</item>
-        <item>20 - Second molar</item>
+        <item>1 - Merkezi Kesici Diş</item>
+        <item>2 - Merkezi Kesici Diş</item>
+        <item>3 - Merkezi Kesici Diş</item>
+        <item>4 - Merkezi Kesici Diş</item>
+        <item>5 - Yan Kesici Diş</item>
+        <item>6 - Yan Kesici Diş</item>
+        <item>7 - Yan Kesici Diş</item>
+        <item>8 - Yan Kesici Diş</item>
+        <item>9 -  İlk Azı Diş</item>
+        <item>10 - İlk Azı Diş</item>
+        <item>11 - İlk Azı Diş</item>
+        <item>12 - İlk Azı Diş</item>
+        <item>13 - Köpek Diş</item>
+        <item>14 - Köpek Diş</item>
+        <item>15 - Köpek Diş</item>
+        <item>16 - Köpek Diş</item>
+        <item>17 - İkinci Azı Diş</item>
+        <item>18 - İkinci Azı Diş</item>
+        <item>19 - İkinci Azı Diş</item>
+        <item>20 - İkinci Azı Diş</item>
     </string-array>
-    <string name="Teeth_activity_date_button">Date</string>
-    <string name="Teeth_activity_time_button">Time</string>
-    <string name="Teeth_activity_cancel_button">Cancel</string>
-    <string name="Teeth_activity_save_button">Save</string>
+    <string name="Teeth_activity_date_button">Tarih</string>
+    <string name="Teeth_activity_time_button">Zaman</string>
+    <string name="Teeth_activity_cancel_button">İptal</string>
+    <string name="Teeth_activity_save_button">Kaydet</string>
 
 
-    <string name="title_sction1">Section 1</string>
-    <string name="title_sction2">Section 2</string>
-    <string name="title_sction3">Section 3</string>
+    <string name="title_sction1">Bölüm 1</string>
+        <string name="title_sction2">Bölüm 2</string>
+        <string name="title_sction3">Bölüm 3</string>
     <string-array name="spinner_items">
         <item>Dhaka</item>
         <item>Chittagong</item>
     </string-array>
-    <string name="menu_settings">Settings</string>
-    <string name="menu_actionmode">Action Mode</string>
-    <string name="actionmode_title">Action Mode</string>
-    <string name="title_activity_main">ActionBar Demo</string>
-    <string name="frag1">Fragment 1</string>
-    <string name="frag2">Fragment 2</string>
+    <string name="menu_settings">Ayarlar</string>
+    <string name="menu_actionmode">Olay Kipi</string>
+    <string name="actionmode_title">Olay Kipi</string>
+    <string name="title_activity_main">ActionBar Deneme</string>
+    <string name="frag1">Parça 1</string>
+    <string name="frag2">Parça 2</string>
 
     <string-array name="spinner_data">
         <item>Aytunç</item>
         <item>Murat</item>
     </string-array>
-    <string name="search">Search</string>
-    <string name="actionmode_cancel">Cancel ActionMode</string>
-    <string name="add_record">Record Added Successfully</string>
-    <string name="about">about </string>
-    <string name="year_ago"> years ago</string>
-    <string name="mounth_ago"> mounth ago</string>
-    <string name="day_ago"> day ago</string>
-    <string name="hour_ago"> hour ago</string>
-    <string name="minute_ago"> minute ago</string>
-    <string name="a_minute_ago">just now</string>
-    <string name="duration">duration</string>
-    <string name="video">Videos</string>
-    <string name="capture_video">Capture Video</string>
-    <string name="capture_photo">Capture Photo</string>
-    <string name="title_activity_capture_video">Baby Sitter Capture Video</string>
-    <string name="title_activity_calendar">Baby Sitter Calendar</string>
-    <string name="title_activity_capture_photo">Baby Sitter Capture Photo</string>
-    <string name="btnRecordVideo">Record Video</string>
-    <string name="or">(or)</string>
-    <string name="btnUploadToServer">Upload to Server</string>
+    <string name="search">Ara</string>
+    <string name="actionmode_cancel">Olay İptal</string>
+    <string name="add_record">Kayıt Başarıyla Oluşturuldu</string>
+    <string name="about">yaklaşık </string>
+    <string name="year_ago"> yıl önce</string>
+    <string name="mounth_ago"> ay önce</string>
+    <string name="day_ago"> gün önce</string>
+    <string name="hour_ago"> saat önce</string>
+    <string name="minute_ago"> dakika önce</string>
+    <string name="a_minute_ago">şimdi</string>
+    <string name="duration">boyunca</string>
+    <string name="video">Videolar</string>
+    <string name="capture_video">Video Çek</string>
+    <string name="capture_photo">Fotoğraf Çek</string>
+    <string name="title_activity_capture_video">Baby Sitter Video Çekim</string>
+    <string name="title_activity_calendar">Baby Sitter Takvim</string>
+    <string name="title_activity_capture_photo">Baby Sitter Fotoğraf Çekim</string>
+    <string name="btnRecordVideo">Video Kaydet</string>
+    <string name="or">(veya)</string>
+    <string name="btnUploadToServer">Sunucuya Yükle</string>
     <string-array name="activity_mood_moods">
-        <item>Quite</item>
-        <item>Clinge</item>
-        <item>Chatty</item>
-        <item>Mischievour</item>
-        <item>Sleepy</item>
-        <item>Sweet</item>
-        <item>Happy</item>
-        <item>Fussy</item>
-        <item>Angry</item>
-        <item>Grumpy</item>
-        <item>Sad</item>
-        <item>Crying</item>
-        <item>Playfull</item>
-        <item>Bashfull</item>
+        <item>Sessiz</item>
+        <item>Geveze</item>
+        <item>Yaramaz</item>
+        <item>Uykulu</item>
+        <item>Tatlı</item>
+        <item>Mutlu</item>
+        <item>Mızmız</item>
+        <item>Sinirli</item>
+        <item>Huysuz</item>
+        <item>Üzgün</item>
+        <item>Ağlamaklı</item>
+        <item>Şen</item>
+        <item>Utangaç</item>
     </string-array>
 
     <string-array name="activity_diaper_poop">
-        <item>Pee</item>
-        <item>Poop</item>
-        <item>Pee and Poop</item>
+        <item>Çiş</item>
+        <item>Kaka</item>
+        <item>Çiş and Kaka</item>
     </string-array>
-    <string name="selected">Selected: </string>
-    <string name="video_cancel">Your Saving is Cancelled!</string>
-    <string name="photo_cancel">Your Saving is Cancelled!</string>
-    <string name="video_save">Your Saving is Completed!</string>
-    <string name="photo_save">Your Saving is Completed!</string>
-    <string name="no_record">No Record Yet!!</string>
-    <string name="add_item">Press the (+) button to add new record</string>
-    <string name="title">Title: </string>
-    <string name="start">Start</string>
-    <string name="stop">Stop</string>
-    <string name="finish">Finish</string>
-    <string name="play">Play</string>
-    <string name="save_button">Save</string>
-    <string name="voice_record">Voice Record</string>
-    <string name="date">Date</string>
-    <string name="speech">Speech to Text</string>
-    <string name="recording_start">Recording Started...!</string>
-    <string name="recording_finish">Recording Finished...!</string>
-    <string name="recording_play">Playing Record...!</string>
-    <string name="recording_stop">Recordind Played...!</string>
-    <string name="recording">Recording...</string>
-    <string name="ready_to_play">Ready to Play</string>
-    <string name="playing">Playing...</string>
-    <string name="finished">Finished</string>
-    <string name="added_record">Record Added Succesfully</string>
-    <string name="update_record">Record Updated Succesfully</string>
-    <string name="delete_record">Record Deleted Succesfully</string>
-    <string name="delete_context">Delete</string>
-    <string name="edit_context">Edit</string>
-    <string name="operations">Operations</string>
-    <string name="deleting_record">Warning</string>
-    <string name="confirm">Confirm</string>
-    <string name="are_you_sure">Are You Sure ?</string>
-    <string name="diary_activity">Baby Sitter Diary</string>
-    <string name="diary_add">Add Diary</string>
-    <string name="diary_edit">Edit Diary</string>
-    <string name="title_activity_solid_activity_chart">SolidActivityChart</string>
-    <string name="title_activity_activity_bottle_chart">ActivityBottleChart</string>
+
+    <string name="selected">Seçilen: </string>
+    <string name="video_cancel">Kaydetme İşlemi İptal Edildi!</string>
+    <string name="photo_cancel">Kaydetme İşlemi İptal Edildi!</string>
+    <string name="video_save">Kaydetme İşlemi Tamamlandı!</string>
+    <string name="photo_save">Kaydetme İşlemi Tamamlandı!</string>
+    <string name="no_record">Kayıt Yok!!</string>
+    <string name="add_item">Yeni kayıt için (+) butonuna basın!</string>
+    <string name="title">Başlık: </string>
+    <string name="start">Başlat</string>
+    <string name="stop">Dur</string>
+    <string name="finish">Bitir</string>
+    <string name="play">Oynat</string>
+    <string name="save_button">Kaydet</string>
+    <string name="voice_record">Ses Kaydı</string>
+    <string name="date">Tarih</string>
+    <string name="speech">Konuş-Yaz</string>
+    <string name="recording_start">Kayıt Başladı...!</string>
+    <string name="recording_finish">Kayıt Bitti...!</string>
+    <string name="recording_play">Kayıt Oynatılıyor...!</string>
+    <string name="recording_stop">Kayıt Oynatıldı...!</string>
+    <string name="recording">Kaydediliyor...</string>
+    <string name="ready_to_play">Oynatmaya Hazır</string>
+    <string name="playing">Oynatılıyor...</string>
+    <string name="finished">Bitti</string>
+    <string name="added_record">Kayıt Başarıyla Eklendi</string>
+    <string name="update_record">Kayıt Başarıyla Güncellendi</string>
+    <string name="delete_record">Kayıt Başarıyla Silindi</string>
+    <string name="delete_context">Sil</string>
+    <string name="edit_context">Düzenle</string>
+    <string name="operations">İşlemler</string>
+    <string name="deleting_record">Uyarı</string>
+    <string name="confirm">Onayla</string>
+    <string name="are_you_sure">Emin misin ?</string>
+    <string name="diary_activity">Baby Sitter Günlük</string>
+    <string name="diary_add">Kayıt Ekle</string>
+    <string name="diary_edit">Kayıt Düzenle</string>
+    <string-array name="time_option_arr">
+        <item>Güncel</item>
+        <item>Kalan</item>
+    </string-array>
+
+    <string-array name="date_range_arr">
+        <item>Günlük</item>
+        <item>Haftalık</item>
+        <item>Aylık</item>
+        <!--item>Yearly</item-->
+    </string-array>
+
+    <string-array name="val_arr">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="spinner1_arr">
+        <item>Her</item>
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+        <item>9th</item>
+        <item>10th</item>
+        <item>11th</item>
+        <item>12th</item>
+        <item>13th</item>
+        <item>14th</item>
+        <item>15th</item>
+        <item>16th</item>
+        <item>17th</item>
+        <item>18th</item>
+        <item>19th</item>
+        <item>20th</item>
+        <item>21st</item>
+        <item>22nd</item>
+        <item>23rd</item>
+        <item>24th</item>
+        <item>25th</item>
+        <item>26th</item>
+        <item>27th</item>
+        <item>28th</item>
+        <item>29th</item>
+        <item>30th</item>
+        <item>31st</item>
+        <!--item>Last</item-->
+    </string-array>
+
+    <string-array name="spinner2_arr">
+        <item>Gün</item>
+        <item>Paz</item>
+        <item>Pzt</item>
+        <item>Salı</item>
+        <item>Çrş</item>
+        <item>Prş</item>
+        <item>Cuma</item>
+        <item>Cmt</item>
+    </string-array>
+
+    <string-array name="spinner3_arr">
+        <item>Ay</item>
+        <item>Ocak</item>
+        <item>Şubat</item>
+        <item>Mart</item>
+        <item>Nisan</item>
+        <item>Mayıs</item>
+        <item>Haziran</item>
+        <item>Temmuz</item>
+        <item>Ağustos</item>
+        <item>Eylül</item>
+        <item>Ekim</item>
+        <item>Kasım</item>
+        <item>Aralık</item>
+    </string-array>
+    <string-array name="tabs">
+    <item>Özellikler</item>
+    <item>Favoriler</item>
+    <item>Diğer</item>
+    <item>Geçmiş</item>
+    <item>Bugün</item>
+    <item>Kategori</item>
+    </string-array>
+    <string-array name="tabs_home">
+        <item>Özellikler</item>
+        <item>Favoriler</item>
+        <item>Diğer</item>
+    </string-array>
+    <string name="logout">ÇIKIŞ</string>
+    <string-array name="date_format_arr">
+        <item>yyyy-MM-dd</item>
+        <item>yyyy-M-d</item>
+        <item>MMMM dd yyyy</item>
+        <item>MM/dd/yyyy</item>
+        <item>dd MMMM yyyy</item>
+        <item>dd MMM yyyy</item>
+        <item>d MMM yyyy</item>
+        <item>dd-MM-yyyy</item>
+        <item>dd/MM/yy</item>
+    </string-array>
+    <string name="select_type_of_solid">Beslenme Tipini Seçiniz</string>
+    <string name="amount_of_consume">Tüketim Miktarı</string>
+    <string name="once_amount">Miktar</string>
 </resources>

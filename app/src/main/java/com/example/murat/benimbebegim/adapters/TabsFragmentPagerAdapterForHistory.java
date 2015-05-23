@@ -13,26 +13,26 @@ import com.example.murat.benimbebegim.ActivityToday;
 
 public class TabsFragmentPagerAdapterForHistory extends FragmentPagerAdapter {
 
-    public TabsFragmentPagerAdapterForHistory(FragmentManager fm) {
-        super(fm);
-        // TODO Auto-generated constructorq stub
-    }
-
-    @Override
-    public Fragment getItem(int index) {
-        // TODO Auto-generated method stub
-        if (index == 0)
-            return new ActivityToday();
-        if (index == 1)
-            return new ActivityToday();
-        if (index == 2)
-            return new ActivityCategory();
-
-        return null;
-    }
-
-    @Override
-    public int getCount() {
+ public TabsFragmentPagerAdapterForHistory(FragmentManager fm) {
+ super(fm);
+ // TODO Auto-generated constructorq stub
+ }
+ 
+ @Override
+ public Fragment getItem(int index) {
+ // TODO Auto-generated method stub
+ if(index == 0)
+ return new ActivityEarlier();
+ if(index == 1)
+ return new ActivityToday();
+ if(index == 2)
+ return new ActivityCategory();
+ 
+ return null;
+ }
+ 
+ @Override
+ public int getCount() {
         // TODO Auto-generated method stub
         return 3;
     }

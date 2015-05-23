@@ -298,7 +298,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
             case R.id.btnBottleActivity_formula:
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_type_of_bottle);
-                dialog.setTitle("Select type of solid");
+                dialog.setTitle(getResources().getString(R.string.select_type_of_solid));
                 dialog.setCancelable(true);
 
                 final RadioButton rb1 = (RadioButton)dialog.findViewById(R.id.rbBottleDialog_BreastMilk);
@@ -361,7 +361,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
             case R.id.btnBottleActivity_amount:
                 final Dialog dialog1 = new Dialog(context);
                 dialog1.setContentView(R.layout.dialog_bottle_amaount);
-                dialog1.setTitle("Amount of comsume");
+                dialog1.setTitle(getResources().getString(R.string.amount_of_consume));
                 dialog1.setCancelable(true);
 
                 final Button btnOk, btnCancel;

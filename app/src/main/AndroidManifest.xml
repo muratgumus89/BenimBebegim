@@ -143,15 +143,15 @@
         </activity>
         <activity
             android:name=".CameraPhotoCapture"
-            android:label="@string/title_activity_calendar" >
+            android:label="@string/title_activity_capture_photo" >
         </activity>
         <activity
             android:name=".model.AddDiary"
-            android:label="Add Diary" >
+            android:label="@string/diary_add" >
         </activity>
         <activity
             android:name=".model.EditDiary"
-            android:label="Edit Diary" >
+            android:label="@string/diary_edit" >
         </activity>
         <activity
             android:name=".ActivityMoodChart"

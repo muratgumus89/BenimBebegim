@@ -41,7 +41,7 @@ public class ActivityMoreEvents extends Fragment {
     String list_note[]  = new String[5] ,list_time[]   = new String[5] ,list_ago[]  = new String[5];
 
     String health_time[] = new String[0] , health_date[]  = new String[0];
-    String medicin_time[]=new String[0]  , medicin_date[] =new String[0];
+    String medicin_time[]= new String[0] , medicin_date[] = new String[0];
     String vac_time[]    = new String[0] , vac_date[]     = new String[0];
     String hygiene_time[]= new String[0] , hygiene_date[] = new String[0];
     String teeth_time[]  = new String[0] , teeth_date[]   = new String[0];

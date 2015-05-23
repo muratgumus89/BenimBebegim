@@ -14,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -122,7 +123,6 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
     private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
-    Dialog dialogCircle;
 
     // directory name to store captured images and videos
     private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
@@ -280,17 +280,6 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 Intent intentHomeScreen = new Intent(getApplicationContext(),
                         ActivityHomeScreen.class);
                 startActivity(intentHomeScreen);
-              /*  edtNameCreateBaby.setText(null);
-                Calendar c_date = Calendar.getInstance();
-                SimpleDateFormat date = new SimpleDateFormat("dd/MM/yy");
-                strDate = date.format(c_date.getTime());
-                btnDatePicker.setText(strDate);
-                Calendar c_time = Calendar.getInstance(TimeZone.getDefault());
-                SimpleDateFormat time = new SimpleDateFormat("HH:mm",
-                        Locale.getDefault());
-                strTime = time.format(c_time.getTime());
-                btnTimePicker.setText(strTime);
-                imgSelectBabyPicture.setImageResource(R.drawable.select_picture_icon_128);*/
                 break;
 
             case R.id.btnOk_createBaby:
@@ -412,7 +401,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
         Log.e("uid", strUser_id);
         nameValuePairs.add(new BasicNameValuePair("gender", selectedGendersForCreateBaby));
         Log.e("gender", selectedGendersForCreateBaby);
-        nameValuePairs.add(new BasicNameValuePair("theme", "Şimdilik Boş"));
+        nameValuePairs.add(new BasicNameValuePair("theme", "Theme"));
         try {
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/insert_create_baby.php");
@@ -424,7 +413,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
         } catch (Exception e) {
             Log.e("Fail 1", e.toString());
             Toast.makeText(getApplicationContext(), "Invalid IP Address",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
         }
 
         try {
@@ -462,7 +451,6 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                 Intent intentHomeScreen = new Intent(getApplicationContext(),
                         ActivityHomeScreen.class);
                 startActivity(intentHomeScreen);
-                dialogCircle.hide();
             }
             /******************"
              *  Chech userName is exist or not
@@ -474,7 +462,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
                         Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getBaseContext(), R.string.sorry,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             Log.e("CreateBabyFail3", e.toString());
@@ -770,7 +758,7 @@ public class ActivityCreateBaby extends Activity implements OnClickListener {
         String baby_name = pref.getString("baby_name", null);
 
         nameValuePairs.add(new BasicNameValuePair("uid",user_id));
-        nameValuePairs.add(new BasicNameValuePair("baby_name",baby_name));
+        nameValuePairs.add(new BasicNameValuePair("baby_name",getBabyName));
         try
         {
             HttpClient httpclient = new DefaultHttpClient();
