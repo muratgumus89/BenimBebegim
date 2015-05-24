@@ -34,14 +34,15 @@ public class TodayEXPListViewAdapter extends BaseExpandableListAdapter {
     private HashMap<String, List<String>> _listDataChild;
 
     //ForMOOD
-    String mood_type,mood_time,mood_note;
-    ArrayList<HashMap<String, String>> records,moods, solid , bottle, breast;
+    String mood_type, mood_time, mood_note;
+    ArrayList<HashMap<String, String>> records, moods, solid, bottle, breast;
+
     public TodayEXPListViewAdapter(Context context, List<String> listDataHeader,
-                                   HashMap<String, List<String>> listChildData, int[] intHeaderIconResourse){
-            this._context = context;
-            this._listDataHeader = listDataHeader;
-            this._listDataChild = listChildData;
-            this.intHeaderIconResourse = intHeaderIconResourse;
+                                   HashMap<String, List<String>> listChildData, int[] intHeaderIconResourse) {
+        this._context = context;
+        this._listDataHeader = listDataHeader;
+        this._listDataChild = listChildData;
+        this.intHeaderIconResourse = intHeaderIconResourse;
 
     }
 
@@ -118,13 +119,13 @@ public class TodayEXPListViewAdapter extends BaseExpandableListAdapter {
         ActivityTable a_db = new ActivityTable(ActivityToday.myContext);
         records = a_db.getSpesificActivityRecord(a_id);
         if (records.size() != 0) {
-                mood_time = records.get(0).get("select_time");
-                mood_note = records.get(0).get("note");
+            mood_time = records.get(0).get("select_time");
+            mood_note = records.get(0).get("note");
         }
 
         Mood mood_db = new Mood(ActivityToday.myContext);
         moods = mood_db.getSpecificMoodAsaActId(a_id);
-        if(moods.size() != 0){
+        if (moods.size() != 0) {
             mood_type = moods.get(0).get("m_type");
         }
 
@@ -149,21 +150,39 @@ public class TodayEXPListViewAdapter extends BaseExpandableListAdapter {
 
             Solid solid_db = new Solid(ActivityToday.myContext);
             solid = solid_db.getSpecificSolidAsaActId(a_id);
-            if(solid.size() != 0){
+            if (solid.size() != 0) {
                 solids = solid.get(0).get("gram");
                 tvTitle.setText(mood_time);
                 tvInfo.setText("Gram : " + solids + " ;");
                 Log.i("Bread ", solid.get(0).get("bread"));
                 String strSolid = "";
-                if(solid.get(0).get("bread").equals("True")){ strSolid =  "bread,";}
-                if(solid.get(0).get("fruit").equals("True")){ strSolid = strSolid + "fruit, ";}
-                if(solid.get(0).get("cereal").equals("True")){ strSolid = strSolid + "cereal, ";}
-                if(solid.get(0).get("meat").equals("True")){ strSolid = strSolid + "meat, ";}
-                if(solid.get(0).get("dairy").equals("True")){ strSolid = strSolid + "dairy, ";}
-                if(solid.get(0).get("pasta").equals("True")){ strSolid = strSolid + "pasta, ";}
-                if(solid.get(0).get("eggs").equals("True")){ strSolid = strSolid + "eggs, ";}
-                if(solid.get(0).get("vegetable").equals("True")){ strSolid = strSolid + "vegetable, ";}
-                if(solid.get(0).get("other").equals("True")){ strSolid = strSolid + "other, ";}
+                if (solid.get(0).get("bread").equals("True")) {
+                    strSolid = "bread,";
+                }
+                if (solid.get(0).get("fruit").equals("True")) {
+                    strSolid = strSolid + "fruit, ";
+                }
+                if (solid.get(0).get("cereal").equals("True")) {
+                    strSolid = strSolid + "cereal, ";
+                }
+                if (solid.get(0).get("meat").equals("True")) {
+                    strSolid = strSolid + "meat, ";
+                }
+                if (solid.get(0).get("dairy").equals("True")) {
+                    strSolid = strSolid + "dairy, ";
+                }
+                if (solid.get(0).get("pasta").equals("True")) {
+                    strSolid = strSolid + "pasta, ";
+                }
+                if (solid.get(0).get("eggs").equals("True")) {
+                    strSolid = strSolid + "eggs, ";
+                }
+                if (solid.get(0).get("vegetable").equals("True")) {
+                    strSolid = strSolid + "vegetable, ";
+                }
+                if (solid.get(0).get("other").equals("True")) {
+                    strSolid = strSolid + "other, ";
+                }
                 tvInfo.append(strSolid);
             }
         }
@@ -203,7 +222,6 @@ public class TodayEXPListViewAdapter extends BaseExpandableListAdapter {
         txtListChild.setText(childText);
         return convertView;
     }
-
 
 
 }

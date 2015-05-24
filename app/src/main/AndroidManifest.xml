@@ -165,6 +165,10 @@
             android:name=".ActivityBottleChart"
             android:label="@string/bottle_chart" >
         </activity>
+        <activity
+            android:name=".ActivityGrowthChart"
+            android:label="@string/title_activity_activity_growth_chart" >
+        </activity>
     </application>
 
 </manifest>

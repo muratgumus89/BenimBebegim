@@ -80,13 +80,12 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
 		imgLogo.setImageResource(upLogo[position]);
 		chartIcon = (ImageView) itemView.findViewById(R.id.ivChartFavoritesIcon);
 
+		chartIcon.setVisibility(View.INVISIBLE);
+
         if(position==0 || position ==1 || position ==2 || position == 3 || position ==4 || position == 5 || position == 6) {
             txtTime.setText(time[position]);
             txtMood.setText(note[position]);
             txtClick.setText(ago[position]);
-			if (!(position == 0 || position == 1 || position == 2 )) {
-				chartIcon.setVisibility(View.INVISIBLE);
-			}
 		}
 		return itemView;
 	}
