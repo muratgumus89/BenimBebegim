@@ -57,7 +57,6 @@ public class ActivityToday extends Fragment{
         expListView = (ExpandableListView)view.findViewById(R.id.elvTodayActivities);
         //prepareListData();
         intHeaderIconResourse = new int[7];
-        listDataChild = new HashMap<String, List<String>>();
         getTodaysLog();
         listAdapter = new TodayEXPListViewAdapter(getActivity().getApplicationContext(), listDataHeader, listDataChild, intHeaderIconResourse);
         expListView.setAdapter(listAdapter);
@@ -145,6 +144,7 @@ public class ActivityToday extends Fragment{
         intHeaderIconResourse[5] = R.drawable.ic_diaper_bullet;
         intHeaderIconResourse[6] = R.drawable.ic_pumping_milk_bullet;
         listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
         ArrayList<HashMap<String, String>> activityList;
 
         //List HeaderLarı
@@ -173,10 +173,7 @@ public class ActivityToday extends Fragment{
                 moods.add(a.get("a_id"));
             }
             listDataChild.put(listDataHeader.get(0), moods);
-        }else {
-            listDataChild.put(listDataHeader.get(0), moods);
         }
-
         /*********************************************/
         activityList = s_db.getTodayActivityRecords("Solid",baby_id,getCurrentDate(),getYesterdayDateString()); // üç paremetre
         List<String> solids = new ArrayList<String>();
@@ -186,10 +183,7 @@ public class ActivityToday extends Fragment{
                 solids.add(a.get("a_id"));
             }
             listDataChild.put(listDataHeader.get(1), solids);
-        }else {
-            listDataChild.put(listDataHeader.get(1), solids);
         }
-
         /*********************************************/
         activityList = s_db.getTodayActivityRecords("Bottle", baby_id, getCurrentDate(), getYesterdayDateString());
         List<String> bottle = new ArrayList<String>();
@@ -199,10 +193,7 @@ public class ActivityToday extends Fragment{
                 bottle.add(a.get("a_id"));
             }
             listDataChild.put(listDataHeader.get(2), bottle);
-        }else {
-            listDataChild.put(listDataHeader.get(2), bottle);
         }
-
         /*********************************************/ // ----------------
         activityList = s_db.getTodayActivityRecords("Breast", baby_id, getCurrentDate(), getYesterdayDateString());
         List<String> breast = new ArrayList<String>();
@@ -212,10 +203,7 @@ public class ActivityToday extends Fragment{
                 breast.add(a.get("a_id"));
             }
             listDataChild.put(listDataHeader.get(3), breast);
-        }else {
-            listDataChild.put(listDataHeader.get(3), breast);
         }
-
         /*********************************************/
         activityList = s_db.getTodayActivityRecords("Sleep", baby_id, getCurrentDate(), getYesterdayDateString());
         List<String> sleep = new ArrayList<String>();
@@ -224,11 +212,8 @@ public class ActivityToday extends Fragment{
                 HashMap<String, String> a = activityList.get(i);
                 sleep.add(a.get("a_id"));
             }
-            listDataChild.put(listDataHeader.get(4), sleep);
-        }else {
-            listDataChild.put(listDataHeader.get(4), sleep);
+            listDataChild.put(listDataHeader.get(4), bottle);
         }
-
         /*********************************************/
         activityList = s_db.getTodayActivityRecords("Diaper", baby_id, getCurrentDate(), getYesterdayDateString());
         List<String> diaper = new ArrayList<String>();
@@ -237,11 +222,8 @@ public class ActivityToday extends Fragment{
                 HashMap<String, String> a = activityList.get(i);
                 diaper.add(a.get("a_id"));
             }
-            listDataChild.put(listDataHeader.get(5), diaper);
-        }else {
-            listDataChild.put(listDataHeader.get(5), diaper);
+            listDataChild.put(listDataHeader.get(5), bottle);
         }
-
         /*********************************************/
         activityList = s_db.getTodayActivityRecords("Pumping", baby_id, getCurrentDate(), getYesterdayDateString());
         List<String> pumping = new ArrayList<String>();
@@ -250,10 +232,7 @@ public class ActivityToday extends Fragment{
                 HashMap<String, String> a = activityList.get(i);
                 pumping.add(a.get("a_id"));
             }
-            listDataChild.put(listDataHeader.get(6), pumping);
-        }else {
-            listDataChild.put(listDataHeader.get(6), pumping);
+            listDataChild.put(listDataHeader.get(6), bottle);
         }
-
     }
 }

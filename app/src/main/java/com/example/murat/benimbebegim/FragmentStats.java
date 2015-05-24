@@ -3,7 +3,6 @@ package com.example.murat.benimbebegim;
 
 import android.app.ActionBar;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,11 +13,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.murat.benimbebegim.adapters.StatsActivityAdapter;
 import com.example.murat.benimbebegim.listviewitems.BarChartItem;
 import com.example.murat.benimbebegim.listviewitems.ChartItem;
 import com.example.murat.benimbebegim.listviewitems.LineChartItem;
@@ -39,62 +36,168 @@ import java.util.List;
 public class FragmentStats extends Fragment {
 
     public static final String TAG = FragmentStats.class.getSimpleName();
-    ListView lv;
-    String classes[] = {"ActivityMoodChart",
-            "ActivitySolidChart",
-            "ActivityBottleChart",
-            "ActivityGrowthChart"};
+    private static ActionBar actionBar;
 
     public static FragmentStats newInstance() {
         return new FragmentStats();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        Log.d("Spinner", "Çok yaşa Spin4");
-        View view = inflater.inflate(R.layout.layout_statsfragment, container, false);
-        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+        Log.d("Spinner","Çok yaşa Spin4");
+		View view = inflater.inflate(R.layout.layout_statsfragment, container,false);
+        actionBar=getActivity().getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
-        int[] iconResource = new int[4];
-        iconResource[0] = R.drawable.ic_mood_bullet;
-        iconResource[1] = R.drawable.ic_solid_bullet;
-        iconResource[2] = R.drawable.ic_bottle_bullet;
-        iconResource[3] = R.drawable.icon32_chart;
+        ListView lv = (ListView) view.findViewById(R.id.listView1);
 
-        String[] iconString = new String[4];
-        iconString[0] = "Mood";
-        iconString[1] = "Solid";
-        iconString[2] = "Bottle";
-        iconString[3] = "Growth";
+        ArrayList<ChartItem> list = new ArrayList<ChartItem>();
 
-        String[] title = new String[4];
-        title[0] = "Mood Activities Chart";
-        title[1] = "Solid  Activities Chart";
-        title[2] = "Bottle Activities Chart";
-        title[3] = "Growth Chart";
+        // 30 items
+        for (int i = 0; i < 30; i++) {
 
-        StatsActivityAdapter adapter = new StatsActivityAdapter(getActivity().getApplicationContext(), title, iconResource, iconString);
-
-        lv = (ListView) view.findViewById(R.id.listView1);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                try {
-                    Class ourClass = Class.forName("com.example.murat.benimbebegim." + classes[position]);
-                    Intent intent = new Intent(getActivity(), ourClass);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+            if(i % 3 == 0) {
+                list.add(new LineChartItem(generateDataLine(i + 1), getActivity().getApplicationContext()));
+            } else if(i % 3 == 1) {
+                list.add(new BarChartItem(generateDataBar(i + 1), getActivity().getApplicationContext()));
+            } else if(i % 3 == 2) {
+                list.add(new PieChartItem(generateDataPie(i + 1), getActivity().getApplicationContext()));
             }
-        });
+        }
 
+        ChartDataAdapter cda = new ChartDataAdapter(getActivity().getApplicationContext(), list);
+        lv.setAdapter(cda);
         return view;
+	}
+
+    private class ChartDataAdapter extends ArrayAdapter<ChartItem> {
+
+        public ChartDataAdapter(Context context, List<ChartItem> objects) {
+            super(context, 0, objects);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return getItem(position).getView(position, convertView, getContext());
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            // return the views type
+            return getItem(position).getItemType();
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return 3; // we have 3 different item-types
+        }
     }
+
+    private LineData generateDataLine(int cnt) {
+
+        ArrayList<Entry> e1 = new ArrayList<Entry>();
+
+        for (int i = 0; i < 12; i++) {
+            e1.add(new Entry((int) (Math.random() * 65) + 40, i));
+        }
+
+        LineDataSet d1 = new LineDataSet(e1, "New DataSet " + cnt + ", (1)");
+        d1.setLineWidth(2.5f);
+        d1.setCircleSize(4.5f);
+        d1.setHighLightColor(Color.rgb(244, 117, 117));
+        d1.setDrawValues(false);
+
+        ArrayList<Entry> e2 = new ArrayList<Entry>();
+
+        for (int i = 0; i < 12; i++) {
+            e2.add(new Entry(e1.get(i).getVal() - 30, i));
+        }
+
+        LineDataSet d2 = new LineDataSet(e2, "New DataSet " + cnt + ", (2)");
+        d2.setLineWidth(2.5f);
+        d2.setCircleSize(4.5f);
+        d2.setHighLightColor(Color.rgb(244, 117, 117));
+        d2.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+        d2.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+        d2.setDrawValues(false);
+
+        ArrayList<LineDataSet> sets = new ArrayList<LineDataSet>();
+        sets.add(d1);
+        sets.add(d2);
+
+        LineData cd = new LineData(getMonths(), sets);
+        return cd;
+    }
+
+    private BarData generateDataBar(int cnt) {
+
+        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
+
+        for (int i = 0; i < 12; i++) {
+            entries.add(new BarEntry((int) (Math.random() * 70) + 30, i));
+        }
+
+        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
+        d.setBarSpacePercent(20f);
+        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        d.setHighLightAlpha(255);
+
+        BarData cd = new BarData(getMonths(), d);
+        return cd;
+    }
+
+    private PieData generateDataPie(int cnt) {
+
+        ArrayList<Entry> entries = new ArrayList<Entry>();
+
+        for (int i = 0; i < 4; i++) {
+            entries.add(new Entry((int) (Math.random() * 70) + 30, i));
+        }
+
+        PieDataSet d = new PieDataSet(entries, "");
+
+        // space between slices
+        d.setSliceSpace(2f);
+        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+
+        PieData cd = new PieData(getQuarters(), d);
+        return cd;
+    }
+
+    private ArrayList<String> getQuarters() {
+
+        ArrayList<String> q = new ArrayList<String>();
+        q.add("1st Quarter");
+        q.add("2nd Quarter");
+        q.add("3rd Quarter");
+        q.add("4th Quarter");
+
+        return q;
+    }
+
+    private ArrayList<String> getMonths() {
+
+        ArrayList<String> m = new ArrayList<String>();
+        m.add("Jan");
+        m.add("Feb");
+        m.add("Mar");
+        m.add("Apr");
+        m.add("May");
+        m.add("Jun");
+        m.add("Jul");
+        m.add("Aug");
+        m.add("Sep");
+        m.add("Okt");
+        m.add("Nov");
+        m.add("Dec");
+
+        return m;
+    }
+
+
+
 
 
 }

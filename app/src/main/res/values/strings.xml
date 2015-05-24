@@ -602,10 +602,4 @@
     <string name="mood_chart">Ruh Hali Grafigi</string>
     <string name="solid_chart">Beslenme Grafigi</string>
     <string name="bottle_chart">Biberon Grafigi</string>
-
-    <!-- Growth strings goes here-->
-    <string name="growth_weight">Kilo (gram)</string>
-    <string name="growth_height">Boy (cm)</string>
-    <string name="growth_add_new_entry">Yeni kayıt gir</string>
-    <string name="title_activity_activity_growth_chart">ActivityGrowthChart</string>
 </resources>

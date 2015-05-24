@@ -528,7 +528,7 @@ public class ActivityTable extends SQLiteOpenHelper{
 
     public ArrayList<HashMap<String,String>> getBottleChartInfo(String a_id, String date){ /**Solid Information gathers here*/
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "select sum(bottle.[amount]), bottle.[timer], activitiy.[b_id] " +
+        String query = "select bottle.[amount], bottle.[timer], activitiy.[b_id] " +
                 "from activitiy, bottle " +
                 "where activitiy.[a_type] = 'Bottle' " +
                 "and activitiy.[a_id] = bottle.[a_id] " +

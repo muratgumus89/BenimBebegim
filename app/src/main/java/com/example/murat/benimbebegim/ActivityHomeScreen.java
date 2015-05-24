@@ -26,7 +26,6 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
-import com.example.murat.benimbebegim.Databases.GrowthDatabase;
 import com.example.murat.benimbebegim.adapters.TitleNavigationAdapter;
 import com.example.murat.benimbebegim.model.SpinnerNavItem;
 
@@ -95,10 +94,8 @@ public class ActivityHomeScreen extends FragmentActivity implements
     protected void onCreate( Bundle savedInstanceState )
     {
 
-        super.onCreate(savedInstanceState);
+        super.onCreate( savedInstanceState );
         setContentView(R.layout.activity_home_screen);
-
-        GrowthDatabase db = new GrowthDatabase(getApplicationContext());
 
         SharedPreferences pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         userName = pref.getString("username", null);
