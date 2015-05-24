@@ -1,5 +1,6 @@
 package com.example.murat.benimbebegim;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
@@ -54,7 +55,8 @@ public class ActivityMoodChart extends FragmentActivity implements OnChartValueS
         float mult = range;
         ArrayList<HashMap<String, String>> records;
         ActivityTable a_db = new ActivityTable(getApplicationContext());
-        records = a_db.getMoodsInfoForMoodPieChart("40");
+        SharedPreferences pref = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+        records = a_db.getMoodsInfoForMoodPieChart(pref.getString("baby_id", null));
 
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
