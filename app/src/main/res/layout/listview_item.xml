@@ -60,6 +60,7 @@
         </LinearLayout>
     <ImageView
         android:id="@+id/ivChartFavoritesIcon"
+        android:visibility="invisible"
         android:src="@drawable/icon32_chart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
