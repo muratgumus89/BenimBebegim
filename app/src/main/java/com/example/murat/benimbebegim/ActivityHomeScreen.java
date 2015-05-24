@@ -1,13 +1,14 @@
 package com.example.murat.benimbebegim;
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -26,7 +27,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
 import com.example.murat.benimbebegim.adapters.TitleNavigationAdapter;
-import com.example.murat.benimbebegim.model.ChangeTheme;
 import com.example.murat.benimbebegim.model.SpinnerNavItem;
 
 import org.apache.http.HttpEntity;
@@ -93,7 +93,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
-        Log.d("Spinner","Çok yaşa Spin6");
+
         super.onCreate( savedInstanceState );
         setContentView(R.layout.activity_home_screen);
 
@@ -103,13 +103,15 @@ public class ActivityHomeScreen extends FragmentActivity implements
         user_id = pref.getString("user_id", null);
         baby_id = pref.getString("baby_id", null);
         isSpinner=pref.getBoolean("isSpinner",false);
+        Log.d("ActivityHomeScreenBaby",baby_id);
+
         if(isSpinner==false){
             getBabiesNames();
             isSpinner=true;
         }
         if(pref.getInt("spin_position",0) != 0 && pref.getInt("spin_position",0) != 1){
 
-            spinnerPosition=pref.getInt("spin_position",0);
+            spinnerPosition=pref.getInt("spin_position",spinnerPosition);
         }
 
         mTitle = "Benim Bebeğim";
@@ -151,7 +153,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
     @Override
     protected void onSaveInstanceState( Bundle outState )
     {
-        outState.putInt( "mode", getActionBar().getNavigationMode() );
+        outState.putInt("mode", getActionBar().getNavigationMode());
         super.onSaveInstanceState( outState );
     }
 
@@ -172,8 +174,6 @@ public class ActivityHomeScreen extends FragmentActivity implements
         }
         this.menu = menu;
         return  true;
-
-
     }
     private void addDrawerItems() {
         // Navigationdaki Drawer için listview adapteri
@@ -216,7 +216,6 @@ public class ActivityHomeScreen extends FragmentActivity implements
     private void setupSpinner( MenuItem item)
     {
         if(getActionBar().getNavigationMode()== ActionBar.NAVIGATION_MODE_TABS) {
-            Log.d("Spinner", "Çok yaşa SpinTAB");
             item.setVisible(getActionBar().getNavigationMode() == ActionBar.NAVIGATION_MODE_TABS);
         }
         View view = item.getActionView();
@@ -245,7 +244,6 @@ public class ActivityHomeScreen extends FragmentActivity implements
             new TitleNavigationAdapter(baby_name);
             adapter = new TitleNavigationAdapter(getApplicationContext(),
                     navSpinner);
-            Log.d("Spinner","Çok yaşa Spin10");
             Spinner spinner = (Spinner) view;
             spinner.setAdapter(adapter);
             spinner.setSelection(spinnerPosition);
@@ -285,8 +283,8 @@ public class ActivityHomeScreen extends FragmentActivity implements
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame,
-                                FragmentDiary.newInstance(),
-                                FragmentDiary.TAG).commit();
+                                ActivityDiary.newInstance(),
+                                ActivityDiary.TAG).commit();
                 break;
             case 4:
                 getSupportFragmentManager()
@@ -303,12 +301,28 @@ public class ActivityHomeScreen extends FragmentActivity implements
         mDrawerToggle.syncState();
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //draweri sadece swipe ederek açma yerine sol tepedeki butona basarak açmak için
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+            switch (item.getItemId()) {
+                case R.id.logout:
+                    getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                            .edit()
+                            .putString("user_id",null)
+                            .putString("password",null)
+                            .putBoolean("remembers",false)
+                            .commit();
+                    Intent intent = new Intent(getApplicationContext(), ActivityOpening.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("EXIT", true);
+                    startActivity(intent);
+                    return true;
+                default:
+            }
         return super.onOptionsItemSelected(item);
     }
 
@@ -425,6 +439,20 @@ public class ActivityHomeScreen extends FragmentActivity implements
             Log.d("log_tag", "ALL completed!");
         }
     }
+
+
+    @Override
+    public void onBackPressed() {
+        exit();
+    }
+
+    private void exit() {
+        Intent intent = new Intent(getApplicationContext(), ActivityOpening.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+    }
+
     public Bitmap StringToBitMap(String encodedString) {
         try {
             byte[] encodeByte = Base64.decode(encodedString, Base64.DECODE);
@@ -459,11 +487,11 @@ public class ActivityHomeScreen extends FragmentActivity implements
                     (new InputStreamReader(is, "utf-8"), 8);
             StringBuilder sb = new StringBuilder();
             while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line);
             }
             is.close();
             result = sb.toString();
-            Log.e("Babyresult", result);
+            Log.e("Baby-Id Home Screen", result);
         } catch (Exception e) {
             Log.e("BabyFail 2", e.toString());
         }

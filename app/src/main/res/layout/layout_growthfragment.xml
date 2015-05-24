@@ -2,17 +2,85 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@drawable/bg_gradient">
+    android:padding="16dp"
+    android:background="@drawable/bg_gradient"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart1"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/linearLayout9" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:text="Burası Growth Layout Olacak"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-        android:layout_centerVertical="true"/>
+        android:layout_marginTop="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout9">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="@string/growth_weight" />
+
+            <EditText
+                android:id="@+id/etNewWieght"
+                android:numeric="integer"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_form_rounded"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:weightSum="2"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="@string/growth_height" />
+
+            <EditText
+                android:id="@+id/etNewHeight"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:numeric="integer"
+                android:layout_weight="1"
+                android:background="@drawable/bg_form_rounded"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAddNewEntry"
+            android:layout_width="fill_parent"
+            android:background="@drawable/bg_button_rounded"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:text="@string/growth_add_new_entry"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -104,6 +104,46 @@ public class Mood {
         mDatabase.close();
         return moodlist;
     }
+    public ArrayList<HashMap<String, String>> getTodayMoods(String act_id,String currenDate,String yesterdayDateString){
+
+        String columns[]={"m_id","a_id","m_type"};
+
+        Cursor cursor = mDatabase.query(ActivityTable.TABLE_MOOD, columns, "a_id=? and select_date<=? and select_date>=?", new String[]{act_id, currenDate, yesterdayDateString}, null, null, null);
+        ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i=0; i<cursor.getColumnCount();i++)
+                {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+                moodlist.add(map);
+            } while (cursor.moveToNext());
+        }
+        mDatabase.close();
+        return moodlist;
+    }
+    public ArrayList<HashMap<String, String>> getSpecificMoodAsaActId(String a_id){
+
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_MOOD+ " WHERE a_id="+ a_id;
+
+        Cursor cursor = mDatabase.rawQuery(selectQuery, null);
+        ArrayList<HashMap<String, String>> moodlist = new ArrayList<HashMap<String, String>>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i=0; i<cursor.getColumnCount();i++)
+                {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+                moodlist.add(map);
+            } while (cursor.moveToNext());
+        }
+        mDatabase.close();
+        return moodlist;
+    }
     public HashMap<String, String> getMoodID(int a_id){
 
         HashMap<String,String> mood = new HashMap<String,String>();

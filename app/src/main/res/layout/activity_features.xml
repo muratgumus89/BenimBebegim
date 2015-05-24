@@ -52,14 +52,14 @@
             android:id="@+id/txtCalendar_Home_Screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/calendar"
+            android:text="@string/video"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:layout_weight="10"
             android:layout_gravity="center"
             android:gravity="center"
             android:textStyle="bold"
-            android:drawableTop="@drawable/icon_calender_72" />
+            android:drawableTop="@drawable/icon_videos_72" />
 
         <TextView
             android:id="@+id/txtPhotos_Home_Screen"
@@ -90,7 +90,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="20dp"
-            android:layout_weight="10"
+            android:layout_weight="8"
             android:textStyle="bold"
             android:drawableTop="@drawable/icon_reminder_72"
             />
@@ -99,14 +99,14 @@
             android:id="@+id/txtHelp_Home_Screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/help"
+            android:text="@string/calendar"
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:textSize="20dp"
             android:gravity="center"
             android:layout_weight="10"
             android:textStyle="bold"
-            android:drawableTop="@drawable/icon_help_72" />
+            android:drawableTop="@drawable/icon_calender_72" />
     </LinearLayout>
 
 </LinearLayout>

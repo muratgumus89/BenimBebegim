@@ -5,7 +5,9 @@
     <!-- Accessing camera hardware -->
     <uses-feature android:name="android.hardware.camera" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -18,24 +20,18 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name=".RemindMe"
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:icon="@drawable/baby_boy_icon"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ActivityAlarm"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
         </activity>
         <activity
             android:name=".AddAlarmActivity"
@@ -75,6 +71,7 @@
             android:name=".ActivityHomeScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
+
             <!--
             <intent-filter>
 
@@ -135,6 +132,42 @@
         <activity
             android:name=".ActivityOther"
             android:label="@string/title_activity_activity_other" >
+        </activity>
+        <activity
+            android:name=".ActivityCaptureVideo"
+            android:label="@string/title_activity_capture_video" >
+        </activity>
+        <activity
+            android:name=".model.MyCalendarActivity"
+            android:label="@string/title_activity_calendar" >
+        </activity>
+        <activity
+            android:name=".CameraPhotoCapture"
+            android:label="@string/title_activity_capture_photo" >
+        </activity>
+        <activity
+            android:name=".model.AddDiary"
+            android:label="@string/diary_add" >
+        </activity>
+        <activity
+            android:name=".model.EditDiary"
+            android:label="@string/diary_edit" >
+        </activity>
+        <activity
+            android:name=".ActivityMoodChart"
+            android:label="@string/mood_chart" >
+        </activity>
+        <activity
+            android:name=".ActivitySolidChart"
+            android:label="@string/solid_chart" >
+        </activity>
+        <activity
+            android:name=".ActivityBottleChart"
+            android:label="@string/bottle_chart" >
+        </activity>
+        <activity
+            android:name=".ActivityGrowthChart"
+            android:label="@string/title_activity_activity_growth_chart" >
         </activity>
     </application>
 

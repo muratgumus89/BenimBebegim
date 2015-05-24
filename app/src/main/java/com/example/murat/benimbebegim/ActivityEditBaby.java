@@ -361,7 +361,13 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
                         .putBoolean("isSpinner",false)
                         .commit();
                 deleteValuesFromDatabase();
-
+                SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                int spin_position = preferences.getInt("spin_position",0);
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putInt("spin_position",spin_position - 1)
+                        .commit();
+                babyControl();
                 break;
             case R.id.btnOk_BabyEdit:
                 getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
@@ -447,7 +453,6 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
             if (code == 1) {
                 Toast.makeText(getBaseContext(), R.string.delete_account,
                         Toast.LENGTH_SHORT).show();
-                checkedBabyIsExistOrNot();
             }
             else {
                 Toast.makeText(getBaseContext(),R.string.sorry,
@@ -461,7 +466,142 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
 
 
     }
+    private String getBabyID(String strUserIDOpening,String baby_name)  {
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("uid", strUserIDOpening));
+        nameValuePairs.add(new BasicNameValuePair("baby_name", baby_name));
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/get_baby_id.php");
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity entity = response.getEntity();
+            is = entity.getContent();
+            Log.e("BabyIdCon", "connection success ");
+        } catch (Exception e) {
+            Log.e("BabyIdFail", e.toString());
+            Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                    Toast.LENGTH_LONG).show();
+        }
 
+        try {
+            BufferedReader reader = new BufferedReader
+                    (new InputStreamReader(is, "utf-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            is.close();
+            result = sb.toString();
+            Log.e("Opening - Baby_ID: ", result);
+        } catch (Exception e) {
+            Log.e("BabyFail 2", e.toString());
+        }
+        Log.i("Result: ",result);
+        return result;
+    }
+    private void babyControl() {
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String strUserIDOpening = preferences.getString("user_id", "");
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("user_id", strUserIDOpening));
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/baby_control.php");
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity entity = response.getEntity();
+            is = entity.getContent();
+            Log.e("pass 1", "connection success ");
+        } catch (Exception e) {
+            Log.e("Fail 1", e.toString());
+            Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader
+                    (new InputStreamReader(is, "utf-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            is.close();
+            result = sb.toString();
+            ;
+        } catch (Exception e) {
+            Log.e("Fail 2", e.toString());
+        }
+
+        try {
+            JSONObject json_data = new JSONObject(result);
+            code = json_data.getInt("code");
+            Log.e("kontrol", (String.valueOf(code)));
+            /******************
+             *  Checked record is inserted or not
+             */
+            if (code == 0) {
+                Intent intentCreateBaby = new Intent(getApplicationContext(),
+                        ActivityCreateBaby.class);
+                Bundle b = new Bundle();
+                b.putString("userid", strUserIDOpening);
+                intentCreateBaby.putExtras(b);
+                startActivity(intentCreateBaby);
+            } else {
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString("user_id", strUserIDOpening)
+                        .commit();
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString("baby_id", getBabyID(strUserIDOpening,getBabyName(strUserIDOpening)))
+                        .commit();
+                getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+                        .edit()
+                        .putString("baby_name", getBabyName(strUserIDOpening))
+                        .commit();
+                Intent intentHomeScreen = new Intent(getApplicationContext(),
+                        ActivityHomeScreen.class);
+                startActivity(intentHomeScreen);
+            }
+        } catch (Exception e) {
+            Log.e("Fail 3", e.toString());
+        }
+    }
+    private String getBabyName(String userid) {
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String strUserIDOpening = preferences.getString("user_id", "");
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("uid",strUserIDOpening ));
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://176.58.88.85/~murat/just_one_baby_name.php");
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+            HttpResponse response = httpclient.execute(httppost);
+            HttpEntity entity = response.getEntity();
+            is = entity.getContent();
+            Log.e("BabyIdCon", "connection success ");
+        } catch (Exception e) {
+            Log.e("BabyIdFail", e.toString());
+            Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader
+                    (new InputStreamReader(is, "utf-8"), 8);
+            StringBuilder sb = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            is.close();
+            result = sb.toString();
+            Log.e("Opening - Baby Name: ", result);
+        } catch (Exception e) {
+            Log.e("BabyFail 2", e.toString());
+        }
+        return result;
+    }
     private void checkedBabyIsExistOrNot() {
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         String strUser_id = preferences.getString("user_id", "");
@@ -562,12 +702,12 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
             } else {
                 image_str = "null";
             }
-            nameValuePairs.add(new BasicNameValuePair("date", btnDatePicker_BabyEdit.getText().toString()));
-            nameValuePairs.add(new BasicNameValuePair("time", btnTimePicker_BabyEdit.getText().toString()));
-            nameValuePairs.add(new BasicNameValuePair("image", image_str));
-            nameValuePairs.add(new BasicNameValuePair("uid", strUser_id));
+            nameValuePairs.add(new BasicNameValuePair("date"  , btnDatePicker_BabyEdit.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("time"  , btnTimePicker_BabyEdit.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("image" , image_str));
+            nameValuePairs.add(new BasicNameValuePair("uid"   , strUser_id));
             nameValuePairs.add(new BasicNameValuePair("gender", selectedGendersForEditBaby));
-            nameValuePairs.add(new BasicNameValuePair("theme", "Theme"));
+            nameValuePairs.add(new BasicNameValuePair("theme" , "Theme"));
 
 
             try {
@@ -632,12 +772,16 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
             }
         }else{
             Toast.makeText(getBaseContext(),"No Changing",Toast.LENGTH_SHORT).show();
+            Intent intentHomeScreen1 = new Intent(getApplicationContext(),
+                    ActivityHomeScreen.class);
+            startActivity(intentHomeScreen1);
         }
 
     }
 
     private Boolean changeControl() {
         String name,date,time,gender,theme,path;
+        gender = spinnerSelectGender_EditBaby.getSelectedItem().toString();
         name=edtGetBabyName_BabyEdit.getText().toString();
         date=btnDatePicker_BabyEdit.getText().toString();
         time=btnTimePicker_BabyEdit.getText().toString();
@@ -695,12 +839,12 @@ public class ActivityEditBaby extends Activity implements OnClickListener{
                                 +", Gender: "+json_data.getString("Gender")
                                 +", Theme: "+json_data.getString("Theme")
 
-
                 );
                 if(name.equals(json_data.getString("Name"))&&
                    date.equals(json_data.getString("Date"))&&
                    time.equals(json_data.getString("Time"))&&
-                   path.equals(realPath)){
+                   path.equals(realPath)&&
+                   gender.equals(json_data.getString("Gender"))){
                     isChanging=false;
                 }
                 else{

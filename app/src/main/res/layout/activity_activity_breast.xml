@@ -100,26 +100,75 @@
             android:layout_marginBottom="8dp"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="30">
+
             <TextView
-                android:layout_width="fill_parent"
+                android:id="@+id/tVTotalBreast"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:layout_weight="20"
                 android:text="@string/Bottle_Dialog_tv_total"/>
 
             <TextView
-                android:layout_width="fill_parent"
+                android:id="@+id/tVTotalBreastTimer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/Bottle_Dialog_tv_paused"/>
+                android:layout_weight="5"
+                android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="30">
+
             <TextView
+                android:id="@+id/tVPauseBreast"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:layout_weight="20"
+                android:text="@string/Bottle_Dialog_tv_paused"/>
+
+            <TextView
+                android:id="@+id/tVPauseBreastTimer"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="30">
+            <TextView
+                android:id="@+id/tVActualBreast"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_weight="20"
                 android:text="@string/Bottle_Dialog_tv_actual"/>
+                <TextView
+                    android:id="@+id/tVActualBreastTimer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
         </LinearLayout>
 
         <EditText
-            android:id="@+id/etMoodActivity_Notes"
+            android:id="@+id/etBreastActivity_Notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="3"

@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Baby Sitter</string>
+    <string name="action_settings">Settings</string>
+    <string name="select_lang">Please Select Language!</string>
+    <string name="welcome">Welcome!</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="password_conf">Confirm Password</string>
+    <string name="user">User Name</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="login">Login</string>
+    <string name="save">Register</string>
+    <string name="turkish">Türkish</string>
+    <string name="english">English</string>
+    <string name="create">Create Account</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="gender">Gender : </string>
+    <string name="txtTitleBabyCreate">Create Baby Profile</string>
+    <string name="txtTitleBabyEdit">Edit Baby Profile</string>
+    <string name="ok">OK</string>
+    <string name="theme">Themes</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+    <string name="yellow">Yellow</string>
+    <string name="black">Black</string>
+    <string name="white">White</string>
+    <string name="gray">Gray</string>
+    <string name="orange">Orange</string>
+    <string name="pink">Pink</string>
+    <string name="purple">Purple</string>
+    <string name="reminder">Reminders</string>
+    <string name="photos">Photos</string>
+    <string name="calendar">Calendar</string>
+    <string name="signup">Don\'t have account? Sign Up</string>
+    <string name="button_label">OK</string>
+    <string name="pref_name">Pick a color</string>
+    <string name="Remember_Me">Remember Me</string>
+    <string name="pref_summary">DialogPreference with Color Picker.</string>
+    <string name="selecttheme">SELECT THEME</string>
+    <string name="Button_Date">BUTTON DATE</string>
+    <string name="Button_Time">BUTTON TIME</string>
+    //For Hİnts
+    <string name="hint_user_name">User Name</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_surname">Surname</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    //For Toast Messages
+    <string name="valid_User_name">Valid UserName Required!!!</string>
+    <string name="valid_Name">Valid Name Required!!!</string>
+    <string name="valid_Surname">Valid Surname Required!!!</string>
+    <string name="valid_Email">Valid Email Required!!!</string>
+    <string name="valid_Password">Valid Password Required!!!</string>
+    <string name="valid_Confirm_Password">Valid Confirm Required!!!</string>
+    <string name="valid_Gender">Valid Gender Information Required!!!</string>
+    <string name="wrong_User_Name">Wrong UserName/Email Adress!!!</string>
+    <string name="wrong_Password">Wrong Password!!!</string>
+    <string name="wrong_Email_Format">Wrong Email Format!!!</string>
+    <string name="login_succesfully">Login Successfully</string>
+    <string name="create_succesfully">Account Created Successfully</string>
+    <string name="not_Match_Password">Password Doesnt Match!!!</string>
+    <string name="exist_User_Name">is Existed UserName!!!</string>
+    <string name="exist_Email">Existed Email Adress!!!</string>
+    <string name="sorry">Sorry, Try Again!!!</string>
+    <string name="have_a_baby">is Already Belongs This User!!!</string>
+    <string name="update_account">Updated</string>
+    <string name="delete_account">Account Deleted</string>
+    /**
+    ****  FOR REMİND ME
+    ***/
+    <string name="message">Message</string>
+    <string name="play_ringtone">Play Ringtone</string>
+    <string name="once">Once</string>
+    <string name="repeat">Repeat</string>
+    <string name="from_date">From Date:    </string>
+    <string name="to_date">To Date:    </string>
+    <string name="at_time">At Time:    </string>
+    <string name="rule">Rule</string>
+    <string name="interval">Interval</string>
+    <string name="of">of</string>
+    <string name="mins">min(s)    </string>
+    <string name="hours">hour(s)    </string>
+    <string name="days">day(s)    </string>
+    <string name="mounths">mounth(s)    </string>
+    <string name="years">year(s)    </string>
+    <string name="no_data">No Data</string>
+    <string name="display_time">Display Time</string>
+    <string name="display_settings">Display Settings</string>
+    <string name="date_range">Date Range</string>
+    <string name="date_format">Date Format</string>
+    <string name="time_format">Time Format</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="vibrate_on">Vibrate On Notification</string>
+    <string name="set_ringtone">Set Ringtone</string>
+    <string name="notification_Setting">Notification Settings</string>
+    <string name="use_hour">Use 24-hour format</string>
+    <string name="daily">Daily</string>
+    <string name="actual">Actual</string>
+    <string name="cancel_capture">User Cancelled Image Capture</string>
+    <string name="cancel_select">User Cancelled Image Selecting</string>
+    <string name="add_baby">Add Another Baby</string>
+    <string name="edit_baby">Edit Baby Info</string>
+
+    <style name="DefaultButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#979797</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:shadowColor">#f9f9f9</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    <string name="ImageViewChoseFromGallery">Choose From Gallery</string>
+    <string name="ImageViewTakePicture">Take Picture</string>
+    <string name="ImageCancel">Cancel</string>
+    <string name="click_add">Click to Add Event...</string>
+    //String Values For Favorites ListView
+    <string-array name="Favorites">
+        <item>Mood</item>
+        <item>Solid</item>
+        <item>Bottle</item>
+        <item>Breast</item>
+        <item>Sleep</item>
+        <item>Diaper</item>
+        <item>Pumping</item>
+    </string-array>
+    //String Values For MoreEvents ListView
+    <string-array name="MoreEvents">
+        <item>Health</item>
+        <item>Medicine</item>
+        <item>Vaccination</item>
+        <item>Hygiene</item>
+        <item>Teeth</item>
+    </string-array>
+    <string-array name="menu">
+        <item >Home</item>
+        <item >History</item>
+        <item >Stats</item>
+        <item >Diary</item>
+        <item >Growth</item>
+    </string-array>
+    <string name="mood">Mood</string>
+    <string name="solid">Solid</string>
+    <string name="bottle">Bottle</string>
+    <string name="breast">Breast</string>
+    <string name="sleep">Sleep</string>
+    <string name="diaper">Diaper</string>
+    <string name="pumping">Pumping</string>
+    <string name="medicine">Medicine</string>
+    <string name="health">Health</string>
+    <string name="vaccination">Vaccination</string>
+    <string name="hygiene">Hygiene</string>
+    <string name="teeth">Teeth</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="title_activity_item_one">ItemOne</string>
+    <string name="title_section1">Features</string>
+    <string name="title_section2">Favorites</string>
+    <string name="title_section3">More Events</string>
+    <string name="edit">Edit</string>
+    <string name="delete_repeating">Delete repeating</string>
+    <string name="delete_all">Delete all</string>
+    <string name="title_activity_activity_mood">ActivityMood</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_activity_solid">ActivitySolid</string>
+    <string name="title_activity_activity_bottle">ActivityBottle</string>
+    <string name="title_activity_activity_breast">ActivityBreast</string>
+    <string name="title_activity_activity_sleep">ActivitySleep</string>
+    <string name="title_activity_activity_diaper">ActivityDiaper</string>
+    <string name="title_activity_activity_pumping">ActivityPumping</string>
+    <string name="title_activity_activity_health">ActivityHealth</string>
+    <string name="title_activity_activity_medicine">ActivityMedicine</string>
+    <string name="title_activity_activity_vaccination">ActivityVaccination</string>
+    <string name="title_activity_activity_hygiene">ActivityHygiene</string>
+    <string name="title_activity_activity_teeth">ActivityTeeth</string>
+    <string name="title_activity_activity_other">ActivityOther</string>
+
+    <!--ActivitySleep Values goes in here-->
+    <string name="sleep_activity_finish_button">Finish</string>
+    <string name="sleep_activity_total_button">Total = </string>
+    <string name="sleep_activity_paused_button">Paused = </string>
+    <string name="sleep_activity_date_button">Date</string>
+    <string name="sleep_activity_time_button">Time</string>
+    <string name="sleep_activity_writesomething_button">Write something</string>
+
+
+    <!--ActivityDiaper Values goes in here-->
+    <string name="Diaper_activity_date_button">Date</string>
+    <string name="Diaper_activity_time_button">Time</string>
+    <string name="Diaper_activity_cancel_button">Cancel</string>
+    <string name="Diaper_activity_save_button">save</string>
+
+    <!--ActivityMoods Values goes in here-->
+    <string name="Moods_activity_date_button">Date</string>
+    <string name="Moods_activity_time_button">Time</string>
+    <string name="Moods_activity_cancel_button">Cancel</string>
+    <string name="Moods_activity_save_button">save</string>
+
+    <!--ActivityOther Values goes in here-->
+    <string name="Other_activity_cancel_button">Cancel</string>
+    <string name="Other_activity_save_button">Save</string>
+    <string name="Other_activity_total_button">total</string>
+    <string name="Other_activity_paused_button">paused</string>
+    <string name="Other_activity_date_button">Date</string>
+    <string name="Other_activity_time_button">Time</string>
+    <string name="Other_activity_writesomething_button">Write something</string>
+    <string name="Other_activity_play_button">Play</string>
+
+    <!--ActivitySolid Values goes in here-->
+    <string name="Solid_activity_date_button">Date</string>
+    <string name="Solid_activity_time_button">Time</string>
+    <string name="Solid_activity_cancel_button">Cancel</string>
+    <string name="Solid_activity_save_button">save</string>
+    <string name="Solid_activity_checkbox_cereal">Cereal</string>
+    <string name="Solid_activity_checkbox_meat">Meat</string>
+    <string name="Solid_activity_checkbox_pasta">Pasta</string>
+    <string name="Solid_activity_checkbox_fish">Fish</string>
+    <string name="Solid_activity_checkbox_bread">Bread</string>
+    <string name="Solid_activity_checkbox_fruit">Fruit</string>
+    <string name="Solid_activity_checkbox_vegetable">Vegetable</string>
+    <string name="Solid_activity_checkbox_dairy">Dairy</string>
+    <string name="Solid_activity_checkbox_eggs">Eggs</string>
+    <string name="Solid_activity_checkbox_other">Other</string>
+
+    <!--ActivityBottle Values goes in here-->
+    <string name="Bottle_activity_date_button">Date</string>
+    <string name="Bottle_activity_time_button">Time</string>
+    <string name="Bottle_activity_formula_button">Formula</string>
+    <string name="Bottle_activity_amaount_button">0,00 ml</string>
+    <string name="Bottle_activity_meas_button">Meas</string>
+    <string name="Bottle_activity_writesth_button">Write something</string>
+    <string name="Bottle_activity_cancel_button">Cancel</string>
+    <string name="Bottle_activity_save_button">Save</string>
+
+    <string name="Bottle_Dialog_checkbox_formula">Formula</string>
+    <string name="Bottle_Dialog_checkbox_milk">Milk</string>
+    <string name="Bottle_Dialog_checkbox_water">Water</string>
+    <string name="Bottle_Dialog_checkbox_juice">Juice</string>
+    <string name="Bottle_Dialog_checkbox_breastmilk">BreastMilk</string>
+    <string name="Bottle_Dialog_checkbox_other">Other</string>
+
+    <string name="Bottle_Dialog_amount_cancel">Cancel</string>
+    <string name="Bottle_Dialog_amount_ok">Okay</string>
+
+    <string name="Bottle_Dialog_tv_total">Total: </string>
+    <string name="Bottle_Dialog_tv_paused">Paused: </string>
+    <string name="Bottle_Dialog_tv_actual">Actual
+        :</string>
+
+
+    <!--ActivityBreast Values goes in here-->
+    <string name="Breast_activity_date_button">Date</string>
+    <string name="Breast_activity_time_button">Time</string>
+    <string name="Breast_activity_writesth_button">Write something</string>
+    <string name="Breast_activity_cancel_button">Cancel</string>
+    <string name="Breast_activity_save_button">Save</string>
+
+    <!--ActivitySleep Values goes in here-->
+    <string name="Sleep_activity_date_button">Date</string>
+    <string name="Sleep_activity_time_button">Time</string>
+    <string name="Sleep_activity_writesth_button">Write something</string>
+    <string name="Sleep_activity_cancel_button">Cancel</string>
+    <string name="Sleep_activity_save_button">Save</string>
+
+    <!--ActivityHealth Values goes in here-->
+    <string-array name="spinneritem_healthActivity">
+        <item>Diarrhea</item>
+        <item>Vomit</item>
+        <item>Pink eye</item>
+        <item>Fever</item>
+        <item>Wheeze</item>
+        <item>Stuffy nose</item>
+        <item>Other</item>
+    </string-array>
+    <!--ActivityHealth Values goes in here-->
+    <string-array name="tabs">
+        <item>Features</item>
+        <item>Favorites</item>
+        <item>More Events</item>
+        <item>Earlier</item>
+        <item>Today</item>
+        <item>Category</item>
+    </string-array>
+    <string-array name="tabs_home">
+        <item>Features</item>
+        <item>Favorites</item>
+        <item>More Events</item>
+    </string-array>
+    <string name="logout">LOGOUT</string>
+    <string name="Health_activity_date_button">Date</string>
+    <string name="Health_activity_time_button">Time</string>
+    <string name="Health_activity_writesth_button">Write something</string>
+    <string name="Health_activity_cancel_button">Cancel</string>
+    <string name="Health_activity_save_button">Save</string>
+
+    <!--ActivityMedicine Values goes in here-->
+    <string-array name="spinneritem_MedicineActivity">
+        <item>DHA</item>
+        <item>Gas relief</item>
+        <item>Gripe water</item>
+        <item>Iron</item>
+        <item>Reflux</item>
+        <item>Paracetemol</item>
+        <item>Teething tablets</item>
+        <item>Vitamin D</item>
+        <item>Vitamin B</item>
+        <item>Vitamin B12</item>
+        <item>Allergy</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="spinnerUnit_MedicineActivity">
+        <item>ml</item>
+        <item>piece</item>
+        <item>dose</item>
+        <item>oz</item>
+        <item>tsp</item>
+        <item>tbsp</item>
+        <item>drop</item>
+        <item>mg</item>
+        <item>iu</item>
+    </string-array>
+    <string name="Medicine_activity_date_button">Date</string>
+    <string name="Medicine_activity_time_button">Time</string>
+    <string name="Medicine_activity_writesth_button">Write something</string>
+    <string name="Medicine_activity_cancel_button">Cancel</string>
+    <string name="Medicine_activity_save_button">Save</string>
+
+    <!--ActivityVaccination Values goes in here-->
+    <string-array name="spinnerItem_VaccinationActivity">
+        <item>BCG</item>
+        <item>Dtab</item>
+        <item>Flu Vaccine</item>
+        <item>HepA</item>
+        <item>HepB</item>
+        <item>Hib</item>
+        <item>HPV(girls only)</item>
+        <item>PCV(Pneumo)</item>
+        <item>Polio(IPV)</item>
+        <item>RV(Rotavirus)</item>
+        <item>Varicella</item>
+        <item>Other</item>
+    </string-array>
+    <string name="Vaccination_activity_date_button">Date</string>
+    <string name="Vaccination_activity_time_button">Time</string>
+    <string name="Vaccination_activity_writesth_button">Write something</string>
+    <string name="Vaccination_activity_cancel_button">Cancel</string>
+    <string name="Vaccination_activity_save_button">Save</string>
+
+    <!--ActivityHygiene Values goes in here-->
+    <string-array name="spinnerItem_HygieneActivity">
+        <item>Bath</item>
+        <item>Trim hair</item>
+        <item>Clip nails</item>
+    </string-array>
+    <string name="Hygiene_activity_date_button">Date</string>
+    <string name="Hygiene_activity_time_button">Time</string>
+    <string name="Hygiene_activity_writesth_button">Write something</string>
+    <string name="Hygiene_activity_cancel_button">Cancel</string>
+    <string name="Hygiene_activity_save_button">Save</string>
+
+    <!--ActivityPumping Values goes in here-->
+    <string name="Pumping_activity_date_button">Date</string>
+    <string name="Pumping_activity_time_button">Time</string>
+    <string name="Pumping_activity_ounce_button">Ounce</string>
+    <string name="Pumping_activity_writesth_button">Write something</string>
+    <string name="Pumping_activity_cancel_button">Cancel</string>
+    <string name="Pumping_activity_save_button">Save</string>
+    <string name="Pumping_activity_total_edittext">Total : </string>
+    <string name="Pumping_activity_paused_edittext">Paused : </string>
+
+    <!--ActivityTeeth Values goes in here-->
+    <string-array name="spinnerItem_TeethActivity">
+        <item>1 - Central incisor</item>
+        <item>2 - Central incisor</item>
+        <item>3 - Central incisor</item>
+        <item>4 - Central incisor</item>
+        <item>5 - Lateral incisor</item>
+        <item>6 - Lateral incisor</item>
+        <item>7 - Lateral incisor</item>
+        <item>8 - Lateral incisor</item>
+        <item>9 - First molar</item>
+        <item>10 - First molar</item>
+        <item>11 - First molar</item>
+        <item>12 - First molar</item>
+        <item>13 - Canine</item>
+        <item>14 - Canine</item>
+        <item>15 - Canine</item>
+        <item>16 - Canine</item>
+        <item>17 - Second molar</item>
+        <item>18 - Second molar</item>
+        <item>19 - Second molar</item>
+        <item>20 - Second molar</item>
+    </string-array>
+    <string name="Teeth_activity_date_button">Date</string>
+    <string name="Teeth_activity_time_button">Time</string>
+    <string name="Teeth_activity_cancel_button">Cancel</string>
+    <string name="Teeth_activity_save_button">Save</string>
+
+
+    <string name="title_sction1">Section 1</string>
+    <string name="title_sction2">Section 2</string>
+    <string name="title_sction3">Section 3</string>
+    <string-array name="spinner_items">
+        <item>Dhaka</item>
+        <item>Chittagong</item>
+    </string-array>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_actionmode">Action Mode</string>
+    <string name="actionmode_title">Action Mode</string>
+    <string name="title_activity_main">ActionBar Demo</string>
+    <string name="frag1">Fragment 1</string>
+    <string name="frag2">Fragment 2</string>
+
+    <string-array name="spinner_data">
+        <item>Aytunç</item>
+        <item>Murat</item>
+    </string-array>
+    <string name="search">Search</string>
+    <string name="actionmode_cancel">Cancel ActionMode</string>
+    <string name="add_record">Record Added Successfully</string>
+    <string name="about">about </string>
+    <string name="year_ago"> years ago</string>
+    <string name="mounth_ago"> mounth ago</string>
+    <string name="day_ago"> day ago</string>
+    <string name="hour_ago"> hour ago</string>
+    <string name="minute_ago"> minute ago</string>
+    <string name="a_minute_ago">just now</string>
+    <string name="duration">duration</string>
+    <string name="video">Videos</string>
+    <string name="capture_video">Capture Video</string>
+    <string name="capture_photo">Capture Photo</string>
+    <string name="title_activity_capture_video">Baby Sitter Capture Video</string>
+    <string name="title_activity_calendar">Baby Sitter Calendar</string>
+    <string name="title_activity_capture_photo">Baby Sitter Capture Photo</string>
+    <string name="btnRecordVideo">Record Video</string>
+    <string name="or">(or)</string>
+    <string name="btnUploadToServer">Upload to Server</string>
+    <string-array name="activity_mood_moods">
+        <item>Quite</item>
+        <item>Chatty</item>
+        <item>Mischievious</item>
+        <item>Sleepy</item>
+        <item>Sweet</item>
+        <item>Happy</item>
+        <item>Fussy</item>
+        <item>Angry</item>
+        <item>Grumpy</item>
+        <item>Sad</item>
+        <item>Crying</item>
+        <item>Playful</item>
+        <item>Bashful</item>
+    </string-array>
+
+    <string-array name="activity_diaper_poop">
+        <item>Pee</item>
+        <item>Poop</item>
+        <item>Pee and Poop</item>
+    </string-array>
+
+    <string name="selected">Selected: </string>
+    <string name="video_cancel">Your Saving is Cancelled!</string>
+    <string name="photo_cancel">Your Saving is Cancelled!</string>
+    <string name="video_save">Your Saving is Completed!</string>
+    <string name="photo_save">Your Saving is Completed!</string>
+    <string name="no_record">No Record Yet!!</string>
+    <string name="add_item">Press the (+) button to add new record</string>
+    <string name="title">Title: </string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="finish">Finish</string>
+    <string name="play">Play</string>
+    <string name="save_button">Save</string>
+    <string name="voice_record">Voice Record</string>
+    <string name="date">Date</string>
+    <string name="speech">Speech to Text</string>
+    <string name="recording_start">Recording Started...!</string>
+    <string name="recording_finish">Recording Finished...!</string>
+    <string name="recording_play">Playing Record...!</string>
+    <string name="recording_stop">Recordind Played...!</string>
+    <string name="recording">Recording...</string>
+    <string name="ready_to_play">Ready to Play</string>
+    <string name="playing">Playing...</string>
+    <string name="finished">Finished</string>
+    <string name="added_record">Record Added Succesfully</string>
+    <string name="update_record">Record Updated Succesfully</string>
+    <string name="delete_record">Record Deleted Succesfully</string>
+    <string name="delete_context">Delete</string>
+    <string name="edit_context">Edit</string>
+    <string name="operations">Operations</string>
+    <string name="deleting_record">Warning</string>
+    <string name="confirm">Confirm</string>
+    <string name="are_you_sure">Are You Sure ?</string>
+    <string name="diary_activity">Baby Sitter Diary</string>
+    <string name="diary_add">Add Diary</string>
+    <string name="diary_edit">Edit Diary</string>
+    <string-array name="time_option_arr">
+        <item>Actual</item>
+        <item>Remaining</item>
+    </string-array>
+
+    <string-array name="date_range_arr">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <!--item>Yearly</item-->
+    </string-array>
+
+    <string-array name="val_arr">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="spinner1_arr">
+        <item>Every</item>
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+        <item>9th</item>
+        <item>10th</item>
+        <item>11th</item>
+        <item>12th</item>
+        <item>13th</item>
+        <item>14th</item>
+        <item>15th</item>
+        <item>16th</item>
+        <item>17th</item>
+        <item>18th</item>
+        <item>19th</item>
+        <item>20th</item>
+        <item>21st</item>
+        <item>22nd</item>
+        <item>23rd</item>
+        <item>24th</item>
+        <item>25th</item>
+        <item>26th</item>
+        <item>27th</item>
+        <item>28th</item>
+        <item>29th</item>
+        <item>30th</item>
+        <item>31st</item>
+        <!--item>Last</item-->
+    </string-array>
+
+    <string-array name="spinner2_arr">
+        <item>Day</item>
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+
+    <string-array name="spinner3_arr">
+        <item>Month</item>
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+
+    <string-array name="date_format_arr">
+        <item>yyyy-MM-dd</item>
+        <item>yyyy-M-d</item>
+        <item>MMMM dd yyyy</item>
+        <item>MM/dd/yyyy</item>
+        <item>dd MMMM yyyy</item>
+        <item>dd MMM yyyy</item>
+        <item>d MMM yyyy</item>
+        <item>dd-MM-yyyy</item>
+        <item>dd/MM/yy</item>
+    </string-array>
+    <string name="select_type_of_solid">Select Type of Solid</string>
+    <string name="amount_of_consume">Amount of Consume</string>
+    <string name="once_amount">Once Amount</string>
+    <string name="mood_chart">Mood Chart</string>
+    <string name="solid_chart">Solid Chart</string>
+    <string name="bottle_chart">Bottle Chart</string>
+    <!-- Growth strings goes here-->
+    <string name="growth_weight">Weight (gram)</string>
+    <string name="growth_height">Height (cm)</string>
+    <string name="growth_add_new_entry">Add new entry</string>
+</resources>

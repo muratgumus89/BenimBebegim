@@ -94,6 +94,25 @@ public class Bottle {
         mDatabase.close();
         return bottlelist;
     }
+    public ArrayList<HashMap<String, String>> getSpecificBottle(){
+
+        String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_BOTTLE ;
+        Cursor cursor = mDatabase.rawQuery(selectQuery, null);
+        ArrayList<HashMap<String, String>> bottlelist = new ArrayList<HashMap<String, String>>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i=0; i<cursor.getColumnCount();i++)
+                {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
+                bottlelist.add(map);
+            } while (cursor.moveToNext());
+        }
+        mDatabase.close();
+        return bottlelist;
+    }
     public ArrayList<HashMap<String, String>> getSpecificBottle(String a_id){
 
         String selectQuery = "SELECT * FROM " + ActivityTable.TABLE_BOTTLE + " WHERE a_id="+ a_id;
@@ -141,13 +160,13 @@ public class Bottle {
         values.put(ActivityTable.BOTTLE_TIMER,timer);
 
         // updating row
-        mDatabase.update(ActivityTable.TABLE_SOLID, values, ActivityTable.SOLID_ID + " = ?",
+        mDatabase.update(ActivityTable.TABLE_BOTTLE, values, ActivityTable.BOTTLE_ID + " = ?",
                 new String[]{String.valueOf(bottle_id)});
         mDatabase.close();
     }
     public void resetTables(){
         //Bunuda uygulamada kullanmıyoruz. Tüm verileri siler. tabloyu resetler.
-        mDatabase.delete(ActivityTable.TABLE_SOLID, null, null);
+        mDatabase.delete(ActivityTable.TABLE_BOTTLE, null, null);
         mDatabase.close();
     }
 

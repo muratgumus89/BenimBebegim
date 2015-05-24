@@ -161,7 +161,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
         if (milliseconds.length() > 3 && milliseconds.length() < 4) {
             milliseconds = milliseconds.substring(milliseconds.length() - 3, milliseconds.length() - 2);
         }
-        ((Button) findViewById(R.id.btnBottleActivity_time)).setText(hours + " : " + minutes + " : " + seconds);
+        ((Button) findViewById(R.id.btnBottleActivity_time)).setText(hours + ":" + minutes + ":" + seconds);
     }
 
     private void init(){
@@ -298,7 +298,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
             case R.id.btnBottleActivity_formula:
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_type_of_bottle);
-                dialog.setTitle("Select type of solid");
+                dialog.setTitle(getResources().getString(R.string.select_type_of_solid));
                 dialog.setCancelable(true);
 
                 final RadioButton rb1 = (RadioButton)dialog.findViewById(R.id.rbBottleDialog_BreastMilk);
@@ -361,7 +361,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
             case R.id.btnBottleActivity_amount:
                 final Dialog dialog1 = new Dialog(context);
                 dialog1.setContentView(R.layout.dialog_bottle_amaount);
-                dialog1.setTitle("Amount of comsume");
+                dialog1.setTitle(getResources().getString(R.string.amount_of_consume));
                 dialog1.setCancelable(true);
 
                 final Button btnOk, btnCancel;
@@ -399,7 +399,7 @@ public class ActivityBottle extends FragmentActivity implements View.OnClickList
         int amount;
 
 
-        if(btnAmount.getText().toString().equals("0,00 lt")) {
+        if(btnAmount.getText().toString().equals("0,00 ml")) {
             amount = 0;
         }else {
             amount = Integer.valueOf(btnAmount.getText().toString());
