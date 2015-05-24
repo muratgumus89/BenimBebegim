@@ -111,7 +111,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
         }
         if(pref.getInt("spin_position",0) != 0 && pref.getInt("spin_position",0) != 1){
 
-            spinnerPosition=pref.getInt("spin_position",0);
+            spinnerPosition=pref.getInt("spin_position",spinnerPosition);
         }
 
         mTitle = "Benim Bebeğim";
