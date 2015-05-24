@@ -1,6 +1,8 @@
 package com.example.murat.benimbebegim;
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -151,7 +153,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
     @Override
     protected void onSaveInstanceState( Bundle outState )
     {
-        outState.putInt( "mode", getActionBar().getNavigationMode() );
+        outState.putInt("mode", getActionBar().getNavigationMode());
         super.onSaveInstanceState( outState );
     }
 
@@ -299,6 +301,7 @@ public class ActivityHomeScreen extends FragmentActivity implements
         mDrawerToggle.syncState();
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //draweri sadece swipe ederek açma yerine sol tepedeki butona basarak açmak için
@@ -437,9 +440,17 @@ public class ActivityHomeScreen extends FragmentActivity implements
         }
     }
 
+
     @Override
     public void onBackPressed() {
+        exit();
+    }
 
+    private void exit() {
+        Intent intent = new Intent(getApplicationContext(), ActivityOpening.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
     }
 
     public Bitmap StringToBitMap(String encodedString) {

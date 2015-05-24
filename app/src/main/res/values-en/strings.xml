@@ -601,4 +601,7 @@
     <string name="select_type_of_solid">Select Type of Solid</string>
     <string name="amount_of_consume">Amount of Consume</string>
     <string name="once_amount">Once Amount</string>
+    <string name="mood_chart">Mood Chart</string>
+    <string name="solid_chart">Solid Chart</string>
+    <string name="bottle_chart">Bottle Chart</string>
 </resources>

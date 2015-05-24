@@ -155,15 +155,15 @@
         </activity>
         <activity
             android:name=".ActivityMoodChart"
-            android:label="MoodChart" >
+            android:label="@string/mood_chart" >
         </activity>
         <activity
             android:name=".ActivitySolidChart"
-            android:label="@string/title_activity_solid_activity_chart" >
+            android:label="@string/solid_chart" >
         </activity>
         <activity
             android:name=".ActivityBottleChart"
-            android:label="@string/title_activity_activity_bottle_chart" >
+            android:label="@string/bottle_chart" >
         </activity>
     </application>
 

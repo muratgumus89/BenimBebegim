@@ -599,4 +599,7 @@
     <string name="select_type_of_solid">Beslenme Tipini Seçiniz</string>
     <string name="amount_of_consume">Tüketim Miktarı</string>
     <string name="once_amount">Miktar</string>
+    <string name="mood_chart">Ruh Hali Grafigi</string>
+    <string name="solid_chart">Beslenme Grafigi</string>
+    <string name="bottle_chart">Biberon Grafigi</string>
 </resources>
