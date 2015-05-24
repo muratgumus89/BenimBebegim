@@ -53,11 +53,11 @@ public class FragmentGrowth extends Fragment implements View.OnClickListener, On
     Button btnAddEntry;
     private LineChart mChart;
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.layout_growthfragment, container,false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        View view = inflater.inflate(R.layout.layout_growthfragment, container,false);
         getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         etWeight = (EditText) view.findViewById(R.id.etNewWieght);
@@ -125,7 +125,7 @@ public class FragmentGrowth extends Fragment implements View.OnClickListener, On
         rightAxis.setDrawGridLines(false);
 
         return view;
-	}
+    }
 
 
 

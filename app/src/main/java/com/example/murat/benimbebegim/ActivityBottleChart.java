@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -168,68 +169,82 @@ public class ActivityBottleChart extends FragmentActivity implements OnChartValu
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
         /**************************************************************************/
-        if(Jan.get(0).get("sum(bottle.[amount])") != null){
+        //records.get(i).get("m_type").equals("Quite")
+        if(!(Jan.get(0).get("sum(bottle.[amount])") == null && Jan.size() == 0)) {
+            Log.i("Janu", Jan.get(0).get("sum(bottle.[amount])"));
             yVals1.add(new Entry(Integer.valueOf(Jan.get(0).get("sum(bottle.[amount])")), 0));
         }else{
             yVals1.add(new Entry(0, 0));
         }
-        if(Feb.get(0).get("sum(bottle.[amount])") != null){
+        if(!(Feb.get(0).get("sum(bottle.[amount])") != null && Feb.size() != 0)){
             yVals1.add(new Entry(Integer.valueOf(Feb.get(0).get("sum(bottle.[amount])")), 1));
         }else {
             yVals1.add(new Entry(0,1));
         }
-        if(Mar.get(0).get("sum(bottle.[amount])") != null){
+        if(Mar.get(0).get("sum(bottle.[amount])") != null && Mar.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Mar.get(0).get("sum(bottle.[amount])")), 2));
         }else {
             yVals1.add(new Entry(0,2));
         }
-        if(Apr.get(0).get("sum(bottle.[amount])") != null){
+        if(Apr.get(0).get("sum(bottle.[amount])") != null && Apr.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Apr.get(0).get("sum(bottle.[amount])")), 3));
         }else {
             yVals1.add(new Entry(0,3));
         }
-        if(May.get(0).get("sum(bottle.[amount])") != null){
+        if(May.get(0).get("sum(bottle.[amount])") != null && May.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(May.get(0).get("sum(bottle.[amount])")), 4));
         }else {
             yVals1.add(new Entry(0,4));
         }
-        if(Jun.get(0).get("sum(bottle.[amount])") != null){
+        if(Jun.get(0).get("sum(bottle.[amount])") != null && Jun.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Jun.get(0).get("sum(bottle.[amount])")), 5));
         }else {
             yVals1.add(new Entry(0,5));
         }
-        if(Jul.get(0).get("sum(bottle.[amount])") != null){
+        if(Jul.get(0).get("sum(bottle.[amount])") != null && Jul.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Jul.get(0).get("sum(bottle.[amount])")), 6));
         }else {
             yVals1.add(new Entry(0,6));
         }
-        if(Aug.get(0).get("sum(bottle.[amount])") != null){
+        if(Aug.get(0).get("sum(bottle.[amount])") != null && Aug.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Aug.get(0).get("sum(bottle.[amount])")), 7));
         }else {
             yVals1.add(new Entry(0,7));
         }
-        if(Sep.get(0).get("sum(bottle.[amount])") != null){
+        if(Sep.get(0).get("sum(bottle.[amount])") != null && Sep.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Sep.get(0).get("sum(bottle.[amount])")), 8));
         }else {
             yVals1.add(new Entry(0,8));
         }
-        if(Okt.get(0).get("sum(bottle.[amount])") != null){
+        if(Okt.get(0).get("sum(bottle.[amount])") != null && Okt.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Okt.get(0).get("sum(bottle.[amount])")), 9));
         }else {
             yVals1.add(new Entry(0,9));
         }
-        if(Nov.get(0).get("sum(bottle.[amount])") != null){
+        if(Nov.get(0).get("sum(bottle.[amount])") != null && Nov.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Nov.get(0).get("sum(bottle.[amount])")), 10));
         }else {
             yVals1.add(new Entry(0,10));
         }
-        if(Dec.get(0).get("sum(bottle.[amount])") != null){
+        if(Dec.get(0).get("sum(bottle.[amount])") != null && Dec.size() != 0){
             yVals1.add(new Entry(Integer.valueOf(Dec.get(0).get("sum(bottle.[amount])")), 11));
         }else {
             yVals1.add(new Entry(0,11));
         }
         /***************************************************************************/
 
+//        yVals1.add(new Entry(100, 0));
+//        yVals1.add(new Entry(100, 1));
+//        yVals1.add(new Entry(100, 2));
+//        yVals1.add(new Entry(100, 3));
+//        yVals1.add(new Entry(100, 4));
+//        yVals1.add(new Entry(100, 5));
+//        yVals1.add(new Entry(100, 6));
+//        yVals1.add(new Entry(100, 7));
+//        yVals1.add(new Entry(100, 8));
+//        yVals1.add(new Entry(100, 9));
+//        yVals1.add(new Entry(100, 10));
+//        yVals1.add(new Entry(100, 11));
         // create a dataset and give it a type
         LineDataSet set1 = new LineDataSet(yVals1, "Amount");
         // set1.setFillColor(Color.RED);

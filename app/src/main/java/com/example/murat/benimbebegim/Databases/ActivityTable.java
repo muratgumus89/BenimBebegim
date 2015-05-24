@@ -278,7 +278,7 @@ public class ActivityTable extends SQLiteOpenHelper{
     }
 
     public void insertRecord(String a_type, String baby_id,String user_id,String select_date,
-                         String select_time,String save_date,String save_time,String note) {
+                             String select_time,String save_date,String save_time,String note) {
         //moodEkle methodu ise adı üstünde Databese veri eklemek için
         SQLiteDatabase db = this.getWritableDatabase();//Yazma modunda databese i aç.
         ContentValues values = new ContentValues();

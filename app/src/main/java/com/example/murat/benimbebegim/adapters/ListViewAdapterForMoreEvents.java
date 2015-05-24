@@ -56,8 +56,6 @@ public class ListViewAdapterForMoreEvents extends BaseAdapter {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		View itemView = inflater.inflate(R.layout.listview_item, parent, false);
-        ImageView iv = (ImageView) itemView.findViewById(R.id.ivChartFavoritesIcon);
-        iv.setVisibility(View.INVISIBLE);
 
 		// Locate the TextViews in listview_item.xml
 		txtfavName = (TextView) itemView.findViewById(R.id.fav_name);

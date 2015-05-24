@@ -57,7 +57,6 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
         TextView txtMood;
         TextView txtClick;
 		ImageView imgLogo;
-		ImageView chartIcon;
 
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -78,9 +77,7 @@ public class ListViewAdapterForFavorites extends BaseAdapter {
 		txtfavName.setText(favName[position]);
 		// Capture position and set to the ImageView
 		imgLogo.setImageResource(upLogo[position]);
-		chartIcon = (ImageView) itemView.findViewById(R.id.ivChartFavoritesIcon);
 
-		chartIcon.setVisibility(View.INVISIBLE);
 
         if(position==0 || position ==1 || position ==2 || position == 3 || position ==4 || position == 5 || position == 6) {
             txtTime.setText(time[position]);

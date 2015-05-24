@@ -64,9 +64,9 @@ public class ActivityFavorites extends Fragment {
     String bottle_type, bottle_amount, bottle_timer, breast_amount, sleep_duration, diaper_type, pumping_amount, pumping_duration;
     private static String a;
 
-    String classes[] = {"ActivityMoodChart",
-            "ActivitySolidChart",
-            "ActivityBottleChart",
+    String classes[] = {"ActivityMood",
+            "ActivitySolid",
+            "ActivityBottle",
             "ActivityBreast",
             "ActivitySleep",
             "ActivityDiaper",
